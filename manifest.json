@@ -1,0 +1,20 @@
+{
+    "name": "Simplite New Tab",
+    "description": "A simple and lite new tab",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": ["storage"],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "icons": {
+      "128": "resources/icon_x128.png",
+      "16": "resources/icon_x16.png"
+    },
+    "chrome_url_overrides": {
+        "newtab": "index.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}
