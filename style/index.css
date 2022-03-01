@@ -42,6 +42,9 @@ body {
     color: var(--sl-transparent-color-text);
     cursor: pointer;
 }
+.search-buttons svg {
+    width: 24px;
+}
 #search-clear {
     display: none;
 }

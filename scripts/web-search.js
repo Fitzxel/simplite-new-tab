@@ -22,20 +22,24 @@ function getSearchEngine() {
 
 getSearchEngine();
 
+function createImgElement(src) {
+    const img = document.createElement('img');
+    img.classList.add('image-background');
+    img.src = src;
+    document.body.appendChild(img);
+}
+
 const imageBackground = document.querySelector('.imageBackground');
 
-chrome.storage.local.get(['backgroundType'], (result)=> {
+chrome.storage.local.get(['backgroundType', 'backgroundImageData'], (result)=> {
     if (result.backgroundType == '1') {
         //nothing
     }
     else if (result.backgroundType == '2') {
-        const img = document.createElement('img');
-        img.classList.add('image-background');
-        img.src = 'resources/default_wallpaper.jpg';
-        document.body.appendChild(img);
+        createImgElement('resources/default_wallpaper.jpg');
     }
-    else if (result.backgroundType == '3') {
-        //coming soon
+    else if (result.backgroundType == '3' || result.backgroundType == '4') {
+        createImgElement(result.backgroundImageData);
     }
 })
 
