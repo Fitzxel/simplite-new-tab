@@ -8,7 +8,7 @@
 }
 :root {
     --sl-color-scheme: light;
-    --sl-font-family: system-ui;
+    --sl-font-family: Segoe UI, helvetica, sans-serif;
     --sl-searchbox-height: 44px;
     --sl-accent-color: #0984E3;
     --sl-background-page: #e2e2e2;

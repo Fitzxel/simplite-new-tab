@@ -1,4 +1,8 @@
 // popup scripts
+document.documentElement.addEventListener('submit', (event)=> {
+    event.preventDefault();
+})
+
 const selectSearchEngine = document.querySelector('#select-search-engine');
 
 chrome.storage.local.get(['searchEngine'], (result)=> {
@@ -9,48 +13,70 @@ selectSearchEngine.addEventListener('change', ()=> {
     chrome.storage.local.set({'searchEngine':selectSearchEngine.value});
 })
 
-const selectBackgroundType = document.querySelector('#select-background-type');
+const selectBackgroundType = document.querySelector('#select-bg');
+const customBgContainer = document.querySelector('.custom-bg');
 
 chrome.storage.local.get(['backgroundType'], (result)=> {
     selectBackgroundType.value = result.backgroundType;
-    if (selectBackgroundType.value == 3 || selectBackgroundType.value == 4) {
-        document.querySelector('#custom-background-container').classList.add('show');
+    if (selectBackgroundType.value == 3) {
+        customBgContainer.classList.add('show');
+        customBgContainer.classList.add('file');
     }
 })
 
 selectBackgroundType.addEventListener('change', ()=> {
-    if (selectBackgroundType.value == 3 || selectBackgroundType.value == 4) {
-        document.querySelector('#custom-background-container').classList.add('show');
+    if (selectBackgroundType.value == 3) {
+        customBgContainer.classList.add('show');
+        customBgContainer.classList.add('file');
     }
     else {
         chrome.storage.local.set({'backgroundType':selectBackgroundType.value});
-        document.querySelector('#custom-background-container').classList.remove('show');
+        customBgContainer.classList.remove('show');
     }
 })
 
-// url background
-const urlInput = document.querySelector('#url-input');
-const urlButton = document.querySelector('#url-button');
+const setBgBtn = document.querySelector('#set-bg-btn');
+// background
+const imgInput = document.querySelector('#input-file');
+// const urlInput = document.querySelector('#url-input');
 
-urlInput.addEventListener('focus', ()=> {
-    document.querySelector('#custom-bg-form').classList.add('input-focus');
-})
+// urlInput.addEventListener('focus', ()=> {
+//     customBgContainer.classList.add('focus');
+// })
 
-urlInput.addEventListener('blur', ()=> {
-    document.querySelector('#custom-bg-form').classList.remove('input-focus');
-})
+// urlInput.addEventListener('blur', ()=> {
+//     customBgContainer.classList.remove('focus');
+// })
 
-urlButton.addEventListener('click', ()=> {
-    chrome.storage.local.set({'backgroundType':4});
-    chrome.storage.local.set({'backgroundImageData':urlInput.value});
+let imgData;
+setBgBtn.addEventListener('click', ()=> {
+    if (selectBackgroundType.value == 3 && imgInput.value.length > 0) {
+        chrome.storage.local.set({'backgroundType':3});
+        chrome.storage.local.set({'backgroundImageData':imgData});
+        document.querySelector('.under-text').textContent = 'set background';
+    }
+    // else if (selectBackgroundType.value == 4 && urlInput.value.length > 0) {
+    //     let reader = new FileReader();
+    //     reader.addEventListener('load', (e)=> {
+    //         console.log(e.target.result);
+    //     });
+    //     reader.readAsDataURL(urlInput.value);
+    //     chrome.storage.local.set({'backgroundType':4});
+    //     chrome.storage.local.set({'backgroundImageData':urlInput.value});
+    // }
 })
 
 // file background
-// const inputFile = document.querySelector('#input-file');
 
-// inputFile.addEventListener('change', ()=> {
-//     change();
-// })
+imgInput.addEventListener('change', (e)=> {
+    // change();
+    document.querySelector('#file-name').textContent = imgInput.files[0].name || 'Choose file';
+    let reader = new FileReader();
+    reader.addEventListener('load', (e)=> {
+        imgData = e.target.result;
+    });
+    reader.readAsDataURL(imgInput.files[0]);
+})
 
 // const data = {
 //     file: null,
@@ -61,7 +87,7 @@ urlButton.addEventListener('click', ()=> {
 // async function change() {
 //     document.querySelector('.progress-div').classList.add('show');
 //     document.querySelector('.progress-div').textContent = 'Uploading...';
-//     const file = inputFile.files[0];
+//     const file = imgInput.files[0];
 //     data.file = file;
 //     const image = await filetoImage(file);
 //     showMessageInput(file, image);

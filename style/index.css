@@ -72,10 +72,12 @@ body {
 }
 
 .image-background {
+    opacity: 0;
     position: fixed;
     z-index: -1;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+    transition: 1s;
 }

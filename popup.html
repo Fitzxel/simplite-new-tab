@@ -28,32 +28,30 @@
             </div>
             <div class="main-button">
                 <span>Background type:</span>
-                <select name="Background type" id="select-background-type">
+                <select name="Background type" id="select-bg">
                     <option value="1" title="No image, solid color">None</option>
                     <option value="2">Default image</option>
-                    <option value="4" title="Image via URL">Image URL</option>
-                    <!-- <option value="3">Custom image</option> -->
+                    <option value="3">Upload image</option>
+                    <!-- <option value="4" title="Image via URL">Image URL</option> -->
                 </select>
             </div>
         </div>
-        <div class="main-button custom-background-container" id="custom-background-container">
-            <form class="custom-bg-form" id="custom-bg-form">
-                <input type="url" placeholder="Enter Url" class="url-bg-input" id="url-input">
-                <button class="url-bg-button" id="url-button">
+        <div class="main-button custom-bg">
+            <form>
+                <!-- <input type="url" placeholder="Enter Url" id="url-input"> -->
+                <input type="file" accept="image/*" id="input-file">
+                <label class="label" id="file-name">
+                    Upload
+                </label>
+                <button id="set-bg-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-                        <title>Enter</title>
+                        <!-- <title>Enter</title> -->
                         <path d="M176 176v-40a40 40 0 0140-40h208a40 40 0 0140 40v240a40 40 0 01-40 40H216a40 40 0 01-40-40v-40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
                         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M272 336l80-80-80-80M48 256h288"/>
                     </svg>
                 </button>
             </form>
-            <span class="under-text">*(no cache) the image will not be available offline</span>
-            <!-- <div>
-                <input type="file" accept="image/*" class="custom-background-input" id="input-file">
-                <label class="custom-background-label" id="file-name">
-                    Choose file
-                </label>
-            </div> -->
+            <!-- <span class="under-text">*(no cache) the image will not be available offline</span> -->
         </div>
         <span class="under-text">reload the new tab page to see the changes</span>
     </div>
@@ -61,14 +59,13 @@
     <footer class="footer">
         <div class="footer-content">
             <a href="https://bit.ly/fitzxelsimplitepage" target="_blank" rel="noopener noreferrer">
-                Simplite 1.1
+                Simplite 1.4
             </a>
             <a href="https://bit.ly/simplitemse" target="_blank" rel="noopener noreferrer">
                 Rate extension
             </a>
         </div>
     </footer>
-    <script src="scripts/several.js"></script>
-    <script src="scripts/conversion.js"></script>
+    <script src="scripts/popup.js"></script>
 </body>
 </html>

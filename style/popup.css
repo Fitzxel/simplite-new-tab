@@ -2,6 +2,9 @@ body {
     background: var(--sl-opaque-background-elements);
     font-family: var(--sl-font-family);
 }
+svg {
+    width: 24px;
+}
 .header {
     display: flex;
     justify-content: center;
@@ -87,92 +90,94 @@ select>option {
     margin-right: 5px;
     font-size: 8px;
 }
-.custom-background-container {
+.custom-bg {
     display: none;
     flex-direction: column;
     justify-content: normal;
     font-size: 12px;
 }
-.custom-background-container:hover {
+.custom-bg:hover {
     background: none;
 }
-.custom-background-container.show {
+.custom-bg.show {
     display: flex;
 }
-.custom-bg-form {
+.custom-bg form {
     display: inherit;
     align-items: inherit;
     width: inherit;
     height: inherit;
     background: #444;
-    border-bottom: 1px solid #888;
+    border-bottom: 2px solid var(--sl-opaque-background-elements);
 }
-.custom-bg-form:hover {
+.custom-bg form:hover {
     background: #555;
 }
-.custom-bg-form.input-focus {
-    border-bottom: 1px solid var(--sl-accent-color);
+.custom-bg.focus form {
+    border-bottom: 2px solid var(--sl-accent-color);
 }
-/* .custom-background-input {
+.custom-bg form input[type="file" i] {
+    display: none;
     position: fixed;
     z-index: 2;
     opacity: 0;
     cursor: pointer;
     overflow: visible;
-    left: -1px;
+    left: -130px;
+    width: 200%;
 }
-input[type="file" i]::-webkit-file-upload-button {
-    cursor: pointer;
+.custom-bg.file form input[type="file" i] {
+    display: block;
 }
-.custom-background-label {
+.custom-bg form .label {
+    display: none;
     width: 100%;
     height: 100%;
-    background: #444;
-    border: 0.5px solid var(--sl-accent-color);
-    display: flex;
     align-items: center;
     justify-content: space-between;
     padding-left: 5px;
     z-index: 1;
 }
-.custom-background-label:after {
-    content: 'Browse';
-    width: 60px;
-    height: 100%;
-    border-left: .5px solid var(--sl-accent-color);
+.custom-bg.file form .label {
     display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-.url-bg-input {
+}
+/* .custom-bg form input[type="url"] {
+    display: none;
     width: 100%;
     height: 100%;
-    padding: 5px;
+    padding-left: 5px;
     background: transparent;
     border: none;
     border-radius: 2px;
     color: var(--sl-color-text);
 }
-.url-bg-input::placeholder {
-    color: var(--sl-transparent-color-text);
+.custom-bg.url form input[type="url"] {
+    display: block;
 }
-.url-bg-button {
+.custom-bg form input[type="url"]::placeholder {
+    color: var(--sl-transparent-color-text);
+} */
+.custom-bg form button {
     width: 40px;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: transparent;
+    background: var(--sl-opaque-background-elements);
     color: var(--sl-transparent-color-text);
     border: none;
     cursor: pointer;
+    z-index: 3;
 }
-.input-focus .url-bg-button {
+.custom-bg form button:hover {
     color: var(--sl-color-text);
 }
-.url-bg-button svg {
-    width: 24px;
+.custom-bg.focus form button {
+    color: var(--sl-color-text);
 }
+/* form .url-bg-button svg {
+    width: 24px;
+} */
 /* .progress-div {
     display: none;
     width: 100%;
