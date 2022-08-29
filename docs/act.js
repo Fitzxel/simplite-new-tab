@@ -83,6 +83,7 @@ let indexData;
 if (window.navigator.onLine == true) {
     // get search index
     fetch('https:/fitzxel.github.io/data/fx-index.json').then(res=> {
+        console.log(res.text());
         if (res.status >= 200 && res.status <= 299) {
             res.json().then(res=> {
                 indexData = res;
