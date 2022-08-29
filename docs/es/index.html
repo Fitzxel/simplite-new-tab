@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplite New Tab - Fitzxel</title>
+    <meta name="description" content="Simplite New Tab replaces the browsers own new tab.">
+    <link rel="icon" href="../favicon.svg">
+    <link rel="stylesheet" href="../fx-page.css">
+    <link rel="stylesheet" href="../fx-docs.css">
+    <script src="../docData.js"></script>
+</head>
+<body>
+    <header>
+        <button class="menu-btn" id="menu-btn">
+            <ion-icon name="arrow-down"></ion-icon>
+        </button>
+        <a href="https://fitzxel.github.io/" class="home-btn" tabindex="1">
+            Fitzxel
+        </a>
+        <form class="search not-allowed">
+            <input type="text" placeholder="Buscar" id="search-input" autocomplete="off" tabindex="2">
+            <div id="search-results">
+                <span class="over-text">Resultados</span>
+            </div>
+        </form>
+        <div class="switch-btn">
+            <button id="switch-theme-btn">
+                <ion-icon name="contrast"></ion-icon>
+                <span></span>
+            </button>
+            <ul class="list">
+                <li>
+                    <button name="auto" class="select-theme-btn">Auto</button>
+                </li>
+                <li>
+                    <button name="light" class="select-theme-btn">Claro</button>
+                </li>
+                <li>
+                    <button name="dark" class="select-theme-btn">Oscuro</button>
+                </li>
+            </ul>
+        </div>
+        <div class="switch-btn">
+            <button id="switch-lang-btn">
+                <ion-icon name="globe"></ion-icon>
+                <span></span>
+            </button>
+            <ul class="list">
+                <li>
+                    <button name="en" class="select-lang-btn">English</button>
+                </li>
+                <li>
+                    <button name="es" class="select-lang-btn">Español</button>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <button class="dropdown-aside" id="aside-btn">
+            En esta página
+            <ion-icon name="chevron-down"></ion-icon>
+        </button>
+    </main>
+    <!-- <script src="../projects_docs.js"></script> -->
+    <script src="../act.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="docData.js"></script>
+    <script>
+        if (!localStorage.getItem('lang')) {
+            if (window.navigator.language.includes('es')) {
+                localStorage.setItem('lang', 'es');
+            }
+            else {
+                localStorage.setItem('lang', 'en');
+            }
+        }
+        if (docData.availible_langs.includes(localStorage.getItem('lang'))) {
+            location.assign(localStorage.getItem('lang'));
+        }
+        else {
+            location.assign('en');
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
