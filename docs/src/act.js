@@ -86,15 +86,13 @@ if (window.navigator.onLine == true) {
         if (res.status >= 200 && res.status <= 299) {
             res.json().then(res=> {
                 indexData = res;
-
-                document.querySelector('#search-input').parentElement.classList.remove('not-allowed');
+                // create and get search.js
                 let searchScript = createElement('script');
-                // searchScript.src = 'https://fitzxel.github.io/scripts/search.js';
-                searchScript.src = '../search.js';
+                searchScript.src = 'https://fitzxel.github.io/scripts/search.js';
                 document.body.appendChild(searchScript);
-                // create and get projects nav
+                // create and get projects-nav.js
                 let projectsNavScript = createElement('script');
-                projectsNavScript.src = '../projects-nav.js';
+                projectsNavScript.src = 'https://fitzxel.github.io/scripts/projects-nav.js';
                 document.body.appendChild(projectsNavScript);
             });
         }
