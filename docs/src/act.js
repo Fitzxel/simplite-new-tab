@@ -117,7 +117,7 @@ let navOpen = false;
 //     }
 // });
 
-// actions on click in the body
+// actions on the body
 
 function closeProjectsNav() {
     // navMenu.classList.remove('open');
