@@ -15,17 +15,17 @@
         <button class="menu-btn" id="menu-btn">
             <ion-icon name="arrow-down"></ion-icon>
         </button>
-        <a href="https://fitzxel.github.io/" class="home-btn" tabindex="1">
+        <a href="https://fitzxel.github.io/" class="home-btn tabindex">
             Fitzxel
         </a>
         <form class="search not-allowed">
-            <input type="text" placeholder="Search" id="search-input" autocomplete="off" tabindex="2">
+            <input type="text" placeholder="Search" id="search-input" autocomplete="off" class="tabindex">
             <div id="search-results">
                 <div class="over-text">Results</div>
             </div>
         </form>
         <div class="switch-btn">
-            <button id="switch-theme-btn" tabindex="3">
+            <button id="switch-theme-btn" class="tabindex">
                 <ion-icon name="contrast"></ion-icon>
                 <span></span>
             </button>
@@ -42,7 +42,7 @@
             </ul>
         </div>
         <div class="switch-btn">
-            <button id="switch-lang-btn" tabindex="4">
+            <button id="switch-lang-btn" class="tabindex">
                 <ion-icon name="globe"></ion-icon>
                 <span></span>
             </button>
@@ -64,18 +64,12 @@
         <nav class="projects-nav not-allowed">
             <ul>
                 <li>
-                    <a href="../../projects/" class="act" tabindex="5">
+                    <a href="../../projects/" class="act tabindex">
                         <span class="title">Projects</span>
                     </a>
                     <ul class="submenu" id="projects-list"></ul>
                 </li>
             </ul>
-            <!-- <div class="flex">
-                <a href="../../projects/" class="act" tabindex="5">
-                    <span class="title">Projects</span>
-                </a>
-            </div>
-            <ul class="submenu" id="projects-list"></ul> -->
         </nav>
         <div class="content">
             <article class="article">
@@ -158,7 +152,7 @@
                     <aside class="aside">
                         <h2 class="title">In this article</h2>
                         <ul class="nav">
-                            <li>
+                            <!-- <li>
                                 <a href="#about">
                                     About
                                 </a>
@@ -167,7 +161,7 @@
                                 <a href="#privacy-policy">
                                     Privacy policy
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </aside>
                 </div>

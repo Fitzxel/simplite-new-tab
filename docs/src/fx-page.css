@@ -311,8 +311,6 @@ main > .content {
     width: 200px;
     height: max-content;
     padding: 40px 0;
-    /* background: var(--fx-pry-bg); */
-    /* border-right: 1px solid var(--fx-det-bg); */
     overflow-y: auto;
     overflow-x: hidden;
     /* z-index: 2; */
@@ -321,13 +319,6 @@ main > .content {
 .projects-nav.open {
     transform: none;
 }
-/* .projects-nav ul:first-child {
-    padding-left: 4px;
-} */
-/* .projects-nav .flex {
-    display: flex;
-    align-items: center;
-} */
 .projects-nav a {
     position: relative;
     width: 100%;
@@ -358,31 +349,13 @@ main > .content {
 .projects-nav a:hover {
     color: var(--fx-det-color);
 }
-
-/* .projects-nav a.act {
-    background: var(--fx-sec-bg);
-} */
-/* .projects-nav a.act::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 5px;
-    height: 100%;
-    background: var(--fx-accent-color);
-} */
 .projects-nav a:focus-visible {
     outline: none;
+    color: var(--fx-det-color);
 }
-/* .projects-nav a:focus-visible::before {
+.projects-nav a:focus-visible::before {
     background: var(--fx-color);
-} */
-/* .projects-nav ul li .icon {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
+}
 .projects-nav a .title {
     position: relative;
     display: block;

@@ -31,10 +31,10 @@ swtThemeBtn.querySelector('span').textContent = theme.replace(theme[0], theme[0]
 
 swtThemeBtn.addEventListener('click', ()=> {
     swtThemeBtn.parentElement.classList.toggle('act');
-    // const buttons = swtThemeBtn.querySelectorAll('.list li button');
-    // buttons.forEach(element => {
-    //     // element.tabIndex = 
-    // });
+    swtThemeBtn.parentElement.querySelectorAll('.list button').forEach(button => {
+        button.classList.toggle('tabindex');
+    });
+    setTabIndex();
 });
 const slctThemeBtns = document.querySelectorAll('.select-theme-btn');
 slctThemeBtns.forEach(btn => {
@@ -62,6 +62,10 @@ swtLangBtn.querySelector('span').textContent = lang.toLocaleUpperCase();
 
 swtLangBtn.addEventListener('click', ()=> {
     swtLangBtn.parentElement.classList.toggle('act');
+    swtLangBtn.parentElement.querySelectorAll('.list button').forEach(button => {
+        button.classList.toggle('tabindex');
+    });
+    setTabIndex();
 });
 const slctLangBtns = document.querySelectorAll('.select-lang-btn');
 slctLangBtns.forEach(btn => {
@@ -118,7 +122,6 @@ let navOpen = false;
 // });
 
 // actions on the body
-
 function closeProjectsNav() {
     // navMenu.classList.remove('open');
     navOpen = false;
@@ -126,9 +129,17 @@ function closeProjectsNav() {
 function closeSwitchs() {
     if (swtThemeBtn.parentElement.classList[1] == 'act') {
         swtThemeBtn.parentElement.classList.remove('act');
+        swtThemeBtn.parentElement.querySelectorAll('.list button').forEach(button => {
+            button.classList.remove('tabindex');
+        });
+        setTabIndex();
     }
     if (swtLangBtn.parentElement.classList[1] == 'act') {
         swtLangBtn.parentElement.classList.remove('act');
+        swtLangBtn.parentElement.querySelectorAll('.list button').forEach(button => {
+            button.classList.remove('tabindex');
+        });
+        setTabIndex();
     }
 }
 
@@ -224,39 +235,71 @@ document.querySelector('#append-getIts ul').appendChild(documentFragmentGetIt);
 // set licence text
 document.querySelector('#licence').textContent = `'${docData.licence}'`;
 
+// article h2
+const articleH2 = document.querySelectorAll('.article-body .content h2');
+
+// create asides li
+articleH2.forEach(h2 => {
+    let li = createElement('li');
+    let a = createElement('a');
+    a.href = `#${h2.id}`;
+    a.textContent = h2.textContent;
+    a.classList.add('tabindex');
+    li.appendChild(a);
+    // append li in aside nav
+    document.querySelector('.aside .nav').appendChild(li);
+});
 
 let lastIntersectingScroll = 0;
-
-const callback = (entries, observer) => {
+// callback for observer
+// when im comment about "entry" im refer to h2 intersecting and to "a" element on the "aside"
+function callback(entries, observer) {
     entries.forEach(entry => {
+        // if entry is not intersecting and last intersecting scroll is higher to current scrollY, remove "act" class on this entry
         if (!entry.isIntersecting && entry.intersectionRatio < .5 && lastIntersectingScroll > window.scrollY) {
             // console.log(entry);
             // console.log(`salir de ${entry.target.id}`);
             document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.classList.remove('act');
+            // and if this entry have a previous element, add "act" class to this previous element
             if (document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.previousElementSibling) {
                 document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.previousElementSibling.querySelector('a').parentElement.classList.add('act');
             }
         }
+        // if entry is intersecting add "act" class on this entry
         if (entry.isIntersecting && entry.intersectionRatio >= .5) {
             // console.log(entry);
             // console.log(`entrar a ${entry.target.id}`);
+            // set current value of scrollY on lastIntersectionScroll
             lastIntersectingScroll = window.scrollY;
             document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.classList.add('act');
+            // and if this entry have a previous element, remove "act" class to this previous element
             if (document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.previousElementSibling) {
                 document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.previousElementSibling.querySelector('a').parentElement.classList.remove('act');
             }
-            if (document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.nextElementSibling) {
-                document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.nextElementSibling.querySelector('a').parentElement.classList.remove('act');
-            }
+            // if (document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.nextElementSibling) {
+            //     document.querySelector(`.aside ul.nav li a[href="#${entry.target.id}"]`).parentElement.nextElementSibling.querySelector('a').parentElement.classList.remove('act');
+            // }
         }
     });
 }
-
-let observer = new IntersectionObserver(callback, {
+// declare observer
+const observer = new IntersectionObserver(callback, {
     rootMargin: "0px",
     threshold: .5
 });
-
-document.querySelectorAll('.article .content h2').forEach(element => {
-    observer.observe(element);
+// observe h2 intersection
+articleH2.forEach(h2 => {
+    observer.observe(h2);
 });
+
+
+function setTabIndex() {
+    // select all element with tabindex class
+    const allE = document.querySelectorAll('.tabindex');
+    // set tabIndex attribute for all elements with have tabindex class
+    for (let i = 0; i < allE.length; i++) {
+        allE[i].tabIndex = i+1;
+    }
+}
+
+setTabIndex();

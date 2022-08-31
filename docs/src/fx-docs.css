@@ -47,11 +47,6 @@ main .dropdown-aside {
     margin: 0;
     margin-bottom: 10px;
 }
-/* .aside ul.nav li.act {
-    color: var(--fx-accent-color);
-    background: var(--fx-sec-bg);
-    border-left: 5px solid var(--fx-accent-color);
-} */
 .aside ul.nav li a {
     display: flex;
     align-items: center;
@@ -72,6 +67,12 @@ main .dropdown-aside {
 }
 .aside ul.nav li a:hover {
     color: var(--fx-accent-color);
+}
+.aside ul.nav li a:focus-visible {
+    outline: none;
+    font-weight: 600;
+    background: var(--fx-sec-bg);
+    border-left: 5px solid var(--fx-color);
 }
 
 /*---page-content---*/
