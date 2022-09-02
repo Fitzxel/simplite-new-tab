@@ -260,8 +260,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     document.body.appendChild(searchScript);
                     // create and get projects-nav.js
                     let projectsNavScript = createElement('script');
-                    // projectsNavScript.src = 'https://fitzxel.github.io/scripts/projects-nav.js';
-                    projectsNavScript.src = 'http://127.0.0.1:5500/scripts/projects-nav.js';
+                    projectsNavScript.src = 'https://fitzxel.github.io/scripts/projects-nav.js';
                     document.body.appendChild(projectsNavScript);
                 });
             }
