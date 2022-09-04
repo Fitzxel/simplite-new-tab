@@ -13,10 +13,10 @@
             }
         }
         if (docData.availible_langs.includes(localStorage.getItem('lang'))) {
-            location.assign(localStorage.getItem('lang'));
+            location.assign(`${localStorage.getItem('lang')}/${location.href.slice(location.href.lastIndexOf('/')+1)}`);
         }
         else {
-            location.assign('en');
+            location.assign(`en/${location.href.slice(location.href.lastIndexOf('/')+1)}`);
         }
     </script>
 </head>
