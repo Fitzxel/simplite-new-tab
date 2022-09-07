@@ -296,4 +296,7 @@ window.addEventListener('resize', ()=> {
         document.querySelector('.projects-nav').style.transform = '';
         document.querySelector('.aside').style.height = `${document.querySelector('.projects-nav').offsetHeight}px`;
     }
+    if (window.innerWidth > 910) {
+        document.querySelector('.aside').style.height = ``;
+    }
 });
