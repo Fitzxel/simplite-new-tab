@@ -254,18 +254,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
             if (res.status >= 200 && res.status <= 299) {
                 res.json().then(res=> {
                     indexData = res;
-                    // create and get search.js
+                    // create and get search.js script
                     let searchScript = createElement('script');
                     searchScript.src = 'https://fitzxel.github.io/scripts/search.js';
                     document.body.appendChild(searchScript);
-                    // create and get projects-nav.js
+                    // create and get projects-nav.js script
                     let projectsNavScript = createElement('script');
                     projectsNavScript.src = 'https://fitzxel.github.io/scripts/projects-nav.js';
                     document.body.appendChild(projectsNavScript);
                 });
             }
             else if (res.status >= 400 && res.status <= 499) {
-                searchResults.querySelector('.over-text').textContent = 'An error has occurred';
+                document.querySelector('#search-input').placeholder = `An error has occurred (${res.status})`;
             }
         });
     }
@@ -274,7 +274,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
 document.body.addEventListener('keydown', (e)=>{
     if (e.key == 'Escape') {
         e.preventDefault();
-        closeProjectsNav();
         closeSwitchs();
     }
 });
