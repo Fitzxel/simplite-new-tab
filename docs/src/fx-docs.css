@@ -21,7 +21,7 @@ main .dropdown-aside {
 }
 .aside {
     position: sticky;
-    top: var(--fx-header-height);
+    top: calc(var(--fx-header-height) + 30px);
     right: 0;
     min-width: 0;
     width: calc(var(--fx-aside-width) - 30px);
@@ -32,9 +32,6 @@ main .dropdown-aside {
     background: var(--fx-pry-bg);
     overflow: auto;
 }
-/* .aside.open {
-    transform: none;
-} */
 .aside .title {
     font-size: 17px;
     letter-spacing: 1px;

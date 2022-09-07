@@ -30,8 +30,8 @@
     --color-scheme: light;
     --fx-accent-color: #ff6d00;
     --fx-det-accent-color: #ff9d00;
-    --fx-pry-bg: #f5f6fa; /* primary background color*/
-    --fx-sec-bg: #ecf0f1; /* secondary background color */
+    --fx-pry-bg: #fff; /* primary background color*/
+    --fx-sec-bg: #f5f6fa; /* secondary background color */
     --fx-det-bg: #dcdde1; /* smooth background color, for borders and others */
     /* text colors */
     --fx-color: #000; /* font color */
@@ -137,7 +137,56 @@ a.type-1:focus-visible {
     border-left: 5px solid var(--fx-color);
 }
 
+a.type-l {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+    text-decoration: none;
+    color: var(--fx-color);
+}
+a.type-l::before {
+    content: '';
+    width: 10px;
+    height: 3px;
+    background: var(--fx-sec-bg);
+    position: absolute;
+    top: 17px;
+    z-index: 1;
+}
+a.type-l.act::before {
+    content: '';
+    width: 10px;
+    height: 3px;
+    background: var(--fx-accent-color);
+    position: absolute;
+    top: 17px;
+    z-index: 1;
+}
+a.type-l:hover {
+    color: var(--fx-det-color);
+}
+a.type-l:focus-visible {
+    outline: none;
+    color: var(--fx-det-color);
+}
+a.type-l:focus-visible::before {
+    background: var(--fx-color);
+}
+a.type-l .title {
+    position: relative;
+    display: block;
+    padding-left: 20px;
+    line-height: var(--fx-btn-mid-height);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 button {
+    min-width: 24px;
+    min-height: 24px;
     background: var(--fx-pry-bg);
     border: none;
     cursor: pointer;
@@ -247,6 +296,9 @@ form.search input:focus {
 #search-results .over-text {
     position: absolute;
 }
+#search-results a {
+    font-size: 14px;
+}
 #search-results a h3 {
     color: var(--fx-det-color);
     font-size: 13px;
@@ -330,56 +382,6 @@ main > .content {
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 1;
-    /* transition-duration: .3s; */
-}
-/* .projects-nav.open {
-    transform: none;
-} */
-.projects-nav li a {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding-left: 4px;
-    text-decoration: none;
-    color: var(--fx-color);
-}
-.projects-nav a::before {
-    content: '';
-    width: 10px;
-    height: 3px;
-    background: var(--fx-sec-bg);
-    position: absolute;
-    top: 17px;
-    z-index: 1;
-}
-.projects-nav a.act::before {
-    content: '';
-    width: 10px;
-    height: 3px;
-    background: var(--fx-accent-color);
-    position: absolute;
-    top: 17px;
-    z-index: 1;
-}
-.projects-nav a:hover {
-    color: var(--fx-det-color);
-}
-.projects-nav a:focus-visible {
-    outline: none;
-    color: var(--fx-det-color);
-}
-.projects-nav a:focus-visible::before {
-    background: var(--fx-color);
-}
-.projects-nav a .title {
-    position: relative;
-    display: block;
-    padding-left: 20px;
-    line-height: var(--fx-btn-mid-height);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 .projects-nav .icon.drop-submenu {
     position: absolute;
