@@ -256,11 +256,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     indexData = res;
                     // create and get search.js script
                     let searchScript = createElement('script');
-                    searchScript.src = 'https://fitzxel.github.io/scripts/search.js';
+                    searchScript.src = 'https://fitzxel.github.io/src/js/search.js';
                     document.body.appendChild(searchScript);
                     // create and get projects-nav.js script
                     let projectsNavScript = createElement('script');
-                    projectsNavScript.src = 'https://fitzxel.github.io/scripts/projects-nav.js';
+                    projectsNavScript.src = 'https://fitzxel.github.io/src/js/projects-nav.js';
                     document.body.appendChild(projectsNavScript);
                 });
             }
