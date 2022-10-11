@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Google",
+        "url": "https://google.com/search?q=%s",
+        "value": 1
+    },
+    {
+        "name": "Bing",
+        "url": "https://bing.com/search?q=%s",
+        "value": 2
+    },
+    {
+        "name": "DuckDuckGo",
+        "url": "https://duckduckgo.com/?q=%s",
+        "value": 3
+    },
+    {
+        "name": "You.com",
+        "url": "https://you.com/search?q=%s",
+        "value": 4
+    },
+    {
+        "name": "YouCode",
+        "url": "https://you.com/search?q=%s&tbm=youcode",
+        "value": 5
+    }
+]
