@@ -1,0 +1,258 @@
+body {
+    background: var(--bg-page);
+    font-family: var(--font-family);
+}
+
+:focus {
+    outline: 2px solid var(--accent-color);
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--opaque-bg-elements);
+    border-bottom: 1px solid #888;
+}
+header div {
+    display: flex;
+    align-items: center;
+}
+header div svg {
+    width: 50px;
+    height: 50px;
+}
+header h1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--accent-color);
+}
+header #msg {
+    width: 100%;
+    padding: 5px;
+    background: #eee;
+    color: var(--opaque-bg-elements);
+    font-weight: 500;
+    text-align: center;
+    transition: .2s;
+}
+
+h2 {
+    font-size: 15px;
+    color: #fff9;
+}
+
+svg {
+    width: 24px;
+    fill: currentColor;
+}
+
+a {
+    font-weight: 500;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    height: 25px;
+    padding: 10px;
+    border-radius: 2px;
+    background: var(--color-text);
+    color: var(--bg-page);
+    border: none;
+    cursor: pointer;
+    transition: .2s;
+}
+button:hover, button:focus {
+    outline: none;
+    background: var(--bg-page);
+    color: var(--color-text);
+    border: 2px solid var(--color-text);
+}
+
+button#submit-btn {
+    margin-top: 5px;
+}
+button#reset-btn {
+    background: #ee0000;
+    color: #fff;
+}
+button#reset-btn:hover, button#reset-btn:focus {
+    background: inherit;
+    border: 2px solid #ee0000;
+}
+
+.under-text {
+    font-size: 11px;
+    font-weight: 500;
+    align-self: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+main > section, main > form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    min-height: 25px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--font-family);
+    color: var(--color-text);
+}
+
+main > section#hidden-options {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+}
+main > section#hidden-options.show {
+    display: inherit;
+}
+
+main > section > select {
+    margin-left: 5px;
+    width: 150px;
+    background: transparent;
+    border-radius: 4px;
+    color: var(--color-text);
+    border: none;
+    cursor: pointer;
+}
+main > section .under-text {
+    font-weight: 400;
+}
+
+select > option {
+    background: var(--opaque-bg-elements);
+}
+
+main > form {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0px;
+    margin: 10px 0;
+    font-size: 12px;
+}
+main > form.text, main > form.file {
+    display: flex;
+}
+
+main > form section {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    padding-bottom: 10px;
+    border-radius: 2px;
+    border: 2px ridge var(--accent-color);
+    background: var(--transp-bg-elements);
+}
+main > form.text section.text, main > form.file section.file {
+    display: flex;
+}
+
+main > form section.file {
+    padding-top: 10px;
+    border-style: dashed;
+}
+main > form section.file svg {
+    width: 50px;
+}
+
+main > form section.file .progress-bar {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px;
+    background: blue;
+    transition: width .2s;
+}
+
+main > form input {
+    width: 100%;
+    height: 35px;
+    padding-left: 5px;
+    border: none;
+    border-bottom: 3px solid var(--opaque-bg-elements);
+    background: transparent;
+    color: var(--color-text);
+    font-size: 12px;
+}
+main > form input::placeholder {
+    color: #fff9;
+}
+main > form input:focus {
+    border-bottom: 3px solid var(--accent-color);
+}
+
+main > form input[type="file"] {
+    display: none;
+}
+
+main > form button#add-engine-btn {
+    display: none;
+}
+main > form.text button#add-engine-btn {
+    display: inherit;
+}
+
+main > form .under-text.url {
+    display: contents;
+    pointer-events: none;
+}
+main > form .under-text.url span {
+    font-size: 12px;
+}
+main > form .under-text.url span b {
+    color: var(--accent-color);
+}
+
+#deleteEngineBtn {
+    display: none;
+    justify-content: center;
+}
+#deleteEngineBtn.show {
+    display: flex;
+}
+
+footer {
+    width: 100%;
+    color: var(--color-text);
+    font-size: 12px;
+    font-weight: 400;
+}
+footer.fixed {
+    position: fixed;
+    bottom: 0;
+}
+footer .content {
+    padding-bottom: 5px;
+    border-top: 1px solid #888;
+    text-align: center;
+    background: var(--opaque-bg-elements);
+}
+footer .content ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px 50px;
+    margin: 5px;
+    list-style: none;
+}
