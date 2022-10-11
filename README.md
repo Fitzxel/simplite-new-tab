@@ -1,4 +1,4 @@
-![Screenshot Cover](https://fitzxel.github.io/simpliteNewTab/screenshot/capture.png)
+![Screenshot Cover](https://fitzxel.github.io/simpliteNewTab/screenshots/capture.png)
 
 ## Simplite New Tab
 
