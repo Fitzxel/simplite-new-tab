@@ -1,10 +1,26 @@
 {
-    "appName": {
-      "message": "Simplite Nueva Pestaña",
-      "description": "Obtenga una nueva pestaña simple y ligera."
-    },
-    "appDesc": {
-      "message": "Una nueva pestaña simple y ligera.",
-      "description": "Obtenga una nueva pestaña simple y ligera."
-    }
+  "extName": {
+    "message": "Simplite Nueva Pestaña"
+  },
+  "extDesc": {
+    "message": "Una nueva pestaña simple y ligera."
+  },
+  "newTabTitle": {
+    "message": "Nueva Pestaña"
+  },
+  "search": {
+    "message": "Buscar"
+  },
+  "search_engine": {
+    "message": "Buscar en"
+  },
+  "searchForm": {
+    "message": "Escriba aquí para buscar"
+  },
+  "deleteButton": {
+    "message": "Borrar"
+  },
+  "photographer": {
+    "message": "Fotógrafo"
   }
+}

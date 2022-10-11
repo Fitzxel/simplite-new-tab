@@ -1,0 +1,23 @@
+{
+  "extName": {
+    "message": "Simplite Nova Guia"
+  },
+  "extDesc": {
+    "message": "Uma nova guia simples e leve."
+  },
+  "newTabTitle": {
+    "message": "Nova Guia"
+  },
+  "search": {
+    "message": "Pesquisar"
+  },
+  "search_engine": {
+    "message": "Pesquisar no"
+  },
+  "searchForm": {
+    "message": "Digite aqui para pesquisar"
+  },
+  "deleteButton": {
+    "message": "Limpar"
+  }
+}

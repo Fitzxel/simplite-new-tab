@@ -1,10 +1,26 @@
 {
-    "appName": {
-      "message": "Simplite New Tab",
-      "description": "Get a simple and light new tab."
-    },
-    "appDesc": {
-      "message": "A simple and light new tab.",
-      "description": "Get a simple and light new tab."
-    }
+  "extName": {
+    "message": "Simplite New Tab"
+  },
+  "extDesc": {
+    "message": "A simple and light new tab."
+  },
+  "newTabTitle": {
+    "message": "New Tab"
+  },
+  "search": {
+    "message": "Search"
+  },
+  "search_engine": {
+    "message": "Search"
+  },
+  "searchForm": {
+    "message": "Type here to search"
+  },
+  "deleteButton": {
+    "message": "Clear"
+  },
+  "photographer": {
+    "message": "Photographer"
   }
+}
