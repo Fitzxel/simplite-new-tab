@@ -21,4 +21,4 @@ Its only function: to perform text searches in a functional code and a concise d
 - Accessible use and configuration.
 
 # Get extension:
-- [Get for Microsoft Edge](https://bit.ly/simplitemse)
+- [Get for Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/gcnndkgggdjgfkkmokfpifaehabocfgo)
