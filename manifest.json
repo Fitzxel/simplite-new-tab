@@ -1,16 +1,25 @@
 {
-    "name": "__MSG_appName__",
-    "description": "__MSG_appDesc__",
+    "name": "__MSG_extName__",
+    "description": "__MSG_extDesc__",
     "default_locale": "en",
-    "version": "1.4",
+    "version": "1.6",
     "manifest_version": 3,
     "permissions": ["storage", "unlimitedStorage"],
+    "host_permissions": [
+      "https://api.pexels.com/*"
+    ],
+    "options_ui": {
+    	"page": "popup-options.html",
+    	"open_in_tab": false
+    },
     "action": {
-        "default_popup": "popup.html"
+        "default_popup": "popup-options.html"
     },
     "icons": {
-      "128": "resources/icon_x128.png",
-      "16": "resources/icon_x16.png"
+      "16": "resources/icon_x16.png",
+      "32": "resources/icon_x32.png",
+      "48": "resources/icon_x48.png",
+      "128": "resources/icon_x128.png"
     },
     "chrome_url_overrides": {
         "newtab": "index.html"

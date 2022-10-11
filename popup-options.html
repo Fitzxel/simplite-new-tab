@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!-- Simplite 1.6 -->
+<html data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/simplite-general.css">
+    <link rel="stylesheet" href="src/popup.css">
+</head>
+<body>
+    <header>
+        <div>
+            <svg width="30" height="30" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.3334 9.33332H9.80672L9.62005 9.15332C10.4201 8.21999 10.8334 6.94666 10.6067 5.59332C10.2934 3.73999 8.74672 2.25999 6.88005 2.03332C4.06005 1.68666 1.68672 4.05999 2.03338 6.87999C2.26005 8.74666 3.74005 10.2933 5.59339 10.6067C6.94672 10.8333 8.22005 10.42 9.15339 9.61999L9.33339 9.80666V10.3333L12.1667 13.1667C12.4401 13.44 12.8867 13.44 13.1601 13.1667C13.4334 12.8933 13.4334 12.4467 13.1601 12.1733L10.3334 9.33332ZM6.33339 9.33332C4.67338 9.33332 3.33338 7.99332 3.33338 6.33332C3.33338 4.67332 4.67338 3.33332 6.33339 3.33332C7.99339 3.33332 9.33339 4.67332 9.33339 6.33332C9.33339 7.99332 7.99339 9.33332 6.33339 9.33332Z" fill="#0984E3"/>
+                <path d="M5.75871 7.25871C5.59837 7.30168 5.44128 7.32203 5.28746 7.31976C5.13556 7.31698 5.00296 7.2935 4.88967 7.24932L4.92534 6.86085C5.03322 6.90027 5.15003 6.92281 5.27578 6.92845C5.40346 6.93358 5.53105 6.91906 5.65855 6.8849C5.79764 6.84763 5.89144 6.79972 5.93994 6.74117C5.98985 6.68018 6.00601 6.61684 5.98841 6.55115C5.9734 6.49513 5.94024 6.45639 5.88894 6.43494C5.83764 6.41348 5.75576 6.4054 5.64329 6.41069L5.29721 6.42888C4.91139 6.44944 4.6781 6.30904 4.59735 6.00767C4.56266 5.87823 4.56715 5.7559 4.61082 5.64068C4.65397 5.52352 4.73011 5.42133 4.83926 5.33411C4.95033 5.24637 5.08798 5.1805 5.25218 5.1365C5.39321 5.09871 5.53098 5.08354 5.66548 5.09098C5.79999 5.09842 5.91765 5.12797 6.01846 5.17964L5.97658 5.54493C5.78452 5.46181 5.57547 5.45053 5.34945 5.51109C5.22774 5.5437 5.13955 5.59321 5.08488 5.65963C5.03162 5.72359 5.01508 5.79324 5.03527 5.86859C5.05028 5.92461 5.08273 5.96457 5.13262 5.98848C5.1825 6.01238 5.26052 6.0215 5.36667 6.01583L5.71276 5.99764C6.10928 5.97835 6.34584 6.11167 6.42245 6.39758C6.45662 6.52508 6.45186 6.64645 6.4082 6.76168C6.36595 6.87446 6.28929 6.97471 6.17821 7.06245C6.06855 7.14774 5.92871 7.21316 5.75871 7.25871Z" fill="#0984E3"/>
+                <path d="M6.62428 7.45101L6.07688 5.40808L6.52603 5.28773L6.97172 6.95105L7.91639 6.69792L8.01811 7.07753L6.62428 7.45101Z" fill="#0984E3"/>
+            </svg>
+            <h1>Simplite</h1>
+        </div>
+        <span id="msg"></span>
+    </header>
+    <main>
+        <section id="search-engine">
+            <span></span>
+            <select name="Search engine" id="select-search-engine">
+                <option value="0"></option>
+            </select>
+        </section>
+        <section id="bg-type">
+            <span></span>
+            <select name="Background type" id="select-bg-type">
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+            </select>
+        </section>
+        <section id="bg-align">
+            <span></span>
+            <select name="Aling background" id="select-bg-align">
+                <option value="top"></option>
+                <option value="bottom"></option>
+                <option value="center"></option>
+                <option value="left"></option>
+                <option value="right"></option>
+            </select>
+        </section>
+        <form id="form">
+            <section class="text">
+                <input type="text" placeholder="" id="input-name">
+                <input type="url" placeholder="" id="input-url">
+                <span class="under-text url"></span>
+                <button id="add-engine-btn"></button>
+            </section>
+            <section class="file" id="drop-file">
+                <input type="file" accept="image/*" id="input-file">
+                <div class="progress-bar"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                    <!-- <title>Cloud Upload</title> -->
+                    <path d="M473.66 210c-14-10.38-31.2-18-49.36-22.11a16.11 16.11 0 01-12.19-12.22c-7.8-34.75-24.59-64.55-49.27-87.13C334.15 62.25 296.21 47.79 256 47.79c-35.35 0-68 11.08-94.37 32.05a150.07 150.07 0 00-42.06 53 16 16 0 01-11.31 8.87c-26.75 5.4-50.9 16.87-69.34 33.12C13.46 197.33 0 227.24 0 261.39c0 34.52 14.49 66 40.79 88.76 25.12 21.69 58.94 33.64 95.21 33.64h104V230.42l-36.69 36.69a16 16 0 01-23.16-.56c-5.8-6.37-5.24-16.3.85-22.39l63.69-63.68a16 16 0 0122.62 0L331 244.14c6.28 6.29 6.64 16.6.39 22.91a16 16 0 01-22.68.06L272 230.42v153.37h124c31.34 0 59.91-8.8 80.45-24.77 23.26-18.1 35.55-44 35.55-74.83 0-29.94-13.26-55.61-38.34-74.19zM240 448.21a16 16 0 1032 0v-64.42h-32z"/>
+                </svg>
+                <span></span>
+                <b></b>
+                <button id="browse-img-btn"></button>
+            </section>
+        </form>
+        <section>
+            <button id="submit-btn"></button>
+            <button id="alt-hidden-options" title="">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                    <!-- <title>Chevron Down</title> -->
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 184l144 144 144-144"/>
+                </svg>
+            </button>
+        </section>
+        <section id="hidden-options">
+            <h2></h2>
+            <button id="deleteEngineBtn"></button>
+            <button id="reset-btn" title=""></button>
+        </section>
+    </main>
+    <footer>
+        <div class="content">
+            <ul>
+                <li>
+                    <a href="https://fitzxel.github.io/simpliteNewTab/" target="_blank" rel="noopener noreferrer">Simplite 1.6 ❕</a>
+                </li>
+                <li>
+                    <a href="https://bit.ly/simplitemse" target="_blank" rel="noopener noreferrer" id="rate-link"></a>
+                </li>
+                <li>
+                    <a href="https://www.buymeacoffee.com/fitzxel" target="_blank" rel="noopener noreferrer">Buy me a coffee! ☕</a>
+                </li>
+            </ul>
+            <span class="under-text"></span>
+        </div>
+    </footer>
+    <script src="src/popup.js"></script>
+</body>
+</html>

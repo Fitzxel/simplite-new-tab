@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<!-- Simplite 1.4 -->
-<html data-theme="dark">
+<!-- Simplite 1.6 -->
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simplite...</title>
     <link rel="icon" href="resources/favicon.svg">
-    <link rel="stylesheet" href="style/simplite-general-style.css">
-    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="src/simplite-general.css">
+    <link rel="stylesheet" href="src/newtab.css">
 </head>
 <body>
     <div class="search-container">
         <form class="search-form" id="search-form">
-            <input type="text" class="search-input" placeholder="Search" id="search-input" title="Type here to search">
-            <div class="search-buttons search-clear" title="Delete" id="search-clear">
+            <input type="text" class="search-input" placeholder="" id="search-input" title="" autocomplete="off">
+            <div class="search-buttons search-clear" title="" id="search-clear">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/>
                 </svg>
             </div>
-            <button class="search-buttons" type="submit" title="Search" id="button-search">
+            <button class="search-buttons" type="submit" title="" id="button-search">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-                    <title>Search</title>
+                    <!-- <title>Search</title> -->
                     <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/>
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"/>
                 </svg>
             </button>
         </form>
     </div>
-    <script src="scripts/newtab.js"></script>
+    <script src="src/newtab.js"></script>
 </body>
 </html>
