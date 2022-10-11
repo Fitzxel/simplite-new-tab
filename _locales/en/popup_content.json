@@ -1,0 +1,132 @@
+﻿[
+  {
+    "selector": "#msg",
+    "txtContent": "Without changes",
+    "variants": {
+      "Without_changes": "Without changes",
+      "Unsaved_changes": "Unsaved changes",
+      "NotAImage": "That's not a image file 😠",
+      "FillForm": "Fill in the fields correctly 🙃",
+      "SavedConfig": "Set ✔",
+      "ParametersReset": "Parameters reset ✔ reloading..."
+    }
+  },
+
+  {
+    "selector": "section#search-engine span",
+    "txtContent": "Search engine:"
+  },
+  {
+    "selector": "section#search-engine select option[value='0']",
+    "txtContent": "Add +"
+  },
+
+  {
+    "selector": "section#bg-type span",
+    "txtContent": "Background type:"
+  },
+  {
+    "selector": "section#bg-type select option[value='1']",
+    "txtContent": "None, solid color"
+  },
+  {
+    "selector": "section#bg-type select option[value='2']",
+    "txtContent": "Default"
+  },
+  {
+    "selector": "section#bg-type select option[value='3']",
+    "txtContent": "Upload image"
+  },
+  {
+    "selector": "section#bg-type select option[value='4']",
+    "txtContent": "Dynamic photos"
+  },
+
+  {
+    "selector": "section#bg-align span",
+    "txtContent": "Align background:"
+  },
+  {
+    "selector": "section#bg-align select option[value='top']",
+    "txtContent": "Top ⬆"
+  },
+  {
+    "selector": "section#bg-align select option[value='bottom']",
+    "txtContent": "Bottom ⬇"
+  },
+  {
+    "selector": "section#bg-align select option[value='center']",
+    "txtContent": "Center +"
+  },
+  {
+    "selector": "section#bg-align select option[value='left']",
+    "txtContent": "Left ⬅"
+  },
+  {
+    "selector": "section#bg-align select option[value='right']",
+    "txtContent": "Right ➡"
+  },
+  
+  {
+    "selector": "#form section.text #input-name",
+    "txtPlaceholder": "Name"
+  },
+  {
+    "selector": "#form section.text #input-url",
+    "txtPlaceholder": "URL with %s at the place of consultation"
+  },
+  {
+    "selector": "#form section.text .under-text.url",
+    "txtInnerHTML": "URL example: 👇👇👇<span>https://www.bing.com/search?q=<b>%s</b></span>"
+  },
+  {
+    "selector": "#form section.text #add-engine-btn",
+    "txtContent": "Add engine"
+  },
+  {
+    "selector": "#form section.file span",
+    "txtContent": "Drag image file to upload here"
+  },
+  {
+    "selector": "#form section.file b",
+    "txtContent": "OR"
+  },
+  {
+    "selector": "#form section.file #browse-img-btn",
+    "txtContent": "Browse 📁"
+  },
+
+  {
+    "selector": "#submit-btn",
+    "txtContent": "Set ➡💾",
+    "txtTitle": "Set parameters"
+  },
+  {
+    "selector": "#alt-hidden-options",
+    "txtTitle": "Hidden options 🤫"
+  },
+  
+  {
+    "selector": "#deleteEngineBtn",
+    "txtContent": "Delete this engine"
+  },
+  {
+    "selector": "#reset-btn",
+    "txtContent": "Reset parameters",
+    "txtTitle": "Notice: Pressing resets all parameters"
+  },
+
+  {
+    "selector": "#rate-link",
+    "txtContent": "Rate extension ⭐"
+  },
+  {
+    "selector": "footer .under-text",
+    "txtContent": "No need to reload the new tab to see the changes!"
+  },
+
+  {
+    "selector": "section#hidden-options h2",
+    "txtContent": "⚠- Hidden options -⚠"
+  }
+]
