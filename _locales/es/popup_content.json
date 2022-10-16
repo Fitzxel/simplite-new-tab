@@ -42,6 +42,21 @@
     "txtContent": "Fotos dinámicas",
     "txtTitle": "Fotos dinámicas a lo largo del día desde la plataforma de Pexels"
   },
+  {
+    "selector": "section#bg-type select option[value='5']",
+    "txtContent": "Videos dinámicos",
+    "txtTitle": "Videos dinámicos a lo largo del día desde la plataforma de Pexels.\n❕❕Solo con conexión a internet❕❕"
+  },
+
+  {
+    "selector": "section#high-quality section.check > span",
+    "txtContent": "Alta calidad"
+  },
+  {
+    "selector": "section#high-quality section.check",
+    "txtTitle": "Active para usar alta calidad en las fotos y vídeos dinámicos.\nEste cambio se aplica la próxima vez que se actualice la foto o el video dinámico."
+  },
+
 
   {
     "selector": "section#bg-align span",

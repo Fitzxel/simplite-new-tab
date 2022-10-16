@@ -22,5 +22,17 @@
   },
   "photographer": {
     "message": "Fotógrafo"
+  },
+  "PhotoDelayNotificationTitle": {
+    "message": "Se a tardado más de lo esperado en obtener/procesar la imagen"
+  },
+  "PhotoDelayNotificationMessage": {
+    "message": "Considere desactivar \"Alta calidad\" en opciones para reducir el tiempo de respuesta."
+  },
+  "PhotoDelayNotificationPrimaryButton": {
+    "message": "No volver a mostrar"
+  },
+  "PhotoDelayNotificationSecondButton": {
+    "message": "Ir a opciones"
   }
 }

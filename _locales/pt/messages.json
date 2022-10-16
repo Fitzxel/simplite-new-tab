@@ -19,5 +19,17 @@
   },
   "deleteButton": {
     "message": "Limpar"
+  },
+  "PhotoDelayNotificationTitle": {
+    "message": "Demorou mais do que o esperado para obter/processar a imagem"
+  },
+  "PhotoDelayNotificationMessage": {
+    "message": "Considere desativar \"Alta qualidade\" nas opções para reduzir o tempo de resposta."
+  },
+  "PhotoDelayNotificationPrimaryButton": {
+    "message": "Não mostre novamente"
+  },
+  "PhotoDelayNotificationSecondButton": {
+    "message": "Ir para opções"
   }
 }

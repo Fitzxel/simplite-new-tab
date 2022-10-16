@@ -39,7 +39,22 @@
   },
   {
     "selector": "section#bg-type select option[value='4']",
-    "txtContent": "Fotos dinâmicas"
+    "txtContent": "Fotos dinâmicas",
+    "txtTitle": "Fotos dinâmicas ao longo do dia na plataforma Pexels"
+  },
+  {
+    "selector": "section#bg-type select option[value='5']",
+    "txtContent": "Vídeos dinâmicos",
+    "txtTitle": "Fotos dinâmicas ao longo do dia na plataforma Pexels.\n❕❕Somente com conexão à internet❕❕"
+  },
+
+  {
+    "selector": "section#high-quality section.check > span",
+    "txtContent": "Alta qualidade"
+  },
+  {
+    "selector": "section#high-quality section.check",
+    "txtTitle": "Ative para usar alta qualidade para fotos e vídeos dinâmicos.\nEssa alteração entrará em vigor na próxima vez que a foto ou o vídeo dinâmico for atualizado."
   },
 
   {
