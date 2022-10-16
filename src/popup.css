@@ -120,7 +120,7 @@ main > section#hidden-options.show {
     display: inherit;
 }
 
-main > section > select {
+main > section > select, main > section > section {
     margin-left: 5px;
     width: 150px;
     background: transparent;
@@ -128,6 +128,10 @@ main > section > select {
     color: var(--color-text);
     border: none;
     cursor: pointer;
+}
+main > section > section.check {
+    display: flex;
+    justify-content: space-evenly;
 }
 main > section .under-text {
     font-weight: 400;

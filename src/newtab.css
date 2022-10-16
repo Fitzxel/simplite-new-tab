@@ -73,7 +73,7 @@ body {
     opacity: .7;
 }
 
-#img-bg {
+#img-bg, #video-bg {
     opacity: 0;
     position: fixed;
     z-index: -1;
