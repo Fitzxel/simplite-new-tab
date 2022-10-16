@@ -74,8 +74,8 @@ function showMSG(msg, type) {
 
 //
 function verifyChanges() {
-    chrome.storage.local.get(['searchEngines', 'selectedEngine', 'backgroundType', 'backgroundAlign', 'backgroundImageData'], (result)=> {
-        if (result.selectedEngine == selector('search-engine').value && result.searchEngines.length == searchEngines.length && result.backgroundType == selector('bg-type').value && result.backgroundImageData == imgData && result.backgroundAlign == selector('bg-align').value) {
+    chrome.storage.local.get(['searchEngines', 'selectedEngine', 'backgroundType', 'backgroundAlign', 'backgroundImageData', 'highQuality'], (result)=> {
+        if (result.selectedEngine == selector('search-engine').value && result.searchEngines.length == searchEngines.length && result.backgroundType == selector('bg-type').value && result.backgroundImageData == imgData && result.backgroundAlign == selector('bg-align').value && document.querySelector('#check-high-quality').checked == result.highQuality) {
             showMSG(Without_changes);
         }
         else showMSG(Unsaved_changes, 2);
@@ -151,6 +151,16 @@ selector('bg-type').addEventListener('input', ()=> {
     }
     verifyChanges();
 });
+
+const checkHQ = document.querySelector('#check-high-quality');
+chrome.storage.local.get(['highQuality'], (res)=> {
+    checkHQ.checked = res.highQuality.checked;
+});
+checkHQ.addEventListener('input', ()=> {
+    // chrome.storage.local.set({'highQuality':checkHQ.checked});
+    verifyChanges();
+});
+
 
 // file background
 const imgInput = document.querySelector('#input-file');
@@ -264,7 +274,8 @@ submitBtn.addEventListener('click', ()=> {
     // set background type
     if (selector('bg-type').value != 3) {
         chrome.storage.local.set({'backgroundType':selector('bg-type').value});
-        if (selector('bg-type'.value == 4)) chrome.runtime.sendMessage({dPhotos:{force: false}});
+        if (selector('bg-type').value == 4) chrome.runtime.sendMessage({dynamicBg:{force: false, type: 'photos'}});
+        if (selector('bg-type').value == 5) chrome.runtime.sendMessage({dynamicBg:{force: false, type: 'videos'}});
     }
     // set background image data
     if (selector('bg-type').value == 3 && imgData.length > 0) {
@@ -273,6 +284,8 @@ submitBtn.addEventListener('click', ()=> {
     }
     // set background type
     chrome.storage.local.set({'backgroundAlign':selector('bg-align').value});
+    // set high quality
+    chrome.storage.local.set({'highQuality':{checked:checkHQ.checked}});
     //
     showMSG(SavedConfig, 1);
 });
@@ -299,6 +312,13 @@ document.querySelector('#reset-btn').addEventListener('click', ()=> {
         photographer_url: '',
         qTime: ''
     }});
+    chrome.storage.local.set({'dynamicVideoData':{
+        dataURL: '',
+        photographer_name: '',
+        photographer_url: '',
+        qTime: ''
+    }});
+    chrome.storage.local.set({'highQuality':{checked:true}});
     //
     showMSG(ParametersReset, 1);
     setTimeout(() => {
