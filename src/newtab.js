@@ -69,6 +69,7 @@ function createImgElement() {
         });
         video.autoplay = true;
         video.loop = true;
+        video.muted = true;
         fragment.appendChild(video);
 
         a.id = 'photographer';
