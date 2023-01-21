@@ -68,10 +68,12 @@ chrome.runtime.onInstalled.addListener(
 //     })
 // );
 
-chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener(req=> {
     if (req.dynamicBg) {
         dynamicBg(req.dynamicBg.force, req.dynamicBg.type);
-        sendResponse();
+    }
+    if (req.dynamicBgStatus != undefined) {
+        console.log('dynamicBgStatus: ', req.dynamicBgStatus);
     }
 });
 
@@ -110,6 +112,7 @@ function dynamicBg(force, type) {
             }
             // if qTime is diferent or force is true fetch photo or video
             if ((setqTime != qTime || force) && navigator.onLine) {
+                chrome.runtime.sendMessage({dynamicBgStatus: 0}); // status 0 = in progress
                 const init = new Date();
                 fetch(fetchURL, {
                     method: "GET",
@@ -125,13 +128,13 @@ function dynamicBg(force, type) {
                         console.log('selected media', media);
                         if (media[0]) {
                             let photoURL = media[0].src.original;
-                            let videoURL = media[1].video_files.find(e => e.height == 1080).link;
+                            let videoURL = media[1].video_files.find(e=> e.quality == 'hd' && (e.height >= 1080 || e.width >= 1080)).link;
                             chrome.storage.local.get(['highQuality'], (res)=> {
                                 // check high quality
                                 if (!res.highQuality.checked) {
                                     console.log('No high quality');
                                     photoURL += '?auto=compress&w=1080';
-                                    videoURL = media[1].video_files.find(e => e.height == 720).link;
+                                    videoURL = media[1].video_files.find(e=> e.quality == 'hd' && (e.height <= 720 || e.width <= 720)).link;
                                 }
                                 fetch(photoURL).then(res=> {
                                     res.blob().then(blob=> {
@@ -155,7 +158,10 @@ function dynamicBg(force, type) {
                                     photographer_url: media[1].user.url,
                                     qTime: qTime
                                 }});
-                            }); 
+                            });
+                            console.log('photoURL: ', photoURL);
+                            console.log('videoURL', videoURL);
+                            chrome.runtime.sendMessage({dynamicBgStatus: 1}); // status 1 = done
                         }
                         else {
                             throw 'No found any photo or video file';
@@ -163,6 +169,7 @@ function dynamicBg(force, type) {
                     });
                 }).catch(e=> {
                     console.log(e);
+                    chrome.runtime.sendMessage({dynamicBgStatus: 1}); // status 1 = done
                 });
             }
         });

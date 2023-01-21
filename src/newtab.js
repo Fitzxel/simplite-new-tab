@@ -207,13 +207,22 @@ chrome.storage.onChanged.addListener(e=> {
     }
 });
 
+let dynamicBgStatus = 1;
+
+chrome.runtime.onMessage.addListener(req=> {
+    if (req.dynamicBgStatus != undefined) {
+        dynamicBgStatus = req.dynamicBgStatus;
+        // console.log('dynamicBgStatus: ', req.dynamicBgStatus);
+    }
+});
+
 addEventListener('keydown', (e)=> {
     if (!isFocus && e.key == 'k' && e.ctrlKey) {
         e.preventDefault();
         searchInput.focus();
         isFocus = true;
     }
-    if (e.key == 'f' && e.ctrlKey) {
+    if (e.key == 'f' && e.ctrlKey && dynamicBgStatus == 1) {
         e.preventDefault();
         chrome.runtime.sendMessage({dynamicBg:{force: true, type: typeDynamicBg}});
     }
