@@ -222,7 +222,7 @@ addEventListener('keydown', (e)=> {
         searchInput.focus();
         isFocus = true;
     }
-    if (e.key == 'f' && e.ctrlKey && dynamicBgStatus == 1) {
+    if ((e.key == 'f' || e.key == 'F') && e.ctrlKey && dynamicBgStatus == 1) {
         e.preventDefault();
         chrome.runtime.sendMessage({dynamicBg:{force: true, type: typeDynamicBg}});
     }
