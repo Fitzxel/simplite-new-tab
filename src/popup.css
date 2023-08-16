@@ -133,6 +133,9 @@ main > section > section.check {
     display: flex;
     justify-content: space-evenly;
 }
+main > section > section.check #check-high-quality {
+    pointer-events: none;
+}
 main > section .under-text {
     font-weight: 400;
 }
