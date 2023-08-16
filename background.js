@@ -28,9 +28,9 @@ chrome.runtime.onInstalled.addListener(
             chrome.storage.local.set({'backgroundImageData':''});
         }
     }),
-    chrome.storage.local.get(['highQuality'], (res)=> {
-        if (!res.highQuality) {
-            chrome.storage.local.set({'highQuality':{checked: true}});
+    chrome.storage.local.get(['backgroundQuality'], (res)=> {
+        if (!res.backgroundQuality) {
+            chrome.storage.local.set({'backgroundQuality':'med'});
         }
     }),
     chrome.storage.local.get(['getPhotoDelay'], (res)=> {
@@ -59,14 +59,6 @@ chrome.runtime.onInstalled.addListener(
         }
     })
 );
-
-// chrome.runtime.onStartup.addListener(
-//     chrome.storage.local.get(['backgroundType'], (res)=> {
-//         if (res.backgroundType == 4) {
-//             dynamicBg();
-//         }
-//     })
-// );
 
 chrome.runtime.onMessage.addListener(req=> {
     if (req.dynamicBg) {
@@ -128,14 +120,20 @@ function dynamicBg(force, type) {
                         console.log('selected media', media);
                         if (media[0]) {
                             let photoURL = media[0].src.original;
-                            let videoURL = media[1].video_files.find(e=> e.quality == 'hd' && (e.height >= 1080 || e.width >= 1080)).link;
-                            chrome.storage.local.get(['highQuality'], (res)=> {
-                                // check high quality
-                                if (!res.highQuality.checked) {
-                                    console.log('No high quality');
-                                    photoURL += '?auto=compress&w=1080';
-                                    videoURL = media[1].video_files.find(e=> e.quality == 'hd' && (e.height <= 720 || e.width <= 720)).link;
+                            // set quality
+                            chrome.storage.local.get(['backgroundQuality'], res=> {
+                                if (res.backgroundQuality === 'low') {
+                                    photoURL += '?auto=compress&w=480';
+                                    videoURL = media[1].video_files.find(e=> e.quality == 'sd' && (e.height < 720 || e.width < 720)).link;
                                 }
+                                if (res.backgroundQuality === 'med') {
+                                    photoURL += '?auto=compress&w=1080';
+                                    videoURL = media[1].video_files.find(e=> e.quality == 'hd' && ((e.height == 720 || e.width == 720) || (e.height == 1080 || e.width == 1080))).link;
+                                }
+                                if (res.backgroundQuality === 'high') {
+                                    videoURL = media[1].video_files.find(e=> e.quality == 'hd' && (e.height > 1080 || e.width > 1080)).link;
+                                }
+
                                 fetch(photoURL).then(res=> {
                                     res.blob().then(blob=> {
                                         const end = new Date();
@@ -158,10 +156,11 @@ function dynamicBg(force, type) {
                                     photographer_url: media[1].user.url,
                                     qTime: qTime
                                 }});
+
+                                console.log('photoURL: ', photoURL);
+                                console.log('videoURL', videoURL);
+                                chrome.runtime.sendMessage({dynamicBgStatus: 1}); // status 1 = done
                             });
-                            console.log('photoURL: ', photoURL);
-                            console.log('videoURL', videoURL);
-                            chrome.runtime.sendMessage({dynamicBgStatus: 1}); // status 1 = done
                         }
                         else {
                             throw 'No found any photo or video file';
@@ -170,6 +169,13 @@ function dynamicBg(force, type) {
                 }).catch(e=> {
                     console.log(e);
                     chrome.runtime.sendMessage({dynamicBgStatus: 1}); // status 1 = done
+
+                    chrome.notifications.create('getBgErrorNotification', {
+                        type: 'basic',
+                        title:  chrome.i18n.getMessage('getBgErrorNotificationTitle'),
+                        message: chrome.i18n.getMessage('getBgErrorNotificationMessage'),
+                        iconUrl: chrome.runtime.getURL(`resources/icon_x128.png`)
+                    });
                 });
             }
         });
@@ -197,18 +203,18 @@ function calcTime(init, end, origin) {
     chrome.storage.local.get(['getPhotoDelay'], (res)=> {
     	if (origin == 'dynamicBg' && timeResult > 3.600 && res.getPhotoDelay) {
     		chrome.notifications.create('getPhotoDelay', {
-			type: 'basic',
-			title:  chrome.i18n.getMessage('PhotoDelayNotificationTitle'),
-			message: chrome.i18n.getMessage('PhotoDelayNotificationMessage'),
-			buttons: [
-				{
-					title: chrome.i18n.getMessage('PhotoDelayNotificationPrimaryButton')
-				},
-				{
-					title: chrome.i18n.getMessage('PhotoDelayNotificationSecondButton')
-				}
-			],
-			iconUrl: 'chrome-extension://flppelaflhfipiamjimipnjcpfajdlao/resources/icon_x128.png'
+                type: 'basic',
+                title:  chrome.i18n.getMessage('photoDelayNotificationTitle'),
+                message: chrome.i18n.getMessage('photoDelayNotificationMessage'),
+                buttons: [
+                    {
+                        title: chrome.i18n.getMessage('photoDelayNotificationPrimaryButton')
+                    },
+                    {
+                        title: chrome.i18n.getMessage('photoDelayNotificationSecondButton')
+                    }
+                ],
+                iconUrl: chrome.runtime.getURL(`resources/icon_x128.png`)
     		});
     	}
     });
