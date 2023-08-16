@@ -74,8 +74,8 @@ function showMSG(msg, type) {
 
 //
 function verifyChanges() {
-    chrome.storage.local.get(['searchEngines', 'selectedEngine', 'backgroundType', 'backgroundAlign', 'backgroundImageData', 'highQuality'], (result)=> {
-        if (result.selectedEngine == selector('search-engine').value && result.searchEngines.length == searchEngines.length && result.backgroundType == selector('bg-type').value && result.backgroundImageData == imgData && result.backgroundAlign == selector('bg-align').value && document.querySelector('#check-high-quality').checked == result.highQuality) {
+    chrome.storage.local.get(['searchEngines', 'selectedEngine', 'backgroundType', 'backgroundAlign', 'backgroundImageData', 'backgroundQuality'], (result)=> {
+        if (result.selectedEngine == selector('search-engine').value && result.searchEngines.length == searchEngines.length && result.backgroundType == selector('bg-type').value && result.backgroundImageData == imgData && result.backgroundAlign == selector('bg-align').value && result.backgroundQuality == selector('bg-quality').value) {
             showMSG(Without_changes);
         }
         else showMSG(Unsaved_changes, 2);
@@ -152,15 +152,14 @@ selector('bg-type').addEventListener('input', ()=> {
     verifyChanges();
 });
 
-const checkHQ = document.querySelector('#check-high-quality');
-chrome.storage.local.get(['highQuality'], (res)=> {
-    checkHQ.checked = res.highQuality.checked;
-});
-checkHQ.addEventListener('input', ()=> {
-    // chrome.storage.local.set({'highQuality':checkHQ.checked});
-    verifyChanges();
+// background quality
+chrome.storage.local.get(['backgroundQuality'], (result)=> {
+    selector('bg-quality').value = result.backgroundQuality;
 });
 
+selector('bg-quality').addEventListener('input', ()=> {
+    verifyChanges();
+});
 
 // file background
 const imgInput = document.querySelector('#input-file');
@@ -284,8 +283,8 @@ submitBtn.addEventListener('click', ()=> {
     }
     // set background type
     chrome.storage.local.set({'backgroundAlign':selector('bg-align').value});
-    // set high quality
-    chrome.storage.local.set({'highQuality':{checked:checkHQ.checked}});
+    // set background quality
+    chrome.storage.local.set({'backgroundQuality':selector('bg-quality').value});
     //
     showMSG(SavedConfig, 1);
 });
@@ -306,6 +305,7 @@ document.querySelector('#reset-btn').addEventListener('click', ()=> {
     chrome.storage.local.set({'backgroundType':2});
     chrome.storage.local.set({'backgroundImageData':''});
     chrome.storage.local.set({'backgroundAlign':'center'});
+    chrome.storage.local.set({'backgroundQuality':'med'});
     chrome.storage.local.set({'dynamicPhotoData':{
         dataURL: '',
         photographer_name: '',
@@ -318,7 +318,6 @@ document.querySelector('#reset-btn').addEventListener('click', ()=> {
         photographer_url: '',
         qTime: ''
     }});
-    chrome.storage.local.set({'highQuality':{checked:true}});
     //
     showMSG(ParametersReset, 1);
     setTimeout(() => {
