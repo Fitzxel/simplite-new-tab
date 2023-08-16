@@ -1,0 +1,44 @@
+{
+    "extName": {
+        "message": "Simplite New Tab"
+    },
+    "extDesc": {
+        "message": "一个简单轻巧的新标签页。"
+    },
+    "newTabTitle": {
+        "message": "新标签页"
+    },
+    "search": {
+        "message": "搜索"
+    },
+    "search_engine": {
+        "message": "搜索引擎"
+    },
+    "searchForm": {
+        "message": "在此处输入搜索内容"
+    },
+    "deleteButton": {
+        "message": "删除"
+    },
+    "photographer": {
+        "message": "摄影师"
+    },
+    "photoDelayNotificationTitle": {
+        "message": "获取/处理图像的时间超过预期"
+    },
+    "photoDelayNotificationMessage": {
+        "message": "考虑在设置中禁用“高质量”选项以缩短响应时间。"
+    },
+    "photoDelayNotificationPrimaryButton": {
+        "message": "不再显示"
+    },
+    "photoDelayNotificationSecondButton": {
+        "message": "前往设置"
+    },
+    "getBgErrorNotificationTitle": {
+        "message": "获取背景时发生错误"
+    },
+    "getBgErrorNotificationMessage": {
+        "message": "无法获取背景，请重试。"
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "extName": {
+        "message": "Simplite Новая вкладка"
+    },
+    "extDesc": {
+        "message": "Простая и легкая новая вкладка."
+    },
+    "newTabTitle": {
+        "message": "Новая вкладка"
+    },
+    "search": {
+        "message": "Поиск"
+    },
+    "search_engine": {
+        "message": "Искать в"
+    },
+    "searchForm": {
+        "message": "Введите здесь для поиска"
+    },
+    "deleteButton": {
+        "message": "Удалить"
+    },
+    "photographer": {
+        "message": "Фотограф"
+    },
+    "photoDelayNotificationTitle": {
+        "message": "Получение/обработка изображения заняло больше времени, чем ожидалось"
+    },
+    "photoDelayNotificationMessage": {
+        "message": "Рассмотрите возможность отключения опции \"Высокое качество\" в настройках, чтобы уменьшить время отклика."
+    },
+    "photoDelayNotificationPrimaryButton": {
+        "message": "Больше не показывать"
+    },
+    "photoDelayNotificationSecondButton": {
+        "message": "Перейти к настройкам"
+    },
+    "getBgErrorNotificationTitle": {
+        "message": "Возникла проблема при получении фона"
+    },
+    "getBgErrorNotificationMessage": {
+        "message": "Не удалось получить фон. Пожалуйста, попробуйте снова."
+    }
+}

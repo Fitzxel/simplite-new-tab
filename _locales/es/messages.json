@@ -1,38 +1,44 @@
 {
-  "extName": {
-    "message": "Simplite Nueva Pestaña"
-  },
-  "extDesc": {
-    "message": "Una nueva pestaña simple y ligera."
-  },
-  "newTabTitle": {
-    "message": "Nueva Pestaña"
-  },
-  "search": {
-    "message": "Buscar"
-  },
-  "search_engine": {
-    "message": "Buscar en"
-  },
-  "searchForm": {
-    "message": "Escriba aquí para buscar"
-  },
-  "deleteButton": {
-    "message": "Borrar"
-  },
-  "photographer": {
-    "message": "Fotógrafo"
-  },
-  "PhotoDelayNotificationTitle": {
-    "message": "Se a tardado más de lo esperado en obtener/procesar la imagen"
-  },
-  "PhotoDelayNotificationMessage": {
-    "message": "Considere desactivar \"Alta calidad\" en opciones para reducir el tiempo de respuesta."
-  },
-  "PhotoDelayNotificationPrimaryButton": {
-    "message": "No volver a mostrar"
-  },
-  "PhotoDelayNotificationSecondButton": {
-    "message": "Ir a opciones"
-  }
+    "extName": {
+        "message": "Simplite Nueva Pestaña"
+    },
+    "extDesc": {
+        "message": "Una nueva pestaña simple y ligera."
+    },
+    "newTabTitle": {
+        "message": "Nueva Pestaña"
+    },
+    "search": {
+        "message": "Buscar"
+    },
+    "search_engine": {
+        "message": "Buscar en"
+    },
+    "searchForm": {
+        "message": "Escriba aquí para buscar"
+    },
+    "deleteButton": {
+        "message": "Borrar"
+    },
+    "photographer": {
+        "message": "Fotógrafo"
+    },
+    "photoDelayNotificationTitle": {
+        "message": "Se ha tardado más de lo esperado en obtener/procesar la imagen"
+    },
+    "photoDelayNotificationMessage": {
+        "message": "Considere desactivar \"Alta calidad\" en opciones para reducir el tiempo de respuesta."
+    },
+    "photoDelayNotificationPrimaryButton": {
+        "message": "No volver a mostrar"
+    },
+    "photoDelayNotificationSecondButton": {
+        "message": "Ir a opciones"
+    },
+    "getBgErrorNotificationTitle": {
+        "message": "Algo fallo al obtener el fondo"
+    },
+    "getBgErrorNotificationMessage": {
+        "message": "No se ha podido obtener el fondo, vuelva a intentarlo."
+    }
 }

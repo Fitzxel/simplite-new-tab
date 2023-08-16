@@ -1,0 +1,44 @@
+{
+    "extName": {
+        "message": "Simplite Nouvel Onglet"
+    },
+    "extDesc": {
+        "message": "Un nouvel onglet simple et léger."
+    },
+    "newTabTitle": {
+        "message": "Nouvel Onglet"
+    },
+    "search": {
+        "message": "Rechercher"
+    },
+    "search_engine": {
+        "message": "Rechercher dans"
+    },
+    "searchForm": {
+        "message": "Entrez ici pour rechercher"
+    },
+    "deleteButton": {
+        "message": "Supprimer"
+    },
+    "photographer": {
+        "message": "Photographe"
+    },
+    "photoDelayNotificationTitle": {
+        "message": "Il a fallu plus de temps que prévu pour obtenir/traiter l'image"
+    },
+    "photoDelayNotificationMessage": {
+        "message": "Considérez la désactivation de l'option \"Haute qualité\" dans les paramètres pour réduire le temps de réponse."
+    },
+    "photoDelayNotificationPrimaryButton": {
+        "message": "Ne plus afficher"
+    },
+    "photoDelayNotificationSecondButton": {
+        "message": "Aller aux paramètres"
+    },
+    "getBgErrorNotificationTitle": {
+        "message": "Une erreur s'est produite lors de l'obtention du fond d'écran"
+    },
+    "getBgErrorNotificationMessage": {
+        "message": "Impossible d'obtenir le fond d'écran. Veuillez réessayer."
+    }
+}

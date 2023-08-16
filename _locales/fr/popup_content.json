@@ -1,0 +1,149 @@
+[
+    {
+        "selector": "#msg",
+        "txtContent": "Aucun changement",
+        "variants": {
+            "Without_changes": "Aucun changement",
+            "Unsaved_changes": "Modifications non enregistrées",
+            "NotAImage": "Ce n'est pas une image 😠",
+            "FillForm": "Veuillez remplir correctement le formulaire 🙃",
+            "SavedConfig": "Configuration enregistrée ✔",
+            "ParametersReset": "Paramètres réinitialisés ✔ rechargement..."
+        }
+    },
+    {
+        "selector": "section#search-engine span",
+        "txtContent": "Moteur de recherche :"
+    },
+    {
+        "selector": "section#search-engine select#select-search-engine option[value='0']",
+        "txtContent": "Ajouter +"
+    },
+    {
+        "selector": "section#bg-type span",
+        "txtContent": "Type de fond :"
+    },
+    {
+        "selector": "section#bg-type select option[value='1']",
+        "txtContent": "Aucun, couleur unie"
+    },
+    {
+        "selector": "section#bg-type select option[value='2']",
+        "txtContent": "Image par défaut"
+    },
+    {
+        "selector": "section#bg-type select option[value='3']",
+        "txtContent": "Importer une image"
+    },
+    {
+        "selector": "section#bg-type select option[value='4']",
+        "txtContent": "Photos dynamiques",
+        "txtTitle": "Photos dynamiques tout au long de la journée depuis la plateforme Pexels"
+    },
+    {
+        "selector": "section#bg-type select option[value='5']",
+        "txtContent": "Vidéos dynamiques",
+        "txtTitle": "Vidéos dynamiques tout au long de la journée depuis la plateforme Pexels.\n❕❕Uniquement avec une connexion Internet❕❕"
+    },
+    {
+        "selector": "section#bg-quality span",
+        "txtContent": "Qualité du fond"
+    },
+    {
+        "selector": "section#bg-quality select option[value='low']",
+        "txtContent": "Basse (< 720p)",
+        "txtTitle": "Qualité < 720p"
+    },
+    {
+        "selector": "section#bg-quality select option[value='med']",
+        "txtContent": "Moyenne (720p-1080p)",
+        "txtTitle": "Qualité 720p-1080p"
+    },
+    {
+        "selector": "section#bg-quality select option[value='high']",
+        "txtContent": "Haute (> 1080p)",
+        "txtTitle": "Qualité > 1080p"
+    },
+    {
+        "selector": "section#bg-align span",
+        "txtContent": "Alignement du fond :"
+    },
+    {
+        "selector": "section#bg-align select option[value='top']",
+        "txtContent": "Haut ⬆"
+    },
+    {
+        "selector": "section#bg-align select option[value='bottom']",
+        "txtContent": "Bas ⬇"
+    },
+    {
+        "selector": "section#bg-align select option[value='center']",
+        "txtContent": "Centre +"
+    },
+    {
+        "selector": "section#bg-align select option[value='left']",
+        "txtContent": "Gauche ⬅"
+    },
+    {
+        "selector": "section#bg-align select option[value='right']",
+        "txtContent": "Droite ➡"
+    },
+    {
+        "selector": "#form section.text #input-name",
+        "txtPlaceholder": "Nom"
+    },
+    {
+        "selector": "#form section.text #input-url",
+        "txtPlaceholder": "URL avec %s à la place de la requête"
+    },
+    {
+        "selector": "#form section.text .under-text.url",
+        "txtInnerHTML": "Exemple d'URL : 👇👇👇<span>https://www.bing.com/search?q=<b>%s</b></span>"
+    },
+    {
+        "selector": "#form section.text #add-engine-btn",
+        "txtContent": "Ajouter un moteur"
+    },
+    {
+        "selector": "#form section.file span",
+        "txtContent": "Faites glisser le fichier d'image ici pour le charger"
+    },
+    {
+        "selector": "#form section.file b",
+        "txtContent": "Ou"
+    },
+    {
+        "selector": "#form section.file #browse-img-btn",
+        "txtContent": "Parcourir 📁"
+    },
+    {
+        "selector": "#submit-btn",
+        "txtContent": "Définir ➡💾",
+        "txtTitle": "Définir les paramètres"
+    },
+    {
+        "selector": "#alt-hidden-options",
+        "txtTitle": "Options cachées 🤫"
+    },
+    {
+        "selector": "#deleteEngineBtn",
+        "txtContent": "Supprimer ce moteur"
+    },
+    {
+        "selector": "#reset-btn",
+        "txtContent": "Réinitialiser les paramètres",
+        "txtTitle": "Avertissement : Tous les paramètres seront réinitialisés"
+    },
+    {
+        "selector": "#rate-link",
+        "txtContent": "Évaluer l'extension ⭐"
+    },
+    {
+        "selector": "footer .under-text",
+        "txtContent": "Pas besoin de recharger la nouvelle page pour voir les modifications !"
+    },
+    {
+        "selector": "section#hidden-options h2",
+        "txtContent": "⚠- Options cachées -⚠"
+    }
+]

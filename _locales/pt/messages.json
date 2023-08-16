@@ -1,35 +1,44 @@
 {
-  "extName": {
-    "message": "Simplite Nova Guia"
-  },
-  "extDesc": {
-    "message": "Uma nova guia simples e leve."
-  },
-  "newTabTitle": {
-    "message": "Nova Guia"
-  },
-  "search": {
-    "message": "Pesquisar"
-  },
-  "search_engine": {
-    "message": "Pesquisar no"
-  },
-  "searchForm": {
-    "message": "Digite aqui para pesquisar"
-  },
-  "deleteButton": {
-    "message": "Limpar"
-  },
-  "PhotoDelayNotificationTitle": {
-    "message": "Demorou mais do que o esperado para obter/processar a imagem"
-  },
-  "PhotoDelayNotificationMessage": {
-    "message": "Considere desativar \"Alta qualidade\" nas opções para reduzir o tempo de resposta."
-  },
-  "PhotoDelayNotificationPrimaryButton": {
-    "message": "Não mostre novamente"
-  },
-  "PhotoDelayNotificationSecondButton": {
-    "message": "Ir para opções"
-  }
+    "extName": {
+        "message": "Simplite Nova Aba"
+    },
+    "extDesc": {
+        "message": "Uma nova aba simples e leve."
+    },
+    "newTabTitle": {
+        "message": "Nova Aba"
+    },
+    "search": {
+        "message": "Buscar"
+    },
+    "search_engine": {
+        "message": "Buscar em"
+    },
+    "searchForm": {
+        "message": "Digite aqui para buscar"
+    },
+    "deleteButton": {
+        "message": "Excluir"
+    },
+    "photographer": {
+        "message": "Fotógrafo"
+    },
+    "photoDelayNotificationTitle": {
+        "message": "Levou mais tempo do que o esperado para obter/processar a imagem"
+    },
+    "photoDelayNotificationMessage": {
+        "message": "Considere desativar a opção \"Alta Qualidade\" nas configurações para reduzir o tempo de resposta."
+    },
+    "photoDelayNotificationPrimaryButton": {
+        "message": "Não mostrar novamente"
+    },
+    "photoDelayNotificationSecondButton": {
+        "message": "Ir para as configurações"
+    },
+    "getBgErrorNotificationTitle": {
+        "message": "Algo deu errado ao obter o plano de fundo"
+    },
+    "getBgErrorNotificationMessage": {
+        "message": "Não foi possível obter o plano de fundo. Por favor, tente novamente."
+    }
 }

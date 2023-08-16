@@ -1,147 +1,149 @@
 ﻿[
-  {
-    "selector": "#msg",
-    "txtContent": "Sem alterações",
-    "variants": {
-      "Without_changes": "Sem alterações",
-      "Unsaved_changes": "Alterações não salvas",
-      "NotAImage": "Isso não é um arquivo de imagem 😠",
-      "FillForm": "Preencha os campos corretamente 🙃",
-      "SavedConfig": "Estabelecido ✔",
-      "ParametersReset": "Redefinição de parâmetros ✔ recarregando..."
+    {
+        "selector": "#msg",
+        "txtContent": "Sem alterações",
+        "variants": {
+            "Without_changes": "Sem alterações",
+            "Unsaved_changes": "Alterações não salvas",
+            "NotAImage": "Isso não é um arquivo de imagem 😠",
+            "FillForm": "Preencha os campos corretamente 🙃",
+            "SavedConfig": "Configuração salva ✔",
+            "ParametersReset": "Parâmetros redefinidos ✔ recarregando..."
+        }
+    },
+    {
+        "selector": "section#search-engine span",
+        "txtContent": "Motor de busca:"
+    },
+    {
+        "selector": "section#search-engine select#select-search-engine option[value='0']",
+        "txtContent": "Adicionar +"
+    },
+    {
+        "selector": "section#bg-type span",
+        "txtContent": "Tipo de plano de fundo:"
+    },
+    {
+        "selector": "section#bg-type select option[value='1']",
+        "txtContent": "Nenhum, cor sólida"
+    },
+    {
+        "selector": "section#bg-type select option[value='2']",
+        "txtContent": "Imagem padrão"
+    },
+    {
+        "selector": "section#bg-type select option[value='3']",
+        "txtContent": "Carregar imagem"
+    },
+    {
+        "selector": "section#bg-type select option[value='4']",
+        "txtContent": "Fotos dinâmicas",
+        "txtTitle": "Fotos dinâmicas ao longo do dia da plataforma Pexels"
+    },
+    {
+        "selector": "section#bg-type select option[value='5']",
+        "txtContent": "Vídeos dinâmicos",
+        "txtTitle": "Vídeos dinâmicos ao longo do dia da plataforma Pexels.\n❕❕Apenas com conexão à internet❕❕"
+    },
+    {
+        "selector": "section#bg-quality span",
+        "txtContent": "Qualidade do plano de fundo"
+    },
+    {
+        "selector": "section#bg-quality select option[value='low']",
+        "txtContent": "Baixa (< 720p)",
+        "txtTitle": "Qualidade < 720p"
+    },
+    {
+        "selector": "section#bg-quality select option[value='med']",
+        "txtContent": "Média (720p-1080p)",
+        "txtTitle": "Qualidade 720p-1080p"
+    },
+    {
+        "selector": "section#bg-quality select option[value='high']",
+        "txtContent": "Alta (> 1080p)",
+        "txtTitle": "Qualidade > 1080p"
+    },
+    {
+        "selector": "section#bg-align span",
+        "txtContent": "Alinhar plano de fundo:"
+    },
+    {
+        "selector": "section#bg-align select option[value='top']",
+        "txtContent": "Topo ⬆"
+    },
+    {
+        "selector": "section#bg-align select option[value='bottom']",
+        "txtContent": "Inferior ⬇"
+    },
+    {
+        "selector": "section#bg-align select option[value='center']",
+        "txtContent": "Centro +"
+    },
+    {
+        "selector": "section#bg-align select option[value='left']",
+        "txtContent": "Esquerda ⬅"
+    },
+    {
+        "selector": "section#bg-align select option[value='right']",
+        "txtContent": "Direita ➡"
+    },
+    {
+        "selector": "#form section.text #input-name",
+        "txtPlaceholder": "Nome"
+    },
+    {
+        "selector": "#form section.text #input-url",
+        "txtPlaceholder": "URL com %s no lugar da consulta"
+    },
+    {
+        "selector": "#form section.text .under-text.url",
+        "txtInnerHTML": "Exemplo de URL: 👇👇👇<span>https://www.bing.com/search?q=<b>%s</b></span>"
+    },
+    {
+        "selector": "#form section.text #add-engine-btn",
+        "txtContent": "Adicionar mecanismo"
+    },
+    {
+        "selector": "#form section.file span",
+        "txtContent": "Arraste o arquivo de imagem para carregar aqui"
+    },
+    {
+        "selector": "#form section.file b",
+        "txtContent": "Ou"
+    },
+    {
+        "selector": "#form section.file #browse-img-btn",
+        "txtContent": "Navegar 📁"
+    },
+    {
+        "selector": "#submit-btn",
+        "txtContent": "Definir ➡💾",
+        "txtTitle": "Definir parâmetros"
+    },
+    {
+        "selector": "#alt-hidden-options",
+        "txtTitle": "Opções ocultas 🤫"
+    },
+    {
+        "selector": "#deleteEngineBtn",
+        "txtContent": "Excluir este mecanismo"
+    },
+    {
+        "selector": "#reset-btn",
+        "txtContent": "Redefinir parâmetros",
+        "txtTitle": "Aviso: ao clicar, todos os parâmetros serão redefinidos"
+    },
+    {
+        "selector": "#rate-link",
+        "txtContent": "Avaliar extensão ⭐"
+    },
+    {
+        "selector": "footer .under-text",
+        "txtContent": "Não é necessário recarregar a nova guia para ver as alterações!"
+    },
+    {
+        "selector": "section#hidden-options h2",
+        "txtContent": "⚠- Opções ocultas -⚠"
     }
-  },
-
-  {
-    "selector": "section#search-engine span",
-    "txtContent": "Motor de busca:"
-  },
-  {
-    "selector": "section#search-engine select option[value='0']",
-    "txtContent": "Adicionar +"
-  },
-
-  {
-    "selector": "section#bg-type span",
-    "txtContent": "Tipo de fundo:"
-  },
-  {
-    "selector": "section#bg-type select option[value='1']",
-    "txtContent": "Nenhum, cor sólida"
-  },
-  {
-    "selector": "section#bg-type select option[value='2']",
-    "txtContent": "Imagem padrão"
-  },
-  {
-    "selector": "section#bg-type select option[value='3']",
-    "txtContent": "Enviar Imagem"
-  },
-  {
-    "selector": "section#bg-type select option[value='4']",
-    "txtContent": "Fotos dinâmicas",
-    "txtTitle": "Fotos dinâmicas ao longo do dia na plataforma Pexels"
-  },
-  {
-    "selector": "section#bg-type select option[value='5']",
-    "txtContent": "Vídeos dinâmicos",
-    "txtTitle": "Fotos dinâmicas ao longo do dia na plataforma Pexels.\n❕❕Somente com conexão à internet❕❕"
-  },
-
-  {
-    "selector": "section#high-quality section.check > span",
-    "txtContent": "Alta qualidade"
-  },
-  {
-    "selector": "section#high-quality section.check",
-    "txtTitle": "Ative para usar alta qualidade para fotos e vídeos dinâmicos.\nEssa alteração entrará em vigor na próxima vez que a foto ou o vídeo dinâmico for atualizado."
-  },
-
-  {
-    "selector": "section#bg-align span",
-    "txtContent": "Alinhar imagem:"
-  },
-  {
-    "selector": "section#bg-align select option[value='top']",
-    "txtContent": "Topo ⬆"
-  },
-  {
-    "selector": "section#bg-align select option[value='bottom']",
-    "txtContent": "Inferior ⬇"
-  },
-  {
-    "selector": "section#bg-align select option[value='center']",
-    "txtContent": "Centro +"
-  },
-  {
-    "selector": "section#bg-align select option[value='left']",
-    "txtContent": "Esquerda ⬅"
-  },
-  {
-    "selector": "section#bg-align select option[value='right']",
-    "txtContent": "Direita ➡"
-  },
-  
-  {
-    "selector": "#form section.text #input-name",
-    "txtPlaceholder": "Nome"
-  },
-  {
-    "selector": "#form section.text #input-url",
-    "txtPlaceholder": "URL com %s no local da consulta"
-  },
-  {
-    "selector": "#form section.text .under-text.url",
-    "txtInnerHTML": "Exemplo de URL: 👇👇👇<span>https://www.bing.com/search?q=<b>%s</b></span>"
-  },
-  {
-    "selector": "#form section.text #add-engine-btn",
-    "txtContent": "Adicionar motor"
-  },
-  {
-    "selector": "#form section.file span",
-    "txtContent": "Arraste o arquivo de imagem para carregar aqui"
-  },
-  {
-    "selector": "#form section.file b",
-    "txtContent": "OU"
-  },
-  {
-    "selector": "#form section.file #browse-img-btn",
-    "txtContent": "Navegue 📁"
-  },
-
-  {
-    "selector": "#submit-btn",
-    "txtContent": "Estabelecer ➡💾",
-    "txtTitle": "Estabelecer parâmetros"
-  },
-  {
-    "selector": "#alt-hidden-options",
-    "txtTitle": "Opções ocultas 🤫"
-  },
-  
-  {
-    "selector": "#deleteEngineBtn",
-    "txtContent": "Excluir este motor"
-  },
-  {
-    "selector": "#reset-btn",
-    "txtContent": "Redefinir parâmetros",
-    "txtTitle": "Aviso: Pressionar redefine todos os parâmetros"
-  },
-
-  {
-    "selector": "#rate-link",
-    "txtContent": "Extensão de taxa ⭐"
-  },
-  {
-    "selector": "footer .under-text",
-    "txtContent": "Não há necessidade de recarregar a nova guia para ver as alterações!"
-  },
-
-  {
-    "selector": "section#hidden-options h2",
-    "txtContent": "⚠- Opções ocultas -⚠"
-  }
 ]

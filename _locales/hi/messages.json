@@ -1,0 +1,44 @@
+{
+    "extName": {
+        "message": "Simplite New Tab"
+    },
+    "extDesc": {
+        "message": "एक सरल और हल्का नया टैब।"
+    },
+    "newTabTitle": {
+        "message": "नया टैब"
+    },
+    "search": {
+        "message": "खोजें"
+    },
+    "search_engine": {
+        "message": "में खोजें"
+    },
+    "searchForm": {
+        "message": "खोज करने के लिए यहाँ लिखें"
+    },
+    "deleteButton": {
+        "message": "हटाएँ"
+    },
+    "photographer": {
+        "message": "फ़ोटोग्राफ़र"
+    },
+    "photoDelayNotificationTitle": {
+        "message": "छवि प्राप्त करने / प्रोसेस करने में अपेक्षित से अधिक समय लग गया है"
+    },
+    "photoDelayNotificationMessage": {
+        "message": "प्रतिक्रिया समय कम करने के लिए विन्यास में \"उच्च गुणवत्ता\" को अक्षम करने का विचार करें।"
+    },
+    "photoDelayNotificationPrimaryButton": {
+        "message": "फिर से न दिखाएं"
+    },
+    "photoDelayNotificationSecondButton": {
+        "message": "विन्यास पर जाएं"
+    },
+    "getBgErrorNotificationTitle": {
+        "message": "पृष्ठभूमि प्राप्त करने में कुछ समस्या हुई"
+    },
+    "getBgErrorNotificationMessage": {
+        "message": "पृष्ठभूमि प्राप्त नहीं कर सका, कृपया पुनः प्रयास करें।"
+    }
+}

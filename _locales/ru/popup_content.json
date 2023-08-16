@@ -1,0 +1,149 @@
+[
+    {
+        "selector": "#msg",
+        "txtContent": "Без изменений",
+        "variants": {
+            "Without_changes": "Без изменений",
+            "Unsaved_changes": "Не сохраненные изменения",
+            "NotAImage": "Это не изображение 😠",
+            "FillForm": "Заполните поля правильно 🙃",
+            "SavedConfig": "Сохранено ✔",
+            "ParametersReset": "Параметры сброшены ✔ перезагрузка..."
+        }
+    },
+    {
+        "selector": "section#search-engine span",
+        "txtContent": "Поисковая система:"
+    },
+    {
+        "selector": "section#search-engine select#select-search-engine option[value='0']",
+        "txtContent": "Добавить +"
+    },
+    {
+        "selector": "section#bg-type span",
+        "txtContent": "Тип фона:"
+    },
+    {
+        "selector": "section#bg-type select option[value='1']",
+        "txtContent": "Нет, однотонный цвет"
+    },
+    {
+        "selector": "section#bg-type select option[value='2']",
+        "txtContent": "Изображение по умолчанию"
+    },
+    {
+        "selector": "section#bg-type select option[value='3']",
+        "txtContent": "Загрузить изображение"
+    },
+    {
+        "selector": "section#bg-type select option[value='4']",
+        "txtContent": "Динамические фото",
+        "txtTitle": "Динамические фото на протяжении дня с платформы Pexels"
+    },
+    {
+        "selector": "section#bg-type select option[value='5']",
+        "txtContent": "Динамические видео",
+        "txtTitle": "Динамические видео на протяжении дня с платформы Pexels.\n❕❕Только с подключением к интернету❕❕"
+    },
+    {
+        "selector": "section#bg-quality span",
+        "txtContent": "Качество фона"
+    },
+    {
+        "selector": "section#bg-quality select option[value='low']",
+        "txtContent": "Низкое (< 720p)",
+        "txtTitle": "Качество < 720p"
+    },
+    {
+        "selector": "section#bg-quality select option[value='med']",
+        "txtContent": "Среднее (720p-1080p)",
+        "txtTitle": "Качество 720p-1080p"
+    },
+    {
+        "selector": "section#bg-quality select option[value='high']",
+        "txtContent": "Высокое (> 1080p)",
+        "txtTitle": "Качество > 1080p"
+    },
+    {
+        "selector": "section#bg-align span",
+        "txtContent": "Выравнивание фона:"
+    },
+    {
+        "selector": "section#bg-align select option[value='top']",
+        "txtContent": "Сверху ⬆"
+    },
+    {
+        "selector": "section#bg-align select option[value='bottom']",
+        "txtContent": "Снизу ⬇"
+    },
+    {
+        "selector": "section#bg-align select option[value='center']",
+        "txtContent": "По центру +"
+    },
+    {
+        "selector": "section#bg-align select option[value='left']",
+        "txtContent": "Слева ⬅"
+    },
+    {
+        "selector": "section#bg-align select option[value='right']",
+        "txtContent": "Справа ➡"
+    },
+    {
+        "selector": "#form section.text #input-name",
+        "txtPlaceholder": "Имя"
+    },
+    {
+        "selector": "#form section.text #input-url",
+        "txtPlaceholder": "URL с %s вместо запроса"
+    },
+    {
+        "selector": "#form section.text .under-text.url",
+        "txtInnerHTML": "Пример URL: 👇👇👇<span>https://www.bing.com/search?q=<b>%s</b></span>"
+    },
+    {
+        "selector": "#form section.text #add-engine-btn",
+        "txtContent": "Добавить поисковую систему"
+    },
+    {
+        "selector": "#form section.file span",
+        "txtContent": "Перетащите изображение сюда для загрузки"
+    },
+    {
+        "selector": "#form section.file b",
+        "txtContent": "Или"
+    },
+    {
+        "selector": "#form section.file #browse-img-btn",
+        "txtContent": "Обзор 📁"
+    },
+    {
+        "selector": "#submit-btn",
+        "txtContent": "Установить ➡💾",
+        "txtTitle": "Установить параметры"
+    },
+    {
+        "selector": "#alt-hidden-options",
+        "txtTitle": "Скрытые настройки 🤫"
+    },
+    {
+        "selector": "#deleteEngineBtn",
+        "txtContent": "Удалить эту поисковую систему"
+    },
+    {
+        "selector": "#reset-btn",
+        "txtContent": "Сбросить параметры",
+        "txtTitle": "Предупреждение: все параметры будут сброшены"
+    },
+    {
+        "selector": "#rate-link",
+        "txtContent": "Оценить расширение ⭐"
+    },
+    {
+        "selector": "footer .under-text",
+        "txtContent": "Изменения видны без перезагрузки новой вкладки!"
+    },
+    {
+        "selector": "section#hidden-options h2",
+        "txtContent": "⚠- Скрытые настройки -⚠"
+    }
+]
