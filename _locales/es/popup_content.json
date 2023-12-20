@@ -38,12 +38,12 @@
     {
         "selector": "section#bg-type select option[value='4']",
         "txtContent": "Fotos dinámicas",
-        "txtTitle": "Fotos dinámicas a lo largo del día desde la plataforma de Pexels"
+        "txtTitle": "Fotos dinámicas a lo largo del día desde la plataforma Pexels"
     },
     {
         "selector": "section#bg-type select option[value='5']",
         "txtContent": "Videos dinámicos",
-        "txtTitle": "Videos dinámicos a lo largo del día desde la plataforma de Pexels.\n❕❕Solo con conexión a internet❕❕"
+        "txtTitle": "Videos dinámicos a lo largo del día desde la plataforma Pexels.\n❕❕Solo con conexión a internet❕❕"
     },
     {
         "selector": "section#bg-quality span",

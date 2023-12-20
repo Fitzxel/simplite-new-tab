@@ -1,11 +1,11 @@
 // popup scripts
-let totalHeight = 0;
-document.querySelectorAll('body > *').forEach(element => {
-    totalHeight += element.offsetHeight;
-});
-if (totalHeight < innerHeight) {
-    document.querySelector('footer').classList.add('fixed');
-}
+// let totalHeight = 0;
+// document.querySelectorAll('body > *').forEach(element => {
+//     totalHeight += element.offsetHeight;
+// });
+// if (totalHeight < innerHeight) {
+//     document.querySelector('footer').classList.add('fixed');
+// }
 
 let Without_changes, Unsaved_changes, NotAImage, FillForm, SavedConfig, ParametersReset;
 

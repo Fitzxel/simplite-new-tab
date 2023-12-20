@@ -1,4 +1,5 @@
 body {
+    min-width: fit-content;
     background: var(--bg-page);
     font-family: var(--font-family);
 }
@@ -241,25 +242,19 @@ main > form .under-text.url span b {
 
 footer {
     width: 100%;
+    padding: 5px;
+    border-top: 1px solid #888;
+    background-color: var(--opaque-bg-elements);
     color: var(--color-text);
     font-size: 12px;
     font-weight: 400;
-}
-footer.fixed {
-    position: fixed;
-    bottom: 0;
-}
-footer .content {
-    padding-bottom: 5px;
-    border-top: 1px solid #888;
     text-align: center;
-    background: var(--opaque-bg-elements);
 }
-footer .content ul {
+footer ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 5px 50px;
+    gap: 5px 10px;
     margin: 5px;
     list-style: none;
 }

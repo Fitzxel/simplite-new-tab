@@ -70,7 +70,6 @@ chrome.runtime.onMessage.addListener(req=> {
 });
 
 function dynamicBg(force, type) {
-    // let querys = ['sea', 'building', 'architecture', 'bridge', 'river', 'city', 'car road', 'city traffic', 'modern%20architecture', 'sky', 'clouds'];
     let qTime = 'bwwklrz';
     
     const hour = new Date().getHours();
