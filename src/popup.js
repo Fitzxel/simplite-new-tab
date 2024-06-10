@@ -1,42 +1,25 @@
 // popup scripts
-// let totalHeight = 0;
-// document.querySelectorAll('body > *').forEach(element => {
-//     totalHeight += element.offsetHeight;
-// });
-// if (totalHeight < innerHeight) {
-//     document.querySelector('footer').classList.add('fixed');
-// }
+const langData = JSON.parse(chrome.i18n.getMessage('options_html'));
 
-let Without_changes, Unsaved_changes, NotAImage, FillForm, SavedConfig, ParametersReset;
+const Without_changes = langData[0].variants.Without_changes;
+const Unsaved_changes = langData[0].variants.Unsaved_changes;
+const NotAImage = langData[0].variants.NotAImage;
+const FillForm = langData[0].variants.FillForm;
+const SavedConfig = langData[0].variants.SavedConfig;
+const ParametersReset = langData[0].variants.ParametersReset;
 
-let lang = 'en';
-if (["es", "pt"].includes(chrome.i18n.getUILanguage().split('-')[0])) {
-    lang = chrome.i18n.getUILanguage().split('-')[0];
-}
-fetch(chrome.runtime.getURL(`_locales/${lang}/popup_content.json`)).then(res=> {
-    res.json().then(json=> {
-        // set variants of msg
-        Without_changes = json[0].variants.Without_changes;
-        Unsaved_changes = json[0].variants.Unsaved_changes;
-        NotAImage = json[0].variants.NotAImage;
-        FillForm = json[0].variants.FillForm;
-        SavedConfig = json[0].variants.SavedConfig;
-        ParametersReset = json[0].variants.ParametersReset;
-        // for each element set content text
-        json.forEach(obj => {
-            const objElement = document.querySelector(obj.selector);
-            if (objElement) {
-                // textContent
-                if (obj.txtContent) objElement.textContent = obj.txtContent;
-                // placeholder
-                if (obj.txtPlaceholder) objElement.placeholder = obj.txtPlaceholder;
-                // innerHTML
-                if (obj.txtInnerHTML) objElement.innerHTML = obj.txtInnerHTML;
-                // title
-                if (obj.txtTitle) objElement.title = obj.txtTitle;
-            }
-        });
-    });
+langData.forEach(obj => {
+    const objElement = document.querySelector(obj.selector);
+    if (objElement) {
+        // textContent
+        if (obj.txtContent) objElement.textContent = obj.txtContent;
+        // placeholder
+        if (obj.txtPlaceholder) objElement.placeholder = obj.txtPlaceholder;
+        // innerHTML
+        if (obj.txtInnerHTML) objElement.innerHTML = obj.txtInnerHTML;
+        // title
+        if (obj.txtTitle) objElement.title = obj.txtTitle;
+    }
 });
 
 document.documentElement.addEventListener('submit', (event)=> {
@@ -91,9 +74,9 @@ let searchEngines = [];
 chrome.storage.local.get(['searchEngines'], (result)=> {
     if (result.searchEngines) {
         searchEngines = result.searchEngines;
-        result.searchEngines.forEach(engine => {
+        result.searchEngines.map((engine, index) => {
             let option = document.createElement('option');
-            option.value = engine.value;
+            option.value = index + 1;
             option.textContent = engine.name;
             selector('search-engine').appendChild(option);
         });
