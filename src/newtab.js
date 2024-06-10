@@ -47,163 +47,123 @@ searchInput.addEventListener('blur', ()=> {
     isFocus = false;
 });
 
-let typeDynamicBg;
-// set or not background
-function createImgElement() {
-    chrome.storage.local.get(['backgroundType', 'backgroundAlign', 'backgroundImageData', 'dynamicPhotoData', 'dynamicVideoData', 'highQuality'], res=> {
-        const fragment = document.createDocumentFragment();
-        const img = document.createElement('img');
-        const a = document.createElement('a');
-        img.id = 'img-bg';
-        img.addEventListener('load', ()=> {
-            img.style.opacity = '1';
-        });
-        img.style.objectPosition = res.backgroundAlign;
-        fragment.appendChild(img);
+// set background
+document.querySelector('#img-bg').addEventListener('load', e=> {
+    e.target.style.opacity = '1';
+});
+document.querySelector('#video-bg').addEventListener('loadeddata', e=> {
+    e.target.playbackRate = 0.8;
+    e.target.style.opacity = '1';
+});
 
-        const video = document.createElement('video');
-        video.id = 'video-bg';
-        video.addEventListener('loadeddata', ()=> {
-            video.playbackRate = 0.8;
-            video.style.opacity = '1';
-        });
-        video.autoplay = true;
-        video.loop = true;
-        video.muted = true;
-        fragment.appendChild(video);
-
-        a.id = 'photographer';
-        a.style.display = 'none';
-        fragment.appendChild(a);
-        if (res.backgroundType == 2) {
-            img.src = 'resources/default_wallpaper.jpg';
-        }
-        else if (res.backgroundType == 3) {
-            img.src = res.backgroundImageData;
-        }
-        else if (res.backgroundType == 4 || (res.backgroundType == 5 && !navigator.onLine)) {
-            typeDynamicBg = 'photos';
-            img.src = res.dynamicPhotoData.dataURL;
-            a.textContent = res.dynamicPhotoData.photographer_name;
-            a.title = `${chrome.i18n.getMessage('photographer')}: ${res.dynamicPhotoData.photographer_name}`;
-            a.href = res.dynamicPhotoData.photographer_url;
-            a.style.display = '';
-            chrome.runtime.sendMessage({dynamicBg:{force: false, type: 'photos'}});
-        }
-        else if (res.backgroundType == 5) {
-            typeDynamicBg = 'videos';
-            video.src = res.dynamicVideoData.dataURL;
-            a.textContent = res.dynamicVideoData.photographer_name;
-            a.title = `${chrome.i18n.getMessage('photographer')}: ${res.dynamicVideoData.photographer_name}`;
-            a.href = res.dynamicVideoData.photographer_url;
-            a.style.display = '';
-            chrome.runtime.sendMessage({dynamicBg:{force: false, type: 'videos'}});
-        }
-        document.body.appendChild(fragment);
-    });
-}
-createImgElement();
-
-// update page on change parameters
-chrome.storage.onChanged.addListener(e=> {
-    // on change selected search engine
-    // no need listen searchEngines change
-    if (e.selectedEngine) {
-        chrome.storage.local.get(['searchEngines', 'selectedEngine'], res=> {
-            searchURL = res.searchEngines[res.selectedEngine -1].url;
-            searchInput.placeholder = `${chrome.i18n.getMessage('search_engine')} ${res.searchEngines[res.selectedEngine -1].name}`;
-        });
-    }
-    // on change background
+chrome.storage.local.get(['backgroundType', 'backgroundAlign', 'backgroundImageData', 'dynamicPhotoData', 'dynamicVideoData', 'highQuality'], res=> {
     const img = document.querySelector('#img-bg');
     const video = document.querySelector('#video-bg');
     const a = document.querySelector('#photographer');
-    if (e.backgroundType) {
-        if (e.backgroundType.oldValue == 4 || e.backgroundType.oldValue == 5) {
-            a.style.display = 'none';
-        }
-        if (e.backgroundType.oldValue == 5) {
-            video.style.opacity = '';
-            setTimeout(() => {
-                video.src = '';
-            }, 300);
-        }
-        // new value
-        if (e.backgroundType.newValue == 1) {
-            img.style.opacity = '';
-            // setTimeout(() => {
-            //     img.style.display = 'none';
-            // }, 300);
-        }
-        else if (e.backgroundType.newValue == 2) {
-            img.style.opacity = '';
-            img.src = 'resources/default_wallpaper.jpg';
-        }
-        else if (e.backgroundType.newValue == 3) {
-            img.style.opacity = '';
-            chrome.storage.local.get(['backgroundImageData'], (res)=> {
-                img.src = res.backgroundImageData;
-            });
-        }
-        else if (e.backgroundType.newValue == 4) {
-            typeDynamicBg = 'photos';
-            img.style.opacity = '';
-            chrome.storage.local.get(['dynamicPhotoData'], (res)=> {
-                img.src = res.dynamicPhotoData.dataURL;
-                a.textContent = res.dynamicPhotoData.photographer_name;
-                a.title = `${chrome.i18n.getMessage('photographer')}: ${res.dynamicPhotoData.photographer_name}`;
-                a.href = res.dynamicPhotoData.photographer_url;
-                a.style.display = '';
-            });
-        }
-        else if (e.backgroundType.newValue == 5) {
-            typeDynamicBg = 'videos';
-            img.style.opacity = '';
-            chrome.storage.local.get(['dynamicVideoData'], (res)=> {
-                video.src = res.dynamicVideoData.dataURL;
-                a.textContent = res.dynamicVideoData.photographer_name;
-                a.title = `${chrome.i18n.getMessage('photographer')}: ${res.dynamicVideoData.photographer_name}`;
-                a.href = res.dynamicVideoData.photographer_url;
-                a.style.display = '';
-            });
-        }
+
+    img.style.objectPosition = res.backgroundAlign;
+
+    video.autoplay = true;
+    video.loop = true;
+    video.muted = true;
+
+    if (res.backgroundType == 2) {// default
+        img.src = 'resources/default_wallpaper.jpg';
     }
-    // only change backgroundImageData
-    if (e.backgroundImageData) {
-        img.style.opacity = '';
-        img.poster = e.backgroundImageData.newValue;
+    else if (res.backgroundType == 3) {// custom
+        img.src = res.backgroundImageData;
     }
-    chrome.storage.local.get(['backgroundType'], res=> {
-        // only change dynamicPhotoData
-        if (e.dynamicPhotoData && (res.backgroundType != 5 || !navigator.onLine)) {
-            if (e.dynamicPhotoData.newValue.dataURL.length > 0) {
-                img.style.opacity = '';
-                setTimeout(() => {
-                    img.src = e.dynamicPhotoData.newValue.dataURL;
-                    a.textContent = e.dynamicPhotoData.newValue.photographer_name;
-                    a.title = `${chrome.i18n.getMessage('photographer')}: ${e.dynamicPhotoData.newValue.photographer_name}`;
-                    a.href = e.dynamicPhotoData.newValue.photographer_url;
-                    a.style.display = '';
-                }, 300);
-            }
-        }
-        // only change dynamicVideoData
-        if (e.dynamicVideoData && res.backgroundType != 4) {
-            if (e.dynamicVideoData.newValue.dataURL.length > 0) {
-                img.style.opacity = '';
-                video.style.opacity = '';
-                setTimeout(() => {
-                    video.src = e.dynamicVideoData.newValue.dataURL;
-                    a.textContent = e.dynamicVideoData.newValue.photographer_name;
-                    a.title = `${chrome.i18n.getMessage('photographer')}: ${e.dynamicVideoData.newValue.photographer_name}`;
-                    a.href = e.dynamicVideoData.newValue.photographer_url;
-                    a.style.display = '';
-                }, 300);
-            }
-        }
-    });
-    if (e.backgroundAlign && img) {
+    else if (res.backgroundType == 4 || (res.backgroundType == 5 && !navigator.onLine)) {// dynamic photo
+        img.src = res.dynamicPhotoData.dataURL;
+        a.textContent = res.dynamicPhotoData.photographer_name;
+        a.title = `${chrome.i18n.getMessage('photographer')}: ${res.dynamicPhotoData.photographer_name}`;
+        a.href = res.dynamicPhotoData.photographer_url;
+        a.style.display = '';
+        chrome.runtime.sendMessage({dynamicBg:{force: false}});
+    }
+    else if (res.backgroundType == 5) {// dynamic video
+        video.src = res.dynamicVideoData.dataURL;
+        a.textContent = res.dynamicVideoData.photographer_name;
+        a.title = `${chrome.i18n.getMessage('photographer')}: ${res.dynamicVideoData.photographer_name}`;
+        a.href = res.dynamicVideoData.photographer_url;
+        a.style.display = '';
+        chrome.runtime.sendMessage({dynamicBg:{force: false}});
+    }
+});
+
+// update page on change parameters
+chrome.storage.onChanged.addListener(e=> {
+    const img = document.querySelector('#img-bg');
+    const video = document.querySelector('#video-bg');
+    const a = document.querySelector('#photographer');
+
+    if (e.selectedEngine) {
+        chrome.storage.local.get(['searchEngines'], res=> {
+            searchURL = res.searchEngines[e.selectedEngine.newValue - 1].url;
+            searchInput.placeholder = `${chrome.i18n.getMessage('search_engine')} ${res.searchEngines[e.selectedEngine.newValue - 1].name}`;
+        });
+    }
+    else if (e.backgroundAlign) {
         img.style.objectPosition = e.backgroundAlign.newValue;
+    }
+    else if (e.backgroundType || e.backgroundImageData || e.dynamicPhotoData || e.dynamicVideoData) {
+        img.style.opacity = '';
+        video.style.opacity = '';
+
+        setTimeout(() => {
+            img.removeAttribute('src');
+            video.removeAttribute('src');
+            
+            if (e.backgroundImageData) {
+                img.poster = e.backgroundImageData.newValue;
+            }
+            else if (e.backgroundType && e.backgroundType.newValue == 2) {// default
+                img.src = 'resources/default_wallpaper.jpg';
+            }
+            else if (e.backgroundType && e.backgroundType.newValue == 3) {// custom
+                chrome.storage.local.get(['backgroundImageData'], (res)=> {
+                    img.src = res.backgroundImageData;
+                });
+            }
+            else if (e.backgroundType && e.backgroundType.newValue == 4) {// dynamic photo
+                chrome.storage.local.get(['dynamicPhotoData'], (res)=> {
+                    img.src = res.dynamicPhotoData.dataURL;
+                    a.textContent = res.dynamicPhotoData.photographer_name;
+                    a.title = `${chrome.i18n.getMessage('photographer')}: ${res.dynamicPhotoData.photographer_name}`;
+                    a.href = res.dynamicPhotoData.photographer_url;
+                    a.style.display = '';
+                });
+            }
+            else if (e.backgroundType && e.backgroundType.newValue == 5) {// dynamic video
+                chrome.storage.local.get(['dynamicVideoData'], (res)=> {
+                    video.src = res.dynamicVideoData.dataURL;
+                    a.textContent = res.dynamicVideoData.photographer_name;
+                    a.title = `${chrome.i18n.getMessage('photographer')}: ${res.dynamicVideoData.photographer_name}`;
+                    a.href = res.dynamicVideoData.photographer_url;
+                    a.style.display = '';
+                });
+            }
+            else if (e.dynamicPhotoData || e.dynamicVideoData) {
+                chrome.storage.local.get(['backgroundType'], res=> {
+                    // only change dynamicPhotoData
+                    if (e.dynamicPhotoData && (res.backgroundType == 4 || !navigator.onLine) && e.dynamicPhotoData.newValue.dataURL.length > 0) {
+                        img.src = e.dynamicPhotoData.newValue.dataURL;
+                        a.textContent = e.dynamicPhotoData.newValue.photographer_name;
+                        a.title = `${chrome.i18n.getMessage('photographer')}: ${e.dynamicPhotoData.newValue.photographer_name}`;
+                        a.href = e.dynamicPhotoData.newValue.photographer_url;
+                        a.style.display = '';
+                    }
+                    // only change dynamicVideoData
+                    else if (e.dynamicVideoData && res.backgroundType == 5 && e.dynamicVideoData.newValue.dataURL.length > 0) {
+                        video.src = e.dynamicVideoData.newValue.dataURL;
+                        a.textContent = e.dynamicVideoData.newValue.photographer_name;
+                        a.title = `${chrome.i18n.getMessage('photographer')}: ${e.dynamicVideoData.newValue.photographer_name}`;
+                        a.href = e.dynamicVideoData.newValue.photographer_url;
+                        a.style.display = '';
+                    }
+                });
+            }
+        }, 350);
     }
 });
 
@@ -224,12 +184,12 @@ addEventListener('keydown', (e)=> {
     }
     if ((e.key == 'f' || e.key == 'F') && e.ctrlKey && dynamicBgStatus == 1) {
         e.preventDefault();
-        chrome.runtime.sendMessage({dynamicBg:{force: true, type: typeDynamicBg}});
+        chrome.runtime.sendMessage({dynamicBg:{force: true}});
     }
 });
 
 document.addEventListener('visibilitychange', ()=> {
-    if (typeDynamicBg == 'videos') {
+    if (document.querySelector('#video-bg').src) {
         if (document.hidden) {
             document.querySelector('#video-bg').pause();
         }
