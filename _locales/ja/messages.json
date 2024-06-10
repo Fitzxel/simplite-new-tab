@@ -1,0 +1,47 @@
+{
+    "extName": {
+        "message": "シンプライト 新しいタブ"
+    },
+    "extDesc": {
+        "message": "シンプルで軽量な新しいタブ。"
+    },
+    "newTabTitle": {
+        "message": "新しいタブ"
+    },
+    "search": {
+        "message": "検索"
+    },
+    "search_engine": {
+        "message": "で検索"
+    },
+    "searchForm": {
+        "message": "検索するにはここに入力してください"
+    },
+    "deleteButton": {
+        "message": "削除"
+    },
+    "photographer": {
+        "message": "写真家"
+    },
+    "photoDelayNotificationTitle": {
+        "message": "画像の取得/処理には予想以上の時間がかかりました"
+    },
+    "photoDelayNotificationMessage": {
+        "message": "応答時間を短縮するために、設定で「高品質」を無効にすることを検討してください。"
+    },
+    "photoDelayNotificationPrimaryButton": {
+        "message": "今後表示しない"
+    },
+    "photoDelayNotificationSecondButton": {
+        "message": "設定に移動"
+    },
+    "getBgErrorNotificationTitle": {
+        "message": "背景の取得中に何か問題が発生しました"
+    },
+    "getBgErrorNotificationMessage": {
+        "message": "背景を取得できませんでした。もう一度お試しください。"
+    },
+    "options_html": {
+        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"変更なし\",\"variants\":{\"Without_changes\":\"変更なし\",\"Unsaved_changes\":\"保存されていない変更\",\"NotAImage\":\"これは画像ファイルではありません 😠\",\"FillForm\":\"フィールドを正しく記入してください 🙃\",\"SavedConfig\":\"設定済み ✔\",\"ParametersReset\":\"パラメータがリセットされました ✔ リロード中...\"}},{\"selector\":\"section#search-engine span\",\"txtContent\":\"検索エンジン:\"},{\"selector\":\"section#search-engine select#select-search-engine option[value='0']\",\"txtContent\":\"追加 +\"},{\"selector\":\"section#bg-type span\",\"txtContent\":\"背景の種類:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"なし、単色\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"デフォルト画像\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"画像のアップロード\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"ダイナミックな写真\",\"txtTitle\":\"Pexelsプラットフォームからの一日中のダイナミックな写真\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"ダイナミックな動画\",\"txtTitle\":\"Pexelsプラットフォームからの一日中のダイナミックな動画。\\n❕❕インターネット接続が必要❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"背景の品質\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"低い (< 720p)\",\"txtTitle\":\"品質 < 720p\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"中程度 (720p-1080p)\",\"txtTitle\":\"品質 720p-1080p\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"高い (> 1080p)\",\"txtTitle\":\"品質 > 1080p\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"背景の配置:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"上 ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"下 ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"中央 +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"左 ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"右 ➡\"},{\"selector\":\"#form section.text #input-name\",\"txtPlaceholder\":\"名前\"},{\"selector\":\"#form section.text #input-url\",\"txtPlaceholder\":\"クエリの場所に %s を含むURL\"},{\"selector\":\"#form section.text .under-text.url\",\"txtInnerHTML\":\"例: 👇👇👇<span>https://www.bing.com/search?q=<b>%s</b></span>\"},{\"selector\":\"#form section.text #add-engine-btn\",\"txtContent\":\"エンジンを追加\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"画像ファイルをここにドラッグしてアップロード\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"または\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"ブラウズ 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"設定する ➡💾\",\"txtTitle\":\"パラメータを設定\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"隠れたオプション 🤫\"},{\"selector\":\"#deleteEngineBtn\",\"txtContent\":\"このエンジンを削除\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"パラメータをリセット\",\"txtTitle\":\"注意: すべてのパラメータがリセットされます\"},{\"selector\":\"#rate-link\",\"txtContent\":\"拡張機能を評価する ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"変更を確認するには新しいタブをリロードする必要はありません！\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- 隠れたオプション -⚠\"}]"
+    }
+}
