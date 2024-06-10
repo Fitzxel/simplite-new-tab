@@ -1,0 +1,47 @@
+{
+    "extName": {
+        "message": "Simplite New Tab"
+    },
+    "extDesc": {
+        "message": "A simple and lightweight new tab."
+    },
+    "newTabTitle": {
+        "message": "New Tab"
+    },
+    "search": {
+        "message": "Search"
+    },
+    "search_engine": {
+        "message": "Search in"
+    },
+    "searchForm": {
+        "message": "Type here to search"
+    },
+    "deleteButton": {
+        "message": "Delete"
+    },
+    "photographer": {
+        "message": "Photographer"
+    },
+    "photoDelayNotificationTitle": {
+        "message": "It took longer than expected to get/process the image"
+    },
+    "photoDelayNotificationMessage": {
+        "message": "Consider disabling 'High Quality' in settings to reduce response time."
+    },
+    "photoDelayNotificationPrimaryButton": {
+        "message": "Don't show again"
+    },
+    "photoDelayNotificationSecondButton": {
+        "message": "Go to settings"
+    },
+    "getBgErrorNotificationTitle": {
+        "message": "Something went wrong while getting the background"
+    },
+    "getBgErrorNotificationMessage": {
+        "message": "Failed to get the background, please try again."
+    },
+    "options_html": {
+        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"未更改\",\"variants\":{\"Without_changes\":\"未更改\",\"Unsaved_changes\":\"未保存的更改\",\"NotAImage\":\"這不是圖片檔案 😠\",\"FillForm\":\"請正確填寫表格 🙃\",\"SavedConfig\":\"已設定 ✔\",\"ParametersReset\":\"參數重置 ✔ 重新載入...\"}},{\"selector\":\"section#search-engine span\",\"txtContent\":\"搜尋引擎:\"},{\"selector\":\"section#search-engine select#select-search-engine option[value='0']\",\"txtContent\":\"新增 +\"},{\"selector\":\"section#bg-type span\",\"txtContent\":\"背景類型:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"無，單一顏色\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"預設圖片\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"上傳圖片\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"動態照片\",\"txtTitle\":\"來自Pexels平台的動態照片，隨時間變化\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"動態影片\",\"txtTitle\":\"來自Pexels平台的動態影片。\\n❕❕僅在有網路連接時顯示❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"背景品質\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"低 (< 720p)\",\"txtTitle\":\"品質 < 720p\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"中等 (720p-1080p)\",\"txtTitle\":\"品質 720p-1080p\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"高 (> 1080p)\",\"txtTitle\":\"品質 > 1080p\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"對齊背景:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"頂部 ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"底部 ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"中央 +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"左側 ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"右側 ➡\"},{\"selector\":\"#form section.text #input-name\",\"txtPlaceholder\":\"名稱\"},{\"selector\":\"#form section.text #input-url\",\"txtPlaceholder\":\"包含 %s 的查詢URL\"},{\"selector\":\"#form section.text .under-text.url\",\"txtInnerHTML\":\"範例URL: 👇👇👇<span>https://www.bing.com/search?q=<b>%s</b></span>\"},{\"selector\":\"#form section.text #add-engine-btn\",\"txtContent\":\"新增搜尋引擎\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"拖曳圖片檔案至此處上傳\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"或\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"瀏覽 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"設定 ➡💾\",\"txtTitle\":\"設定參數\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"隱藏選項 🤫\"},{\"selector\":\"#deleteEngineBtn\",\"txtContent\":\"刪除此搜尋引擎\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"重設參數\",\"txtTitle\":\"注意: 點擊後將重置所有參數\"},{\"selector\":\"#rate-link\",\"txtContent\":\"評分擴充功能 ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"查看變更無需重新載入新的分頁！\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- 隱藏選項 -⚠\"}]"
+    }
+}
