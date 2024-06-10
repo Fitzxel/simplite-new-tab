@@ -1,38 +1,47 @@
 {
-  "extName": {
-    "message": "Simplite New Tab"
-  },
-  "extDesc": {
-    "message": "A simple and light new tab."
-  },
-  "newTabTitle": {
-    "message": "New Tab"
-  },
-  "search": {
-    "message": "Search"
-  },
-  "search_engine": {
-    "message": "Search"
-  },
-  "searchForm": {
-    "message": "Type here to search"
-  },
-  "deleteButton": {
-    "message": "Clear"
-  },
-  "photographer": {
-    "message": "Photographer"
-  },
-  "PhotoDelayNotificationTitle": {
-    "message": "It took longer than expected to get/process the image"
-  },
-  "PhotoDelayNotificationMessage": {
-    "message": "Consider disabling \"High quality\" in options to reduce response time."
-  },
-  "PhotoDelayNotificationPrimaryButton": {
-    "message": "Don't show again"
-  },
-  "PhotoDelayNotificationSecondButton": {
-    "message": "Go to options"
-  }
+    "extName": {
+        "message": "Simplite New Tab"
+    },
+    "extDesc": {
+        "message": "A simple and lightweight new tab."
+    },
+    "newTabTitle": {
+        "message": "New Tab"
+    },
+    "search": {
+        "message": "Search"
+    },
+    "search_engine": {
+        "message": "Search in"
+    },
+    "searchForm": {
+        "message": "Type here to search"
+    },
+    "deleteButton": {
+        "message": "Delete"
+    },
+    "photographer": {
+        "message": "Photographer"
+    },
+    "photoDelayNotificationTitle": {
+        "message": "It took longer than expected to get/process the image"
+    },
+    "photoDelayNotificationMessage": {
+        "message": "Consider disabling 'High Quality' in settings to reduce response time."
+    },
+    "photoDelayNotificationPrimaryButton": {
+        "message": "Don't show again"
+    },
+    "photoDelayNotificationSecondButton": {
+        "message": "Go to settings"
+    },
+    "getBgErrorNotificationTitle": {
+        "message": "Something went wrong while getting the background"
+    },
+    "getBgErrorNotificationMessage": {
+        "message": "Failed to get the background, please try again."
+    },
+    "options_html": {
+        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"No changes\",\"variants\":{\"Without_changes\":\"No changes\",\"Unsaved_changes\":\"Unsaved changes\",\"NotAImage\":\"That's not an image file 😠\",\"FillForm\":\"Fill in the fields correctly 🙃\",\"SavedConfig\":\"Set ✔\",\"ParametersReset\":\"Parameters reset ✔ reloading...\"}},{\"selector\":\"section#search-engine span\",\"txtContent\":\"Search engine:\"},{\"selector\":\"section#search-engine select#select-search-engine option[value='0']\",\"txtContent\":\"Add +\"},{\"selector\":\"section#bg-type span\",\"txtContent\":\"Background type:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"None, solid color\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"Default image\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"Upload image\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"Dynamic photos\",\"txtTitle\":\"Dynamic photos throughout the day from the Pexels platform\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"Dynamic videos\",\"txtTitle\":\"Dynamic videos throughout the day from the Pexels platform.\\n❕❕Internet connection required❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"Background quality\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"Low (< 720p)\",\"txtTitle\":\"Quality < 720p\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"Medium (720p-1080p)\",\"txtTitle\":\"Quality 720p-1080p\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"High (> 1080p)\",\"txtTitle\":\"Quality > 1080p\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"Align Background:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"Top ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"Bottom ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"Center +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"Left ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"Right ➡\"},{\"selector\":\"#form section.text #input-name\",\"txtPlaceholder\":\"Name\"},{\"selector\":\"#form section.text #input-url\",\"txtPlaceholder\":\"URL with %s in place of the query\"},{\"selector\":\"#form section.text .under-text.url\",\"txtInnerHTML\":\"Example URL: 👇👇👇<span>https://www.bing.com/search?q=<b>%s</b></span>\"},{\"selector\":\"#form section.text #add-engine-btn\",\"txtContent\":\"Add engine\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"Drag the image file to load it here\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"Or\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"Browse 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"Set ➡💾\",\"txtTitle\":\"Set parameters\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"Hidden options 🤫\"},{\"selector\":\"#deleteEngineBtn\",\"txtContent\":\"Delete this engine\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"Reset parameters\",\"txtTitle\":\"Warning: pressing this resets all parameters\"},{\"selector\":\"#rate-link\",\"txtContent\":\"Rate extension ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"No need to reload the new tab to see the changes!\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- Hidden Options -⚠\"}]"
+    }
 }
