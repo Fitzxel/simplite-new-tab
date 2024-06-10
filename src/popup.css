@@ -2,6 +2,7 @@ body {
     min-width: fit-content;
     background: var(--bg-page);
     font-family: var(--font-family);
+    direction: __MSG_@@bidi_dir__;
 }
 
 :focus {
