@@ -1,0 +1,47 @@
+{
+    "extName": {
+        "message": "Simplite Neue Registerkarte"
+    },
+    "extDesc": {
+        "message": "Eine einfache und leichte neue Registerkarte."
+    },
+    "newTabTitle": {
+        "message": "Neue Registerkarte"
+    },
+    "search": {
+        "message": "Suchen"
+    },
+    "search_engine": {
+        "message": "Suchen in"
+    },
+    "searchForm": {
+        "message": "Hier eingeben, um zu suchen"
+    },
+    "deleteButton": {
+        "message": "Löschen"
+    },
+    "photographer": {
+        "message": "Fotograf"
+    },
+    "photoDelayNotificationTitle": {
+        "message": "Es hat länger gedauert als erwartet, um das Bild zu erhalten/zu verarbeiten"
+    },
+    "photoDelayNotificationMessage": {
+        "message": "Überlegen Sie, die Option 'Hohe Qualität' in den Einstellungen zu deaktivieren, um die Antwortzeit zu verkürzen."
+    },
+    "photoDelayNotificationPrimaryButton": {
+        "message": "Nicht mehr anzeigen"
+    },
+    "photoDelayNotificationSecondButton": {
+        "message": "Zu den Einstellungen gehen"
+    },
+    "getBgErrorNotificationTitle": {
+        "message": "Beim Abrufen des Hintergrunds ist etwas schiefgelaufen"
+    },
+    "getBgErrorNotificationMessage": {
+        "message": "Der Hintergrund konnte nicht abgerufen werden. Bitte versuchen Sie es erneut."
+    },
+    "options_html": {
+        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"Keine Änderungen\",\"variants\":{\"Without_changes\":\"Keine Änderungen\",\"Unsaved_changes\":\"Nicht gespeicherte Änderungen\",\"NotAImage\":\"Das ist keine Bilddatei 😠\",\"FillForm\":\"Bitte füllen Sie die Felder korrekt aus 🙃\",\"SavedConfig\":\"Gespeichert ✔\",\"ParametersReset\":\"Parameter zurückgesetzt ✔ Neuladen...\"}},{\"selector\":\"section#search-engine span\",\"txtContent\":\"Suchmaschine:\"},{\"selector\":\"section#search-engine select#select-search-engine option[value='0']\",\"txtContent\":\"Hinzufügen +\"},{\"selector\":\"section#bg-type span\",\"txtContent\":\"Hintergrundtyp:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"Keiner, Vollfarbe\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"Standardbild\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"Bild hochladen\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"Dynamische Fotos\",\"txtTitle\":\"Dynamische Fotos im Laufe des Tages von der Pexels-Plattform\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"Dynamische Videos\",\"txtTitle\":\"Dynamische Videos im Laufe des Tages von der Pexels-Plattform.\\n❕❕Nur mit Internetverbindung❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"Qualität des Hintergrunds\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"Niedrig (< 720p)\",\"txtTitle\":\"Qualität < 720p\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"Mittel (720p-1080p)\",\"txtTitle\":\"Qualität 720p-1080p\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"Hoch (> 1080p)\",\"txtTitle\":\"Qualität > 1080p\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"Hintergrund ausrichten:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"Oben ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"Unten ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"Mitte +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"Links ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"Rechts ➡\"},{\"selector\":\"#form section.text #input-name\",\"txtPlaceholder\":\"Name\"},{\"selector\":\"#form section.text #input-url\",\"txtPlaceholder\":\"URL mit %s anstelle der Abfrage\"},{\"selector\":\"#form section.text .under-text.url\",\"txtInnerHTML\":\"Beispiel-URL: 👇👇👇<span>https://www.bing.com/search?q=<b>%s</b></span>\"},{\"selector\":\"#form section.text #add-engine-btn\",\"txtContent\":\"Suchmaschine hinzufügen\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"Ziehen Sie die Bilddatei hierher, um sie hochzuladen\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"Oder\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"Durchsuchen 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"Festlegen ➡💾\",\"txtTitle\":\"Parameter festlegen\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"Versteckte Optionen 🤫\"},{\"selector\":\"#deleteEngineBtn\",\"txtContent\":\"Diese Suchmaschine löschen\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"Parameter zurücksetzen\",\"txtTitle\":\"Warnung: Durch Drücken werden alle Parameter zurückgesetzt\"},{\"selector\":\"#rate-link\",\"txtContent\":\"Erweiterung bewerten ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"Es ist nicht erforderlich, den neuen Tab neu zu laden, um die Änderungen zu sehen!\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- Versteckte Optionen -⚠\"}]"
+    }
+}
