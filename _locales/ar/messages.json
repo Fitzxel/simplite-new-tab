@@ -1,0 +1,47 @@
+{
+    "extName": {
+        "message": "سيمبلايت علامة تبويب جديدة"
+    },
+    "extDesc": {
+        "message": "علامة تبويب جديدة بسيطة وخفيفة."
+    },
+    "newTabTitle": {
+        "message": "علامة تبويب جديدة"
+    },
+    "search": {
+        "message": "بحث"
+    },
+    "search_engine": {
+        "message": "البحث في"
+    },
+    "searchForm": {
+        "message": "اكتب هنا للبحث"
+    },
+    "deleteButton": {
+        "message": "حذف"
+    },
+    "photographer": {
+        "message": "مصور"
+    },
+    "photoDelayNotificationTitle": {
+        "message": "استغرق الأمر وقتًا أطول من المتوقع للحصول على/معالجة الصورة"
+    },
+    "photoDelayNotificationMessage": {
+        "message": "افكر في تعطيل \"جودة عالية\" في الإعدادات لتقليل وقت الاستجابة."
+    },
+    "photoDelayNotificationPrimaryButton": {
+        "message": "عدم إظهار هذا مرة أخرى"
+    },
+    "photoDelayNotificationSecondButton": {
+        "message": "الانتقال إلى الإعدادات"
+    },
+    "getBgErrorNotificationTitle": {
+        "message": "حدث خطأ أثناء الحصول على الخلفية"
+    },
+    "getBgErrorNotificationMessage": {
+        "message": "تعذر الحصول على الخلفية، يرجى المحاولة مرة أخرى."
+    },
+    "options_html": {
+        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"بدون تغييرات\",\"variants\":{\"Without_changes\":\"بدون تغييرات\",\"Unsaved_changes\":\"تغييرات غير محفوظة\",\"NotAImage\":\"هذا ليس ملف صورة 😠\",\"FillForm\":\"املأ الحقول بشكل صحيح 🙃\",\"SavedConfig\":\"تم التعيين ✔\",\"ParametersReset\":\"إعادة تعيين المعلمات ✔ جاري إعادة التحميل...\"}},{\"selector\":\"section#search-engine span\",\"txtContent\":\"محرك البحث:\"},{\"selector\":\"section#search-engine select#select-search-engine option[value='0']\",\"txtContent\":\"إضافة +\"},{\"selector\":\"section#bg-type span\",\"txtContent\":\"نوع الخلفية:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"لا شيء، لون صلب\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"صورة افتراضية\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"رفع صورة\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"صور ديناميكية\",\"txtTitle\":\"صور ديناميكية على مدار اليوم من منصة Pexels\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"فيديوهات ديناميكية\",\"txtTitle\":\"فيديوهات ديناميكية على مدار اليوم من منصة Pexels.\\n❕❕فقط مع اتصال بالإنترنت❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"جودة الخلفية\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"منخفضة (< 720 بكسل)\",\"txtTitle\":\"جودة أقل من 720 بكسل\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"متوسطة (720 بكسل - 1080 بكسل)\",\"txtTitle\":\"جودة 720 بكسل - 1080 بكسل\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"عالية (> 1080 بكسل)\",\"txtTitle\":\"جودة أكثر من 1080 بكسل\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"محاذاة الخلفية:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"أعلى ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"أسفل ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"وسط +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"يسار ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"يمين ➡\"},{\"selector\":\"#form section.text #input-name\",\"txtPlaceholder\":\"الاسم\"},{\"selector\":\"#form section.text #input-url\",\"txtPlaceholder\":\"URL مع %s في مكان الاستعلام\"},{\"selector\":\"#form section.text .under-text.url\",\"txtInnerHTML\":\"مثال على URL: 👇👇👇<span>https://www.bing.com/search?q=<b>%s</b></span>\"},{\"selector\":\"#form section.text #add-engine-btn\",\"txtContent\":\"إضافة محرك\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"اسحب ملف الصورة لتحميله هنا\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"أو\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"استعراض 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"تعيين ➡💾\",\"txtTitle\":\"تعيين المعلمات\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"خيارات مخفية 🤫\"},{\"selector\":\"#deleteEngineBtn\",\"txtContent\":\"حذف هذا المحرك\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"إعادة تعيين المعلمات\",\"txtTitle\":\"تحذير: عند الضغط يتم إعادة تعيين جميع المعلمات\"},{\"selector\":\"#rate-link\",\"txtContent\":\"تقييم الامتداد ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"ليس من الضروري إعادة تحميل علامة تبويب جديدة لرؤية التغييرات!\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- الخيارات المخفية -⚠\"}]"
+    }
+}
