@@ -52,7 +52,6 @@ document.querySelector('#img-bg').addEventListener('load', e=> {
     e.target.style.opacity = '1';
 });
 document.querySelector('#video-bg').addEventListener('loadeddata', e=> {
-    e.target.playbackRate = 0.8;
     e.target.style.opacity = '1';
 });
 
@@ -106,26 +105,24 @@ chrome.storage.onChanged.addListener(e=> {
     else if (e.backgroundAlign) {
         img.style.objectPosition = e.backgroundAlign.newValue;
     }
-    else if (e.backgroundType || e.backgroundImageData || e.dynamicPhotoData || e.dynamicVideoData) {
+    else if (e.backgroundType) {
         img.style.opacity = '';
         video.style.opacity = '';
+        a.style.display = 'none';
 
         setTimeout(() => {
             img.removeAttribute('src');
             video.removeAttribute('src');
-            
-            if (e.backgroundImageData) {
-                img.poster = e.backgroundImageData.newValue;
-            }
-            else if (e.backgroundType && e.backgroundType.newValue == 2) {// default
+
+            if (e.backgroundType.newValue == 2) {// default
                 img.src = 'resources/default_wallpaper.jpg';
             }
-            else if (e.backgroundType && e.backgroundType.newValue == 3) {// custom
+            else if (e.backgroundType.newValue == 3) {// custom
                 chrome.storage.local.get(['backgroundImageData'], (res)=> {
                     img.src = res.backgroundImageData;
                 });
             }
-            else if (e.backgroundType && e.backgroundType.newValue == 4) {// dynamic photo
+            else if (e.backgroundType.newValue == 4 || (e.backgroundType.newValue == 5 && !navigator.onLine)) {// dynamic photo
                 chrome.storage.local.get(['dynamicPhotoData'], (res)=> {
                     img.src = res.dynamicPhotoData.dataURL;
                     a.textContent = res.dynamicPhotoData.photographer_name;
@@ -134,7 +131,7 @@ chrome.storage.onChanged.addListener(e=> {
                     a.style.display = '';
                 });
             }
-            else if (e.backgroundType && e.backgroundType.newValue == 5) {// dynamic video
+            else if (e.backgroundType.newValue == 5) {// dynamic video
                 chrome.storage.local.get(['dynamicVideoData'], (res)=> {
                     video.src = res.dynamicVideoData.dataURL;
                     a.textContent = res.dynamicVideoData.photographer_name;
@@ -143,36 +140,39 @@ chrome.storage.onChanged.addListener(e=> {
                     a.style.display = '';
                 });
             }
-            else if (e.dynamicPhotoData || e.dynamicVideoData) {
-                chrome.storage.local.get(['backgroundType'], res=> {
-                    // only change dynamicPhotoData
-                    if (e.dynamicPhotoData && (res.backgroundType == 4 || !navigator.onLine) && e.dynamicPhotoData.newValue.dataURL.length > 0) {
-                        img.src = e.dynamicPhotoData.newValue.dataURL;
-                        a.textContent = e.dynamicPhotoData.newValue.photographer_name;
-                        a.title = `${chrome.i18n.getMessage('photographer')}: ${e.dynamicPhotoData.newValue.photographer_name}`;
-                        a.href = e.dynamicPhotoData.newValue.photographer_url;
-                        a.style.display = '';
-                    }
-                    // only change dynamicVideoData
-                    else if (e.dynamicVideoData && res.backgroundType == 5 && e.dynamicVideoData.newValue.dataURL.length > 0) {
-                        video.src = e.dynamicVideoData.newValue.dataURL;
-                        a.textContent = e.dynamicVideoData.newValue.photographer_name;
-                        a.title = `${chrome.i18n.getMessage('photographer')}: ${e.dynamicVideoData.newValue.photographer_name}`;
-                        a.href = e.dynamicVideoData.newValue.photographer_url;
-                        a.style.display = '';
-                    }
-                });
-            }
         }, 350);
     }
-});
-
-let dynamicBgStatus = 1;
-
-chrome.runtime.onMessage.addListener(req=> {
-    if (req.dynamicBgStatus != undefined) {
-        dynamicBgStatus = req.dynamicBgStatus;
-        // console.log('dynamicBgStatus: ', req.dynamicBgStatus);
+    else if (e.dynamicPhotoData) {
+        // only change dynamicPhotoData
+        img.style.opacity = '';
+        
+        setTimeout(() => {
+            chrome.storage.local.get(['backgroundType'], res=> {
+                if (e.dynamicPhotoData && (res.backgroundType == 4 || !navigator.onLine) && e.dynamicPhotoData.newValue.dataURL.length > 0) {
+                    img.src = e.dynamicPhotoData.newValue.dataURL;
+                    a.textContent = e.dynamicPhotoData.newValue.photographer_name;
+                    a.title = `${chrome.i18n.getMessage('photographer')}: ${e.dynamicPhotoData.newValue.photographer_name}`;
+                    a.href = e.dynamicPhotoData.newValue.photographer_url;
+                    a.style.display = '';
+                }
+            });
+        }, 350);
+    }
+    else if (e.dynamicVideoData) {
+        // only change dynamicVideoData
+        video.style.opacity = '';
+        
+        setTimeout(() => {
+            chrome.storage.local.get(['backgroundType'], res=> {
+                if (e.dynamicVideoData && res.backgroundType == 5 && e.dynamicVideoData.newValue.dataURL.length > 0) {
+                    video.src = e.dynamicVideoData.newValue.dataURL;
+                    a.textContent = e.dynamicVideoData.newValue.photographer_name;
+                    a.title = `${chrome.i18n.getMessage('photographer')}: ${e.dynamicVideoData.newValue.photographer_name}`;
+                    a.href = e.dynamicVideoData.newValue.photographer_url;
+                    a.style.display = '';
+                }
+            });
+        }, 350);
     }
 });
 
@@ -182,7 +182,7 @@ addEventListener('keydown', (e)=> {
         searchInput.focus();
         isFocus = true;
     }
-    if ((e.key == 'f' || e.key == 'F') && e.ctrlKey && dynamicBgStatus == 1) {
+    if ((e.key == 'f' || e.key == 'F') && e.ctrlKey) {
         e.preventDefault();
         chrome.runtime.sendMessage({dynamicBg:{force: true}});
     }

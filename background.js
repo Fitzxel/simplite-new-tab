@@ -25,11 +25,6 @@ chrome.runtime.onInstalled.addListener(
     chrome.storage.local.get(['searchEngines'], (res)=> {
         if (!res.searchEngines) {
             chrome.storage.local.set({'searchEngines':DEFAULT_ENGINES});
-            // fetch(chrome.runtime.getURL('src/default-engines.json')).then(res=> {
-            //     res.json().then(defEngines=> {
-            //         chrome.storage.local.set({'searchEngines':defEngines});
-            //     });
-            // });
         }
     }),
     chrome.storage.local.get(['selectedEngine'], (res)=> {
@@ -88,9 +83,6 @@ chrome.runtime.onMessage.addListener(req=> {
     if (req.dynamicBg) {
         dynamicBg(req.dynamicBg.force, req.dynamicBg.type);
     }
-    if (req.dynamicBgStatus != undefined) {
-        // console.log('dynamicBgStatus: ', req.dynamicBgStatus);
-    }
 });
 
 function dynamicBg(force) {
@@ -127,8 +119,6 @@ function dynamicBg(force) {
             }
             // if qTime is diferent or force is true fetch photo or video
             if ((setqTime != qTime || force) && navigator.onLine) {
-                chrome.runtime.sendMessage({dynamicBgStatus: 0}); // status 0 = in progress
-
                 let results = [];
 
                 const getCollection = async (url)=> {
@@ -201,7 +191,6 @@ function dynamicBg(force) {
     
                             // console.log('photoURL: ', photoURL);
                             // console.log('videoURL', videoURL);
-                            chrome.runtime.sendMessage({dynamicBgStatus: 1}); // status 1 = done
                         });
                     }
                     else {
@@ -209,8 +198,6 @@ function dynamicBg(force) {
                     }
                 } catch (err) {
                     console.error(err);
-                    chrome.runtime.sendMessage({dynamicBgStatus: 1}); // status 1 = done
-
                     chrome.notifications.create('getBgErrorNotification', {
                         type: 'basic',
                         title:  chrome.i18n.getMessage('getBgErrorNotificationTitle'),
