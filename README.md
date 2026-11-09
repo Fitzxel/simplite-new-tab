@@ -12,9 +12,8 @@ With Simplite you have a new tab made for those who do without icons, apps, news
 
 # Features:
 
-- Custom search engine.
-    - Select the "Add +" option, give the new engine a name and below give url replacing the query with '%s' without quotes. Example: `https://www.bing.com/search?q=%s`
-- Custom background with dynamic photos and videos from the [Pexels](https://www.pexels.com) platform.
+- Search using the search provider configured in your browser.
+- Custom background with dynamic photos and videos from the [Pixabay](https://pixabay.com) platform.
 - Quickly load the new tab.
 - Minimalist design.
 - Accessible use and configuration.
