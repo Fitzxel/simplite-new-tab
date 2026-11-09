@@ -6,8 +6,7 @@
     "manifest_version": 3,
     "permissions": ["storage", "unlimitedStorage", "notifications"],
     "host_permissions": [
-      "https://api.pexels.com/*",
-      "https://player.vimeo.com/*"
+      "https://simplite-pixabay-proxy.example.workers.dev/*"
     ],
     "options_ui": {
     	"page": "popup-options.html",
@@ -26,6 +25,7 @@
         "newtab": "index.html"
     },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background.js",
+        "type": "module"
     }
 }

@@ -1,216 +1,91 @@
-chrome.runtime.onInstalled.addListener(
-    chrome.storage.local.get(['backgroundType'], (res)=> {
-        if (!res.backgroundType) {
-            chrome.storage.local.set({'backgroundType':2});
-        }
-    }),
-    chrome.storage.local.get(['backgroundAlign'], (res)=> {
-        if (!res.backgroundAlign) {
-            chrome.storage.local.set({'backgroundAlign':'center'});
-        }
-    }),
-    chrome.storage.local.get(['backgroundImageData'], (res)=> {
-        if (!res.backgroundImageData) {
-            chrome.storage.local.set({'backgroundImageData':''});
-        }
-    }),
-    chrome.storage.local.get(['backgroundQuality'], (res)=> {
-        if (!res.backgroundQuality) {
-            chrome.storage.local.set({'backgroundQuality':'med'});
-        }
-    }),
-    chrome.storage.local.get(['getPhotoDelay'], (res)=> {
-        if (!res.getPhotoDelay) {
-            chrome.storage.local.set({'getPhotoDelay':true});
-        }
-    }),
-    chrome.storage.local.get(['dynamicPhotoData'], (res)=> {
-        if (!res.dynamicPhotoData) {
-            chrome.storage.local.set({'dynamicPhotoData':{
-                dataURL: '',
-                photographer_name: '',
-                photographer_url: '',
-                qTime: ''
-            }});
-        }
-    }),
-    chrome.storage.local.get(['dynamicVideoData'], (res)=> {
-        if (!res.dynamicVideoData) {
-            chrome.storage.local.set({'dynamicVideoData':{
-                dataURL: '',
-                photographer_name: '',
-                photographer_url: '',
-                qTime: ''
-            }});
-        }
-    })
-);
+import {createPixabayClient, daypartForHour} from './src/pixabay-client.mjs';
 
-chrome.runtime.onMessage.addListener(req=> {
-    if (req.dynamicBg) {
-        dynamicBg(req.dynamicBg.force, req.dynamicBg.type);
-    }
+const PIXABAY_PROXY_URL = 'https://simplite-pixabay-proxy.example.workers.dev/api/media';
+const pixabay = createPixabayClient({proxyUrl: PIXABAY_PROXY_URL});
+
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.storage.local.get(['backgroundType', 'backgroundAlign', 'backgroundImageData', 'backgroundQuality', 'getPhotoDelay', 'dynamicPhotoData', 'dynamicVideoData'], values => {
+        const defaults = {};
+        if (values.backgroundType === undefined) defaults.backgroundType = 2;
+        if (values.backgroundAlign === undefined) defaults.backgroundAlign = 'center';
+        if (values.backgroundImageData === undefined) defaults.backgroundImageData = '';
+        if (values.backgroundQuality === undefined) defaults.backgroundQuality = 'med';
+        if (values.getPhotoDelay === undefined) defaults.getPhotoDelay = true;
+        if (values.dynamicPhotoData === undefined) defaults.dynamicPhotoData = emptyMedia();
+        if (values.dynamicVideoData === undefined) defaults.dynamicVideoData = emptyMedia();
+        if (Object.keys(defaults).length) chrome.storage.local.set(defaults);
+    });
 });
 
-function dynamicBg(force) {
-    let qTime = 'bwwklrz';
-    
-    const hour = new Date().getHours();
-    if (hour >= 23 || hour >= 0 && hour < 7) {
-        qTime = 'fq1cqrr';
-    }
-    else if (hour >= 7 && hour < 10) {
-        qTime = 'pomtf5c';
-    }
-    else if (hour >= 10 && hour < 18) {
-        qTime = 'bwwklrz';
-    }
-    else if (hour >= 18 && hour < 21) {
-        qTime = 'lwjmt2w';
-    }
-    else if (hour >= 21 && hour < 23) {
-        qTime = 'kbjvhc4';
-    }
-    
-    const fetchURL = `https://api.pexels.com/v1/collections/${qTime}?per_page=80`;
-    // console.log('fetchURL:', fetchURL);
-    chrome.storage.local.get(['dynamicPhotoData', 'dynamicVideoData'], (res)=> {
-        // verify if qTime is diferent
-        let setqTime;
-        chrome.storage.local.get(['backgroundType'], async (resType)=> {
-            if (resType.backgroundType == 4) {
-                setqTime = res.dynamicPhotoData.qTime;
-            }
-            else if (resType.backgroundType == 5) {
-                setqTime = res.dynamicVideoData.qTime;
-            }
-            // if qTime is diferent or force is true fetch photo or video
-            if ((setqTime != qTime || force) && navigator.onLine) {
-                let results = [];
+chrome.runtime.onMessage.addListener(request => {
+    if (request.dynamicBg) dynamicBg(request.dynamicBg.force, request.dynamicBg.type);
+});
 
-                const getCollection = async (url)=> {
-                    const res = await fetch(url, {
-                        method: "GET",
-                        headers: {
-                            "Authorization": "563492ad6f91700001000001d70bb103205f402188390ac066212836"
-                        }
-                    });
-                    const resJson = await res.json();
+async function dynamicBg(force = false, requestedType) {
+    const settings = await chrome.storage.local.get(['backgroundType', 'backgroundQuality', 'dynamicPhotoData', 'dynamicVideoData']);
+    const mediaType = requestedType || (settings.backgroundType == 5 ? 'videos' : 'photos');
+    const kind = mediaType === 'videos' ? 'video' : 'photo';
+    const storageKey = kind === 'video' ? 'dynamicVideoData' : 'dynamicPhotoData';
+    const daypart = daypartForHour(new Date().getHours());
+    const saved = settings[storageKey] || emptyMedia();
+    if (!force && saved.qTime === daypart || !self.navigator.onLine) return;
 
-                    if (res.ok) {
-                        results.push(...resJson.media);
-    
-                        if (resJson.next_page) await getCollection(resJson.next_page);
-                        else return;
-                    }
-                    else throw 'Fallo al solicitar recursos';
-                }
+    const startedAt = Date.now();
+    try {
+        const selected = await pixabay.getMedia(kind, daypart, settings.backgroundQuality || 'med');
+        if (kind === 'photo') {
+            const response = await fetch(selected.dataURL);
+            if (!response.ok) throw new Error(`Pixabay image returned ${response.status}`);
+            selected.dataURL = await toDataURL(await response.blob());
+        }
+        await chrome.storage.local.set({[storageKey]: selected});
+        if (kind === 'photo') notifyIfSlow(startedAt);
+    } catch (error) {
+        console.error('Failed to load Pixabay background:', error);
+        chrome.notifications.create('getBgErrorNotification', {
+            type: 'basic',
+            title: chrome.i18n.getMessage('getBgErrorNotificationTitle'),
+            message: chrome.i18n.getMessage('getBgErrorNotificationMessage'),
+            iconUrl: chrome.runtime.getURL('resources/icon_x128.png'),
+        });
+    }
+}
 
-                try {
-                    await getCollection(fetchURL);
-                    // console.log('all', results);
+function emptyMedia() {
+    return {dataURL: '', photographer_name: '', photographer_url: '', qTime: ''};
+}
 
-                    const init = new Date();
+async function toDataURL(blob) {
+    const bytes = new Uint8Array(await blob.arrayBuffer());
+    let binary = '';
+    for (let offset = 0; offset < bytes.length; offset += 0x8000) {
+        binary += String.fromCharCode(...bytes.subarray(offset, offset + 0x8000));
+    }
+    return `data:${blob.type || 'image/jpeg'};base64,${btoa(binary)}`;
+}
 
-                    const photos = results.filter(e=> e.type == 'Photo');
-                    const videos = results.filter(e=> e.type == 'Video');
-                    const selected = [photos[Math.round(Math.random()*photos.length) - 1], videos[Math.round(Math.random()*(videos.length))  - 1]];
-                    // console.log('selected media', selected);
-    
-                    if (selected[0]) {
-                        let photoURL = selected[0].src.original;
-                        // set quality
-                        chrome.storage.local.get(['backgroundQuality'], res=> {
-                            if (res.backgroundQuality === 'low') {
-                                photoURL += '?auto=compress&w=480';
-                                videoURL = selected[1].video_files.find(e=> e.quality == 'sd' && (e.height < 720 || e.width < 720)).link;
-                            }
-                            if (res.backgroundQuality === 'med') {
-                                photoURL += '?auto=compress&w=1080';
-                                videoURL = selected[1].video_files.find(e=> e.quality == 'hd' && ((e.height == 720 || e.width == 720) || (e.height == 1080 || e.width == 1080))).link;
-                            }
-                            if (res.backgroundQuality === 'high') {
-                                videoURL = selected[1].video_files.find(e=> e.quality == 'hd' && (e.height > 1080 || e.width > 1080)).link;
-                            }
-    
-                            fetch(photoURL).then(res=> {
-                                res.blob().then(blob=> {
-                                    const end = new Date();
-                                    let reader = new FileReader();
-                                    reader.addEventListener('load', (e)=> {
-                                        chrome.storage.local.set({'dynamicPhotoData':{
-                                            dataURL: e.target.result,
-                                            photographer_name: selected[0].photographer,
-                                            photographer_url: selected[0].photographer_url,
-                                            qTime: qTime
-                                        }});
-                                    });
-                                    reader.readAsDataURL(blob);
-                                    calcTime(init, end, 'dynamicBg');
-                                });
-                            });
-                            chrome.storage.local.set({'dynamicVideoData':{
-                                dataURL: videoURL,
-                                photographer_name: selected[1].user.name,
-                                photographer_url: selected[1].user.url,
-                                qTime: qTime
-                            }});
-    
-                            // console.log('photoURL: ', photoURL);
-                            // console.log('videoURL', videoURL);
-                        });
-                    }
-                    else {
-                        throw 'No found any photo or video file';
-                    }
-                } catch (err) {
-                    console.error(err);
-                    chrome.notifications.create('getBgErrorNotification', {
-                        type: 'basic',
-                        title:  chrome.i18n.getMessage('getBgErrorNotificationTitle'),
-                        message: chrome.i18n.getMessage('getBgErrorNotificationMessage'),
-                        iconUrl: chrome.runtime.getURL(`resources/icon_x128.png`)
-                    });
-                }
-            }
+function notifyIfSlow(startedAt) {
+    if ((Date.now() - startedAt) / 1000 <= 3.6) return;
+    chrome.storage.local.get(['getPhotoDelay'], settings => {
+        if (!settings.getPhotoDelay) return;
+        chrome.notifications.create('getPhotoDelay', {
+            type: 'basic',
+            title: chrome.i18n.getMessage('photoDelayNotificationTitle'),
+            message: chrome.i18n.getMessage('photoDelayNotificationMessage'),
+            buttons: [
+                {title: chrome.i18n.getMessage('photoDelayNotificationPrimaryButton')},
+                {title: chrome.i18n.getMessage('photoDelayNotificationSecondButton')},
+            ],
+            iconUrl: chrome.runtime.getURL('resources/icon_x128.png'),
         });
     });
 }
 
-chrome.notifications.onClicked.addListener((id)=> {
-	if (id == 'getPhotoDelay') {
-		chrome.tabs.create({url: chrome.runtime.getURL('popup-options.html')});
-	}
+chrome.notifications.onClicked.addListener(id => {
+    if (id === 'getPhotoDelay') chrome.tabs.create({url: chrome.runtime.getURL('popup-options.html')});
 });
-chrome.notifications.onButtonClicked.addListener((id, button)=> {
-	// console.log(id, button);
-	if (id == 'getPhotoDelay' && button == 0) {
-		chrome.storage.local.set({'getPhotoDelay':false});
-	}
-	if (id == 'getPhotoDelay' && button == 1) {
-		chrome.tabs.create({url: chrome.runtime.getURL('popup-options.html')});
-	}
+chrome.notifications.onButtonClicked.addListener((id, button) => {
+    if (id !== 'getPhotoDelay') return;
+    if (button === 0) chrome.storage.local.set({getPhotoDelay: false});
+    if (button === 1) chrome.tabs.create({url: chrome.runtime.getURL('popup-options.html')});
 });
-
-function calcTime(init, end, origin) {
-    const timeResult = (end - init)/1000;
-    // console.log('the function took ' + timeResult + 's to get the image');
-    chrome.storage.local.get(['getPhotoDelay'], (res)=> {
-    	if (origin == 'dynamicBg' && timeResult > 3.600 && res.getPhotoDelay) {
-    		chrome.notifications.create('getPhotoDelay', {
-                type: 'basic',
-                title:  chrome.i18n.getMessage('photoDelayNotificationTitle'),
-                message: chrome.i18n.getMessage('photoDelayNotificationMessage'),
-                buttons: [
-                    {
-                        title: chrome.i18n.getMessage('photoDelayNotificationPrimaryButton')
-                    },
-                    {
-                        title: chrome.i18n.getMessage('photoDelayNotificationSecondButton')
-                    }
-                ],
-                iconUrl: chrome.runtime.getURL(`resources/icon_x128.png`)
-    		});
-    	}
-    });
-}
