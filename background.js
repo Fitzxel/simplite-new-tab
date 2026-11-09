@@ -1,37 +1,4 @@
-const DEFAULT_ENGINES = [
-    {
-        "name": "Google",
-        "url": "https://google.com/search?q=%s"
-    },
-    {
-        "name": "Bing",
-        "url": "https://bing.com/search?q=%s"
-    },
-    {
-        "name": "DuckDuckGo",
-        "url": "https://duckduckgo.com/?q=%s"
-    },
-    {
-        "name": "You.com",
-        "url": "https://you.com/search?q=%s"
-    },
-    {
-        "name": "YouCode",
-        "url": "https://you.com/search?q=%s&tbm=youcode"
-    }
-]
-
 chrome.runtime.onInstalled.addListener(
-    chrome.storage.local.get(['searchEngines'], (res)=> {
-        if (!res.searchEngines) {
-            chrome.storage.local.set({'searchEngines':DEFAULT_ENGINES});
-        }
-    }),
-    chrome.storage.local.get(['selectedEngine'], (res)=> {
-        if (!res.selectedEngine) {
-            chrome.storage.local.set({'selectedEngine':1});
-        }
-    }),
     chrome.storage.local.get(['backgroundType'], (res)=> {
         if (!res.backgroundType) {
             chrome.storage.local.set({'backgroundType':2});

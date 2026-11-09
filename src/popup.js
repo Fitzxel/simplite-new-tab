@@ -57,8 +57,8 @@ function showMSG(msg, type) {
 
 //
 function verifyChanges() {
-    chrome.storage.local.get(['searchEngines', 'selectedEngine', 'backgroundType', 'backgroundAlign', 'backgroundImageData', 'backgroundQuality'], (result)=> {
-        if (result.selectedEngine == selector('search-engine').value && result.searchEngines.length == searchEngines.length && result.backgroundType == selector('bg-type').value && result.backgroundImageData == imgData && result.backgroundAlign == selector('bg-align').value && result.backgroundQuality == selector('bg-quality').value) {
+    chrome.storage.local.get(['backgroundType', 'backgroundAlign', 'backgroundImageData', 'backgroundQuality'], (result)=> {
+        if (result.backgroundType == selector('bg-type').value && result.backgroundImageData == imgData && result.backgroundAlign == selector('bg-align').value && result.backgroundQuality == selector('bg-quality').value) {
             showMSG(Without_changes);
         }
         else showMSG(Unsaved_changes, 2);
@@ -69,40 +69,6 @@ function verifyChanges() {
         }
     });
 }
-
-let searchEngines = [];
-chrome.storage.local.get(['searchEngines'], (result)=> {
-    if (result.searchEngines) {
-        searchEngines = result.searchEngines;
-        result.searchEngines.map((engine, index) => {
-            let option = document.createElement('option');
-            option.value = index + 1;
-            option.textContent = engine.name;
-            selector('search-engine').appendChild(option);
-        });
-    }
-});
-
-chrome.storage.local.get(['selectedEngine'], (result)=> {
-    selector('search-engine').value = result.selectedEngine;
-    if (result.selectedEngine > 3) {
-        document.querySelector('#deleteEngineBtn').classList.add('show');
-    }
-});
-
-selector('search-engine').addEventListener('input', ()=> {
-    if (selector('search-engine').value == 0) {
-        form.classList.add('text');
-    }
-    else {
-        form.classList.remove('text');
-        document.querySelector('#deleteEngineBtn').classList.remove('show');
-        verifyChanges();
-    }
-    if (selector('search-engine').value > 3) {
-        document.querySelector('#deleteEngineBtn').classList.add('show');
-    }
-});
 
 const form = document.querySelector('#form');
 const submitBtn = document.querySelector('#submit-btn');
@@ -205,54 +171,8 @@ dropFile.addEventListener('drop', (e)=> {
    }
 });
 
-// add (temp) new engine
-const nameInput = document.querySelector('#input-name');
-const urlInput = document.querySelector('#input-url');
-
-document.querySelector('#add-engine-btn').addEventListener('click', ()=> {
-    if (selector('search-engine').value == 0 && nameInput.value.length > 0 && urlInput.value.length > 0) {
-        searchEngines.push({name: nameInput.value, url: urlInput.value, value: selector('search-engine').length});
-        // create option element on selectSearchEngine
-        let option = document.createElement('option');
-        option.value = selector('search-engine').length;
-        option.textContent = nameInput.value;
-        selector('search-engine').appendChild(option);
-        // select new engine on selector
-        selector('search-engine').value = selector('search-engine').length-1;
-        document.querySelector('#deleteEngineBtn').classList.add('show');
-        //
-        verifyChanges();
-    }
-    else {
-        showMSG(FillForm, 0);
-    }
-});
-
-// delete user engine
-document.querySelector('#deleteEngineBtn').addEventListener('click', ()=> {
-    if(selector('search-engine').value > 3 && searchEngines.length > 3) {
-        // select engine to delete
-        let engineToDelete = selector('search-engine').querySelector(`option[value="${selector('search-engine').value}"]`);
-        // let engineName = engineToDelete.textContent;
-        // remove engine from searchEngines array with the index number
-        searchEngines = searchEngines.splice(engineToDelete.value);
-        // set default value to selectedEngine
-        selector('search-engine').value = 1;
-        document.querySelector('#deleteEngineBtn').classList.remove('show');
-        // remove option element on selectSearchEngine element        
-        engineToDelete.remove();
-        //
-        verifyChanges();
-    }
-});
-
 // apply changes (all parameters)
 submitBtn.addEventListener('click', ()=> {
-    // set search engine array and selected
-    chrome.storage.local.set({'searchEngines':searchEngines});
-    if (selector('search-engine').value != 0) {
-        chrome.storage.local.set({'selectedEngine':selector('search-engine').value});
-    }
     // set background type
     if (selector('bg-type').value != 3) {
         chrome.storage.local.set({'backgroundType':selector('bg-type').value});
@@ -279,12 +199,6 @@ document.querySelector('#alt-hidden-options').addEventListener('click', ()=> {
 
 // reset parameters
 document.querySelector('#reset-btn').addEventListener('click', ()=> {
-    fetch(chrome.runtime.getURL('src/default-engines.json')).then(res=> {
-        res.json().then(defEngines=> {
-            chrome.storage.local.set({'searchEngines':defEngines});
-        });
-    });
-    chrome.storage.local.set({'selectedEngine':1});
     chrome.storage.local.set({'backgroundType':2});
     chrome.storage.local.set({'backgroundImageData':''});
     chrome.storage.local.set({'backgroundAlign':'center'});

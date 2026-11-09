@@ -215,32 +215,6 @@ main > form input[type="file"] {
     display: none;
 }
 
-main > form button#add-engine-btn {
-    display: none;
-}
-main > form.text button#add-engine-btn {
-    display: inherit;
-}
-
-main > form .under-text.url {
-    display: contents;
-    pointer-events: none;
-}
-main > form .under-text.url span {
-    font-size: 12px;
-}
-main > form .under-text.url span b {
-    color: var(--accent-color);
-}
-
-#deleteEngineBtn {
-    display: none;
-    justify-content: center;
-}
-#deleteEngineBtn.show {
-    display: flex;
-}
-
 footer {
     width: 100%;
     padding: 5px;

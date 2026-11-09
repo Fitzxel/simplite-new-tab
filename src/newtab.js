@@ -4,20 +4,20 @@ document.title = chrome.i18n.getMessage('newTabTitle');
 const searchInput = document.querySelector('#search-input');
 const searchClear = document.querySelector('#search-clear');
 
-let searchURL;
-chrome.storage.local.get(['searchEngines', 'selectedEngine'], res=> {
-    searchURL = res.searchEngines[res.selectedEngine -1].url;
-    searchInput.placeholder = `${chrome.i18n.getMessage('search_engine')} ${res.searchEngines[res.selectedEngine -1].name}`;
-});
-
-// search action
+// Search using the browser's configured search provider.
 document.querySelector('#search-form').addEventListener('submit', (e)=> {
     e.preventDefault();
-    if (searchInput.value.length > 0) {
-        window.location.href = searchURL.replace('%s', searchInput.value);
+    const query = searchInput.value.trim();
+    if (!query) return;
+
+    if (globalThis.browser?.search?.query) {
+        globalThis.browser.search.query({text: query, disposition: 'CURRENT_TAB'});
+    } else if (globalThis.chrome?.search?.query) {
+        globalThis.chrome.search.query({text: query, disposition: 'CURRENT_TAB'});
     }
 });
 
+searchInput.placeholder = chrome.i18n.getMessage('searchForm');
 searchInput.title = chrome.i18n.getMessage('searchForm');
 searchClear.title = chrome.i18n.getMessage('deleteButton');
 document.querySelector('#button-search').title = chrome.i18n.getMessage('search');
@@ -96,13 +96,7 @@ chrome.storage.onChanged.addListener(e=> {
     const video = document.querySelector('#video-bg');
     const a = document.querySelector('#photographer');
 
-    if (e.selectedEngine) {
-        chrome.storage.local.get(['searchEngines'], res=> {
-            searchURL = res.searchEngines[e.selectedEngine.newValue - 1].url;
-            searchInput.placeholder = `${chrome.i18n.getMessage('search_engine')} ${res.searchEngines[e.selectedEngine.newValue - 1].name}`;
-        });
-    }
-    else if (e.backgroundAlign) {
+    if (e.backgroundAlign) {
         img.style.objectPosition = e.backgroundAlign.newValue;
     }
     else if (e.backgroundType) {
