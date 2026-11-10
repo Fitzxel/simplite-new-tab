@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { createPixabayClient, daypartForHour } from '../src/pixabay-client.mjs';
 
 test('maps local clock hours to the approved search bands', () => {
@@ -27,6 +28,17 @@ test('requests photo results from the configured proxy and stores one usable res
     assert.equal(requested.searchParams.get('daypart'), 'day');
     assert.equal(result.dataURL, 'https://img.example.test/p.jpg');
     assert.equal(result.photographer_url, 'https://pixabay.com/photos/1/');
+});
+
+test('configures the supplied Worker origin in both the client and manifest', async () => {
+    const origin = 'https://simplite-backend.fitzxel.workers.dev';
+    const [background, manifestText] = await Promise.all([
+        readFile(new URL('../background.js', import.meta.url), 'utf8'),
+        readFile(new URL('../manifest.json', import.meta.url), 'utf8'),
+    ]);
+    const manifest = JSON.parse(manifestText);
+    assert.match(background, new RegExp(`const PIXABAY_PROXY_URL = '${origin}/api/media';`));
+    assert.ok(manifest.host_permissions.includes(`${origin}/*`));
 });
 
 test('selects an available Pixabay video rendition and returns safe metadata', async () => {

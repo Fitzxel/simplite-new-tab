@@ -1,6 +1,6 @@
 import {createPixabayClient, daypartForHour} from './src/pixabay-client.mjs';
 
-const PIXABAY_PROXY_URL = 'https://simplite-pixabay-proxy.example.workers.dev/api/media';
+const PIXABAY_PROXY_URL = 'https://simplite-backend.fitzxel.workers.dev/api/media';
 const pixabay = createPixabayClient({proxyUrl: PIXABAY_PROXY_URL});
 
 chrome.runtime.onInstalled.addListener(() => {
