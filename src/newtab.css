@@ -8,6 +8,8 @@ body {
 .search-container {
     position: absolute;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     width: 100%;
     margin-top: 15%;
@@ -24,6 +26,12 @@ body {
     border-bottom: 3px solid var(--opaque-bg-elements);
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0, 0.13, 0, 0.49);
+}
+.search-error {
+    margin: 8px auto 0;
+    max-width: 764px;
+    color: var(--color-text);
+    overflow-wrap: anywhere;
 }
 .search-input {
     flex: 100%;

@@ -3,17 +3,42 @@ document.title = chrome.i18n.getMessage('newTabTitle');
 // search
 const searchInput = document.querySelector('#search-input');
 const searchClear = document.querySelector('#search-clear');
+const searchError = document.querySelector('#search-error');
+
+function showSearchError(message) {
+    searchError.textContent = chrome.i18n.getMessage(message);
+    searchError.hidden = false;
+}
+
+function clearSearchError() {
+    searchError.textContent = '';
+    searchError.hidden = true;
+}
 
 // Search using the browser's configured search provider.
 document.querySelector('#search-form').addEventListener('submit', (e)=> {
     e.preventDefault();
+    clearSearchError();
     const query = searchInput.value.trim();
     if (!query) return;
 
+    const options = {text: query, disposition: 'CURRENT_TAB'};
     if (globalThis.browser?.search?.query) {
-        globalThis.browser.search.query({text: query, disposition: 'CURRENT_TAB'});
+        try {
+            Promise.resolve(globalThis.browser.search.query(options)).catch(() => showSearchError('searchFailed'));
+        } catch {
+            showSearchError('searchFailed');
+        }
     } else if (globalThis.chrome?.search?.query) {
-        globalThis.chrome.search.query({text: query, disposition: 'CURRENT_TAB'});
+        try {
+            globalThis.chrome.search.query(options, () => {
+                if (globalThis.chrome.runtime?.lastError) showSearchError('searchFailed');
+            });
+        } catch {
+            showSearchError('searchFailed');
+        }
+    } else {
+        showSearchError('searchUnavailable');
     }
 });
 
@@ -23,6 +48,7 @@ searchClear.title = chrome.i18n.getMessage('deleteButton');
 document.querySelector('#button-search').title = chrome.i18n.getMessage('search');
 
 searchInput.addEventListener('input', ()=> {
+    clearSearchError();
     if (searchInput.value.length > 0) {
         searchClear.style.display = 'flex';
     }
@@ -31,6 +57,7 @@ searchInput.addEventListener('input', ()=> {
     }
 });
 searchClear.addEventListener('click', ()=> {
+    clearSearchError();
     searchInput.value = '';
     searchClear.style.display = '';
 });

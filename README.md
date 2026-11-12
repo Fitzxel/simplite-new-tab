@@ -12,7 +12,7 @@ With Simplite you have a new tab made for those who do without icons, apps, news
 
 # Features:
 
-- Search using the search provider configured in your browser.
+- Search using the search provider configured in your browser. If browser search is unavailable or a search fails, the new tab shows a localized message; it never switches providers automatically.
 - Custom background with dynamic photos and videos from the [Pixabay](https://pixabay.com) platform.
 - Quickly load the new tab.
 - Minimalist design.
