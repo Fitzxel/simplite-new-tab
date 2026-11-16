@@ -1,38 +1,40 @@
+import './src/settings.js';
 import {createPixabayClient, daypartForHour} from './src/pixabay-client.mjs';
 
+const Settings = globalThis.SimpliteSettings;
 const PIXABAY_PROXY_URL = 'https://simplite-backend.fitzxel.workers.dev/api/media';
 const pixabay = createPixabayClient({proxyUrl: PIXABAY_PROXY_URL});
 
-chrome.runtime.onInstalled.addListener(() => {
-    chrome.storage.local.get(['backgroundType', 'backgroundAlign', 'backgroundImageData', 'backgroundQuality', 'getPhotoDelay', 'dynamicPhotoData', 'dynamicVideoData'], values => {
-        const defaults = {};
-        if (values.backgroundType === undefined) defaults.backgroundType = 2;
-        if (values.backgroundAlign === undefined) defaults.backgroundAlign = 'center';
-        if (values.backgroundImageData === undefined) defaults.backgroundImageData = '';
-        if (values.backgroundQuality === undefined) defaults.backgroundQuality = 'med';
-        if (values.getPhotoDelay === undefined) defaults.getPhotoDelay = true;
-        if (values.dynamicPhotoData === undefined) defaults.dynamicPhotoData = emptyMedia();
-        if (values.dynamicVideoData === undefined) defaults.dynamicVideoData = emptyMedia();
-        if (Object.keys(defaults).length) chrome.storage.local.set(defaults);
-    });
+// Fill in missing defaults and migrate values written by older versions.
+chrome.runtime.onInstalled.addListener(async () => {
+    const values = await chrome.storage.local.get([...Settings.KEYS, ...Settings.OBSOLETE_KEYS]);
+    const patch = Settings.migrationPatch(values);
+    if (Object.keys(patch).length) await chrome.storage.local.set(patch);
+    const obsolete = Settings.OBSOLETE_KEYS.filter(key => key in values);
+    if (obsolete.length) await chrome.storage.local.remove(obsolete);
 });
 
-chrome.runtime.onMessage.addListener(request => {
-    if (request.dynamicBg) dynamicBg(request.dynamicBg.force, request.dynamicBg.type);
+// Replies with {ok} so the popup can show the outcome of a manual refresh.
+chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
+    if (!request?.dynamicBg) return;
+    dynamicBg(request.dynamicBg.force, request.dynamicBg.type)
+        .then(ok => sendResponse({ok}), () => sendResponse({ok: false}));
+    return true;
 });
 
 async function dynamicBg(force = false, requestedType) {
-    const settings = await chrome.storage.local.get(['backgroundType', 'backgroundQuality', 'dynamicPhotoData', 'dynamicVideoData']);
-    const mediaType = requestedType || (settings.backgroundType == 5 ? 'videos' : 'photos');
+    const settings = Settings.withDefaults(await chrome.storage.local.get(['backgroundType', 'backgroundQuality', 'dynamicPhotoData', 'dynamicVideoData']));
+    const mediaType = requestedType || (settings.backgroundType === Settings.BG.VIDEOS ? 'videos' : 'photos');
     const kind = mediaType === 'videos' ? 'video' : 'photo';
     const storageKey = kind === 'video' ? 'dynamicVideoData' : 'dynamicPhotoData';
     const daypart = daypartForHour(new Date().getHours());
-    const saved = settings[storageKey] || emptyMedia();
-    if (!force && saved.qTime === daypart || !self.navigator.onLine) return;
+    const saved = settings[storageKey];
+    if (!self.navigator.onLine) return false;
+    if (!force && saved.qTime === daypart && saved.dataURL) return true;
 
     const startedAt = Date.now();
     try {
-        const selected = await pixabay.getMedia(kind, daypart, settings.backgroundQuality || 'med');
+        const selected = await pixabay.getMedia(kind, daypart, settings.backgroundQuality);
         if (kind === 'photo') {
             const response = await fetch(selected.dataURL);
             if (!response.ok) throw new Error(`Pixabay image returned ${response.status}`);
@@ -40,6 +42,7 @@ async function dynamicBg(force = false, requestedType) {
         }
         await chrome.storage.local.set({[storageKey]: selected});
         if (kind === 'photo') notifyIfSlow(startedAt);
+        return true;
     } catch (error) {
         console.error('Failed to load Pixabay background:', error);
         chrome.notifications.create('getBgErrorNotification', {
@@ -48,11 +51,8 @@ async function dynamicBg(force = false, requestedType) {
             message: chrome.i18n.getMessage('getBgErrorNotificationMessage'),
             iconUrl: chrome.runtime.getURL('resources/icon_x128.png'),
         });
+        return false;
     }
-}
-
-function emptyMedia() {
-    return {dataURL: '', photographer_name: '', photographer_url: '', qTime: ''};
 }
 
 async function toDataURL(blob) {
@@ -67,7 +67,7 @@ async function toDataURL(blob) {
 function notifyIfSlow(startedAt) {
     if ((Date.now() - startedAt) / 1000 <= 3.6) return;
     chrome.storage.local.get(['getPhotoDelay'], settings => {
-        if (!settings.getPhotoDelay) return;
+        if (settings.getPhotoDelay === false) return;
         chrome.notifications.create('getPhotoDelay', {
             type: 'basic',
             title: chrome.i18n.getMessage('photoDelayNotificationTitle'),

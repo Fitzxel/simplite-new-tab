@@ -74,128 +74,114 @@ searchInput.addEventListener('blur', ()=> {
     isFocus = false;
 });
 
-// set background
-document.querySelector('#img-bg').addEventListener('load', e=> {
+// background
+const Settings = globalThis.SimpliteSettings;
+const BG = Settings.BG;
+const bgImg = document.querySelector('#img-bg');
+const bgVideo = document.querySelector('#video-bg');
+const bgCredit = document.querySelector('#photographer');
+const FADE_MS = 350;
+const DEFAULT_WALLPAPER = 'resources/default_wallpaper.jpg';
+
+let bgState = Settings.withDefaults();
+let shown = null; // {kind, src} currently on screen
+let renderToken = 0;
+
+bgVideo.autoplay = true;
+bgVideo.loop = true;
+bgVideo.muted = true;
+
+bgImg.addEventListener('load', e=> {
     e.target.style.opacity = '1';
 });
-document.querySelector('#video-bg').addEventListener('loadeddata', e=> {
+bgVideo.addEventListener('loadeddata', e=> {
     e.target.style.opacity = '1';
 });
 
-chrome.storage.local.get(['backgroundType', 'backgroundAlign', 'backgroundImageData', 'dynamicPhotoData', 'dynamicVideoData', 'highQuality'], res=> {
-    const img = document.querySelector('#img-bg');
-    const video = document.querySelector('#video-bg');
-    const a = document.querySelector('#photographer');
+function applyTheme(theme) {
+    if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    else delete document.documentElement.dataset.theme;
+}
 
-    img.style.objectPosition = res.backgroundAlign;
+// What should be on screen for the given settings.
+function resolveMedia(state) {
+    const type = state.backgroundType;
+    if (type === BG.DEFAULT) return {kind: 'img', src: DEFAULT_WALLPAPER};
+    if (type === BG.CUSTOM) return {kind: 'img', src: state.backgroundImageData};
+    if (Settings.isDynamic(type)) {
+        // Videos need a connection; fall back to the last dynamic photo offline.
+        const useVideo = type === BG.VIDEOS && navigator.onLine;
+        const data = useVideo ? state.dynamicVideoData : state.dynamicPhotoData;
+        return {kind: useVideo ? 'video' : 'img', src: data.dataURL, credit: data};
+    }
+    return {kind: 'none', src: ''};
+}
 
-    video.autoplay = true;
-    video.loop = true;
-    video.muted = true;
+function showCredit(credit) {
+    if (!credit?.photographer_name) {
+        bgCredit.style.display = 'none';
+        return;
+    }
+    bgCredit.textContent = credit.photographer_name;
+    bgCredit.title = `${chrome.i18n.getMessage('photographer')}: ${credit.photographer_name}`;
+    bgCredit.href = credit.photographer_url;
+    bgCredit.style.display = '';
+}
 
-    if (res.backgroundType == 2) {// default
-        img.src = 'resources/default_wallpaper.jpg';
-    }
-    else if (res.backgroundType == 3) {// custom
-        img.src = res.backgroundImageData;
-    }
-    else if (res.backgroundType == 4 || (res.backgroundType == 5 && !navigator.onLine)) {// dynamic photo
-        img.src = res.dynamicPhotoData.dataURL;
-        a.textContent = res.dynamicPhotoData.photographer_name;
-        a.title = `${chrome.i18n.getMessage('photographer')}: ${res.dynamicPhotoData.photographer_name}`;
-        a.href = res.dynamicPhotoData.photographer_url;
-        a.style.display = '';
-        chrome.runtime.sendMessage({dynamicBg:{force: false}});
-    }
-    else if (res.backgroundType == 5) {// dynamic video
-        video.src = res.dynamicVideoData.dataURL;
-        a.textContent = res.dynamicVideoData.photographer_name;
-        a.title = `${chrome.i18n.getMessage('photographer')}: ${res.dynamicVideoData.photographer_name}`;
-        a.href = res.dynamicVideoData.photographer_url;
-        a.style.display = '';
-        chrome.runtime.sendMessage({dynamicBg:{force: false}});
-    }
+function renderBackground() {
+    const state = bgState;
+    bgImg.style.objectPosition = state.backgroundAlign;
+    bgVideo.style.objectPosition = state.backgroundAlign;
+    document.body.style.backgroundColor = state.backgroundType === BG.COLOR && state.backgroundColor ? state.backgroundColor : '';
+
+    const media = resolveMedia(state);
+    if (!media.src) media.kind = 'none';
+    if (shown && shown.kind === media.kind && shown.src === media.src) return;
+
+    const isFirstRender = shown === null;
+    shown = {kind: media.kind, src: media.src};
+    const token = ++renderToken;
+
+    bgImg.style.opacity = '';
+    bgVideo.style.opacity = '';
+    bgCredit.style.display = 'none';
+
+    const swap = () => {
+        if (token !== renderToken) return; // a newer render superseded this one
+        if (media.kind !== 'img') bgImg.removeAttribute('src');
+        if (media.kind !== 'video') {
+            bgVideo.removeAttribute('src');
+            bgVideo.load();
+        }
+        if (media.kind === 'img') bgImg.src = media.src;
+        if (media.kind === 'video') bgVideo.src = media.src;
+        if (media.kind !== 'none') showCredit(media.credit);
+    };
+    if (isFirstRender) swap();
+    else setTimeout(swap, FADE_MS);
+}
+
+chrome.storage.local.get(Settings.KEYS, values=> {
+    bgState = Settings.withDefaults(values);
+    applyTheme(bgState.theme);
+    renderBackground();
+    if (Settings.isDynamic(bgState.backgroundType)) chrome.runtime.sendMessage({dynamicBg:{force: false}});
 });
 
-// update page on change parameters
-chrome.storage.onChanged.addListener(e=> {
-    const img = document.querySelector('#img-bg');
-    const video = document.querySelector('#video-bg');
-    const a = document.querySelector('#photographer');
-
-    if (e.backgroundAlign) {
-        img.style.objectPosition = e.backgroundAlign.newValue;
-    }
-    else if (e.backgroundType) {
-        img.style.opacity = '';
-        video.style.opacity = '';
-        a.style.display = 'none';
-
-        setTimeout(() => {
-            img.removeAttribute('src');
-            video.removeAttribute('src');
-
-            if (e.backgroundType.newValue == 2) {// default
-                img.src = 'resources/default_wallpaper.jpg';
-            }
-            else if (e.backgroundType.newValue == 3) {// custom
-                chrome.storage.local.get(['backgroundImageData'], (res)=> {
-                    img.src = res.backgroundImageData;
-                });
-            }
-            else if (e.backgroundType.newValue == 4 || (e.backgroundType.newValue == 5 && !navigator.onLine)) {// dynamic photo
-                chrome.storage.local.get(['dynamicPhotoData'], (res)=> {
-                    img.src = res.dynamicPhotoData.dataURL;
-                    a.textContent = res.dynamicPhotoData.photographer_name;
-                    a.title = `${chrome.i18n.getMessage('photographer')}: ${res.dynamicPhotoData.photographer_name}`;
-                    a.href = res.dynamicPhotoData.photographer_url;
-                    a.style.display = '';
-                });
-            }
-            else if (e.backgroundType.newValue == 5) {// dynamic video
-                chrome.storage.local.get(['dynamicVideoData'], (res)=> {
-                    video.src = res.dynamicVideoData.dataURL;
-                    a.textContent = res.dynamicVideoData.photographer_name;
-                    a.title = `${chrome.i18n.getMessage('photographer')}: ${res.dynamicVideoData.photographer_name}`;
-                    a.href = res.dynamicVideoData.photographer_url;
-                    a.style.display = '';
-                });
-            }
-        }, 350);
-    }
-    else if (e.dynamicPhotoData) {
-        // only change dynamicPhotoData
-        img.style.opacity = '';
-        
-        setTimeout(() => {
-            chrome.storage.local.get(['backgroundType'], res=> {
-                if (e.dynamicPhotoData && (res.backgroundType == 4 || !navigator.onLine) && e.dynamicPhotoData.newValue.dataURL.length > 0) {
-                    img.src = e.dynamicPhotoData.newValue.dataURL;
-                    a.textContent = e.dynamicPhotoData.newValue.photographer_name;
-                    a.title = `${chrome.i18n.getMessage('photographer')}: ${e.dynamicPhotoData.newValue.photographer_name}`;
-                    a.href = e.dynamicPhotoData.newValue.photographer_url;
-                    a.style.display = '';
-                }
-            });
-        }, 350);
-    }
-    else if (e.dynamicVideoData) {
-        // only change dynamicVideoData
-        video.style.opacity = '';
-        
-        setTimeout(() => {
-            chrome.storage.local.get(['backgroundType'], res=> {
-                if (e.dynamicVideoData && res.backgroundType == 5 && e.dynamicVideoData.newValue.dataURL.length > 0) {
-                    video.src = e.dynamicVideoData.newValue.dataURL;
-                    a.textContent = e.dynamicVideoData.newValue.photographer_name;
-                    a.title = `${chrome.i18n.getMessage('photographer')}: ${e.dynamicVideoData.newValue.photographer_name}`;
-                    a.href = e.dynamicVideoData.newValue.photographer_url;
-                    a.style.display = '';
-                }
-            });
-        }, 350);
-    }
+// Apply every changed key, even when several change at once.
+chrome.storage.onChanged.addListener((changes, area)=> {
+    if (area && area !== 'local') return;
+    const keys = Object.keys(changes).filter(key => Settings.KEYS.includes(key));
+    if (!keys.length) return;
+    const next = {...bgState};
+    for (const key of keys) next[key] = changes[key].newValue;
+    bgState = Settings.withDefaults(next);
+    if (keys.includes('theme')) applyTheme(bgState.theme);
+    renderBackground();
 });
+
+addEventListener('online', renderBackground);
+addEventListener('offline', renderBackground);
 
 addEventListener('keydown', (e)=> {
     if (!isFocus && e.key == 'k' && e.ctrlKey) {
@@ -203,17 +189,15 @@ addEventListener('keydown', (e)=> {
         searchInput.focus();
         isFocus = true;
     }
-    if ((e.key == 'f' || e.key == 'F') && e.ctrlKey) {
+    // Alt+N: new dynamic background (Ctrl+F is left to the browser's find bar).
+    if (e.altKey && !e.ctrlKey && !e.metaKey && e.code === 'KeyN' && Settings.isDynamic(bgState.backgroundType)) {
         e.preventDefault();
         chrome.runtime.sendMessage({dynamicBg:{force: true}});
     }
 });
 
 document.addEventListener('visibilitychange', ()=> {
-    if (document.querySelector('#video-bg').src) {
-        if (document.hidden) {
-            document.querySelector('#video-bg').pause();
-        }
-        else document.querySelector('#video-bg').play();
-    }
+    if (shown?.kind !== 'video') return;
+    if (document.hidden) bgVideo.pause();
+    else bgVideo.play().catch(() => {});
 });

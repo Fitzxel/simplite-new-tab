@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import vm from 'node:vm';
 
 const source = await readFile(new URL('../src/newtab.js', import.meta.url), 'utf8');
+const settingsSource = await readFile(new URL('../src/settings.js', import.meta.url), 'utf8');
 const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 
 function setup({browser, chromeSearch, value = '  cats  ', runtimeError} = {}) {
@@ -12,6 +13,7 @@ function setup({browser, chromeSearch, value = '  cats  ', runtimeError} = {}) {
         if (!elements.has(id)) elements.set(id, {
             value: id === '#search-input' ? value : '', hidden: id === '#search-error', textContent: '', style: {}, classList: {add() {}, remove() {}},
             handlers: {}, addEventListener(name, handler) { this.handlers[name] = handler; },
+            removeAttribute() {}, load() {}, pause() {}, play() { return Promise.resolve(); },
         });
         return elements.get(id);
     };
@@ -21,10 +23,13 @@ function setup({browser, chromeSearch, value = '  cats  ', runtimeError} = {}) {
         runtime: {sendMessage() {}, get lastError() { return runtimeError; }},
     };
     if (chromeSearch) chrome.search = chromeSearch;
-    const context = {document: {title: '', querySelector: selector => element(selector), addEventListener() {}}, chrome,
+    const context = {document: {title: '', querySelector: selector => element(selector), addEventListener() {},
+        body: {style: {}}, documentElement: {dataset: {}}}, chrome,
         browser, navigator: {onLine: true}, addEventListener() {}, setTimeout() {}};
     context.globalThis = context;
-    vm.runInNewContext(source, context);
+    vm.createContext(context);
+    vm.runInContext(settingsSource, context);
+    vm.runInContext(source, context);
     return {form: element('#search-form'), input: element('#search-input'), clear: element('#search-clear'), error: element('#search-error')};
 }
 
