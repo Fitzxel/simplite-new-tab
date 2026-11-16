@@ -217,5 +217,26 @@
     },
     "searchBarIntroDismiss": {
         "message": "OK"
+    },
+    "searchBarRadiusLabel": {
+        "message": "角の丸み"
+    },
+    "radiusSquare": {
+        "message": "なし"
+    },
+    "radiusSubtle": {
+        "message": "わずか"
+    },
+    "radiusSoft": {
+        "message": "やや丸い"
+    },
+    "radiusRounded": {
+        "message": "丸い"
+    },
+    "radiusRounder": {
+        "message": "かなり丸い"
+    },
+    "radiusPill": {
+        "message": "ピル型"
     }
 }

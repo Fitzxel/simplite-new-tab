@@ -192,6 +192,16 @@
                         <span class="tile-label" data-i18n="searchBarNone"></span>
                     </label>
                 </div>
+                <div class="stack" id="radius-row">
+                    <div class="row">
+                        <label class="row-label" for="searchbar-radius" data-i18n="searchBarRadiusLabel"></label>
+                        <output class="row-hint" id="searchbar-radius-value" for="searchbar-radius"></output>
+                    </div>
+                    <div class="range-wrap">
+                        <input type="range" id="searchbar-radius" min="0" max="5" step="1">
+                        <div class="range-ticks" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                    </div>
+                </div>
                 <div class="notice" id="searchbar-intro" hidden>
                     <p data-i18n="searchBarIntro"></p>
                     <div class="notice-actions">

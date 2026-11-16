@@ -217,5 +217,26 @@
     },
     "searchBarIntroDismiss": {
         "message": "ठीक है"
+    },
+    "searchBarRadiusLabel": {
+        "message": "कोने"
+    },
+    "radiusSquare": {
+        "message": "सीधे"
+    },
+    "radiusSubtle": {
+        "message": "हल्के"
+    },
+    "radiusSoft": {
+        "message": "मुलायम"
+    },
+    "radiusRounded": {
+        "message": "गोल"
+    },
+    "radiusRounder": {
+        "message": "बहुत गोल"
+    },
+    "radiusPill": {
+        "message": "कैप्सूल"
     }
 }

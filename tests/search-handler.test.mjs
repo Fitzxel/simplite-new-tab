@@ -24,7 +24,7 @@ function setup({browser, chromeSearch, value = '  cats  ', runtimeError} = {}) {
     };
     if (chromeSearch) chrome.search = chromeSearch;
     const context = {document: {title: '', querySelector: selector => element(selector), addEventListener() {},
-        body: {style: {}}, documentElement: {dataset: {}}}, chrome,
+        body: {style: {}}, documentElement: {dataset: {}, style: {setProperty() {}}}}, chrome,
         browser, navigator: {onLine: true}, addEventListener() {}, setTimeout() {}};
     context.globalThis = context;
     vm.createContext(context);

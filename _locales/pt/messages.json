@@ -217,5 +217,26 @@
     },
     "searchBarIntroDismiss": {
         "message": "Entendi"
+    },
+    "searchBarRadiusLabel": {
+        "message": "Cantos"
+    },
+    "radiusSquare": {
+        "message": "Retos"
+    },
+    "radiusSubtle": {
+        "message": "Sutis"
+    },
+    "radiusSoft": {
+        "message": "Suaves"
+    },
+    "radiusRounded": {
+        "message": "Arredondados"
+    },
+    "radiusRounder": {
+        "message": "Bem arredondados"
+    },
+    "radiusPill": {
+        "message": "Pílula"
     }
 }

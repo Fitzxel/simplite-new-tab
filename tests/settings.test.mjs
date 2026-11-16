@@ -6,6 +6,11 @@ import vm from 'node:vm';
 const settingsSource = await readFile(new URL('../src/settings.js', import.meta.url), 'utf8');
 const newtabSource = await readFile(new URL('../src/newtab.js', import.meta.url), 'utf8');
 
+function styleStub() {
+    const props = {};
+    return {props, setProperty(name, value) { props[name] = value; }};
+}
+
 function loadSettings() {
     const context = vm.createContext({});
     vm.runInContext(settingsSource, context);
@@ -54,7 +59,7 @@ test('new tab applies every key when several settings change at once', () => {
     let onChanged;
     const timers = [];
     const context = vm.createContext({
-        document: {title: '', querySelector: element, addEventListener() {}, body: {style: {}}, documentElement: {dataset: {}}},
+        document: {title: '', querySelector: element, addEventListener() {}, body: {style: {}}, documentElement: {dataset: {}, style: styleStub()}},
         chrome: {
             i18n: {getMessage: key => key},
             storage: {local: {get(_keys, callback) { callback({backgroundType: 2}); }}, onChanged: {addListener(fn) { onChanged = fn; }}},
@@ -93,29 +98,47 @@ function memoryStorage(initial = {}) {
 
 test('appearance is mirrored to localStorage and restored by boot.js before paint', () => {
     const storage = memoryStorage();
-    const context = vm.createContext({localStorage: storage, document: {documentElement: {dataset: {}}}});
+    const context = vm.createContext({localStorage: storage, document: {documentElement: {dataset: {}, style: styleStub()}}});
     vm.runInContext(settingsSource, context);
-    context.SimpliteSettings.applyAppearance(context.SimpliteSettings.withDefaults({theme: 'light', searchBarStyle: 'classic'}));
+    context.SimpliteSettings.applyAppearance(context.SimpliteSettings.withDefaults({theme: 'light', searchBarStyle: 'classic', searchBarRadius: 28}));
     assert.equal(storage.data['simplite.searchBarStyle'], 'classic');
+    assert.equal(context.document.documentElement.style.props['--searchbar-radius'], '28px');
 
-    const page = vm.createContext({localStorage: storage, document: {documentElement: {dataset: {}}}});
+    const page = vm.createContext({localStorage: storage, document: {documentElement: {dataset: {}, style: styleStub()}}});
     vm.runInContext(bootSource, page);
     assert.equal(page.document.documentElement.dataset.searchbar, 'classic');
     assert.equal(page.document.documentElement.dataset.theme, 'light');
+    assert.equal(page.document.documentElement.style.props['--searchbar-radius'], '28px');
+});
+
+test('corner radius only accepts the slider steps and defaults to 14px', () => {
+    const S = loadSettings();
+    assert.equal(S.withDefaults({}).searchBarRadius, 14);
+    assert.equal(S.withDefaults({searchBarRadius: 0}).searchBarRadius, 0);
+    assert.equal(S.withDefaults({searchBarRadius: '20'}).searchBarRadius, 20);
+    assert.equal(S.withDefaults({searchBarRadius: 13}).searchBarRadius, 14);
+
+    const stray = vm.createContext({localStorage: memoryStorage({'simplite.searchBarRadius': '999'}), document: {documentElement: {dataset: {}, style: styleStub()}}});
+    vm.runInContext(bootSource, stray);
+    assert.equal(stray.document.documentElement.style.props['--searchbar-radius'], undefined);
+
+    const square = vm.createContext({localStorage: memoryStorage({'simplite.searchBarRadius': '0'}), document: {documentElement: {dataset: {}, style: styleStub()}}});
+    vm.runInContext(bootSource, square);
+    assert.equal(square.document.documentElement.style.props['--searchbar-radius'], '0px');
 });
 
 test('boot.js defaults to the glass bar when nothing valid is stored or storage is blocked', () => {
-    const empty = vm.createContext({localStorage: memoryStorage(), document: {documentElement: {dataset: {}}}});
+    const empty = vm.createContext({localStorage: memoryStorage(), document: {documentElement: {dataset: {}, style: styleStub()}}});
     vm.runInContext(bootSource, empty);
     assert.equal(empty.document.documentElement.dataset.searchbar, 'glass');
     assert.equal(empty.document.documentElement.dataset.theme, undefined);
 
-    const blocked = vm.createContext({get localStorage() { throw new Error('blocked'); }, document: {documentElement: {dataset: {}}}});
+    const blocked = vm.createContext({get localStorage() { throw new Error('blocked'); }, document: {documentElement: {dataset: {}, style: styleStub()}}});
     vm.runInContext(bootSource, blocked);
     assert.equal(blocked.document.documentElement.dataset.searchbar, 'glass');
 
     for (const style of ['classic', 'glass', 'solid', 'none']) {
-        const page = vm.createContext({localStorage: memoryStorage({'simplite.searchBarStyle': style}), document: {documentElement: {dataset: {}}}});
+        const page = vm.createContext({localStorage: memoryStorage({'simplite.searchBarStyle': style}), document: {documentElement: {dataset: {}, style: styleStub()}}});
         vm.runInContext(bootSource, page);
         assert.equal(page.document.documentElement.dataset.searchbar, style);
     }

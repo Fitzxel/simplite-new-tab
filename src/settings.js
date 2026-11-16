@@ -18,12 +18,15 @@
     const QUALITIES = Object.freeze(['low', 'med', 'high']);
     const THEMES = Object.freeze(['auto', 'light', 'dark']);
     const SEARCHBAR_STYLES = Object.freeze(['classic', 'glass', 'solid', 'none']);
+    // Corner radius steps (px) for the glass and solid bars; the last one is a
+    // full pill at their heights.
+    const SEARCHBAR_RADII = Object.freeze([0, 6, 10, 14, 20, 28]);
     // Pre-release name of the glass style.
     const LEGACY_SEARCHBAR = Object.freeze({modern: 'glass'});
 
     // Settings that change how a page looks before its scripts run. They are
     // mirrored to localStorage so src/boot.js can apply them synchronously.
-    const MIRRORED_KEYS = Object.freeze(['theme', 'searchBarStyle']);
+    const MIRRORED_KEYS = Object.freeze(['theme', 'searchBarStyle', 'searchBarRadius']);
     const MIRROR_PREFIX = 'simplite.';
 
     // Keys from older versions that are no longer read.
@@ -43,6 +46,7 @@
         // True for users who updated from a version with only the classic bar,
         // until they pick a style or dismiss the notice in the popup.
         searchBarIntroPending: false,
+        searchBarRadius: 14,
         getPhotoDelay: true,
         dynamicPhotoData: Object.freeze(emptyMedia()),
         dynamicVideoData: Object.freeze(emptyMedia()),
@@ -75,6 +79,7 @@
         out.theme = pick(out.theme, THEMES, DEFAULTS.theme);
         out.searchBarStyle = pick(LEGACY_SEARCHBAR[out.searchBarStyle] ?? out.searchBarStyle, SEARCHBAR_STYLES, DEFAULTS.searchBarStyle);
         out.searchBarIntroPending = out.searchBarIntroPending === true;
+        out.searchBarRadius = pick(Number(out.searchBarRadius), SEARCHBAR_RADII, DEFAULTS.searchBarRadius);
         if (typeof out.backgroundColor !== 'string') out.backgroundColor = '';
         if (typeof out.backgroundImageData !== 'string') out.backgroundImageData = '';
         out.getPhotoDelay = out.getPhotoDelay !== false;
@@ -100,6 +105,7 @@
             if (state.theme === 'light' || state.theme === 'dark') root.dataset.theme = state.theme;
             else delete root.dataset.theme;
             root.dataset.searchbar = state.searchBarStyle;
+            root.style.setProperty('--searchbar-radius', `${state.searchBarRadius}px`);
         }
         try {
             for (const key of MIRRORED_KEYS) globalThis.localStorage.setItem(MIRROR_PREFIX + key, state[key]);
@@ -114,6 +120,7 @@
         QUALITIES,
         THEMES,
         SEARCHBAR_STYLES,
+        SEARCHBAR_RADII,
         MIRRORED_KEYS,
         MIRROR_PREFIX,
         KEYS,

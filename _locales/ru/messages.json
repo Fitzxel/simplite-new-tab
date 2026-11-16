@@ -217,5 +217,26 @@
     },
     "searchBarIntroDismiss": {
         "message": "Понятно"
+    },
+    "searchBarRadiusLabel": {
+        "message": "Углы"
+    },
+    "radiusSquare": {
+        "message": "Прямые"
+    },
+    "radiusSubtle": {
+        "message": "Едва заметные"
+    },
+    "radiusSoft": {
+        "message": "Мягкие"
+    },
+    "radiusRounded": {
+        "message": "Скруглённые"
+    },
+    "radiusRounder": {
+        "message": "Сильно скруглённые"
+    },
+    "radiusPill": {
+        "message": "Капсула"
     }
 }

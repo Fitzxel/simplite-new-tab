@@ -40,6 +40,9 @@ const ui = {
     slow: $('#slow-notices'),
     reset: $('#reset-btn'),
     searchBarIntro: $('#searchbar-intro'),
+    radiusRow: $('#radius-row'),
+    radius: $('#searchbar-radius'),
+    radiusValue: $('#searchbar-radius-value'),
 };
 
 function setRadio(name, value) {
@@ -90,6 +93,19 @@ function render() {
 
     ui.slow.checked = saved.getPhotoDelay;
     ui.searchBarIntro.hidden = !saved.searchBarIntroPending;
+
+    // Corner radius only applies to the glass and solid bars.
+    ui.radiusRow.hidden = !['glass', 'solid'].includes(saved.searchBarStyle);
+    if (document.activeElement !== ui.radius) ui.radius.value = Settings.SEARCHBAR_RADII.indexOf(saved.searchBarRadius);
+    showRadius(Number(ui.radius.value));
+}
+
+const RADIUS_NAMES = ['radiusSquare', 'radiusSubtle', 'radiusSoft', 'radiusRounded', 'radiusRounder', 'radiusPill'];
+function showRadius(step) {
+    const name = msg(RADIUS_NAMES[step]);
+    ui.radiusValue.textContent = name;
+    ui.radius.setAttribute('aria-valuetext', name);
+    ui.radius.style.setProperty('--fill', `${step / (RADIUS_NAMES.length - 1) * 100}%`);
 }
 
 // ---------- Saving ----------
@@ -247,6 +263,21 @@ document.querySelectorAll('input[name="theme"]').forEach(input => input.addEvent
 document.querySelectorAll('input[name="searchBarStyle"]').forEach(input => input.addEventListener('change', () => {
     save({searchBarStyle: input.value, searchBarIntroPending: false});
 }));
+// Saves while dragging (debounced) so an open new tab follows the slider.
+let radiusTimer;
+ui.radius.addEventListener('input', () => {
+    const step = Number(ui.radius.value);
+    const px = Settings.SEARCHBAR_RADII[step];
+    showRadius(step);
+    document.documentElement.style.setProperty('--searchbar-radius', `${px}px`);
+    clearTimeout(radiusTimer);
+    radiusTimer = setTimeout(() => save({searchBarRadius: px}, {quiet: true}), 80);
+});
+ui.radius.addEventListener('change', () => {
+    clearTimeout(radiusTimer);
+    save({searchBarRadius: Settings.SEARCHBAR_RADII[Number(ui.radius.value)]});
+});
+
 $('#intro-classic').addEventListener('click', () => save({searchBarStyle: 'classic', searchBarIntroPending: false}));
 $('#intro-dismiss').addEventListener('click', () => save({searchBarIntroPending: false}, {quiet: true}));
 ui.slow.addEventListener('change', () => save({getPhotoDelay: ui.slow.checked}));

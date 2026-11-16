@@ -217,5 +217,26 @@
     },
     "searchBarIntroDismiss": {
         "message": "知道了"
+    },
+    "searchBarRadiusLabel": {
+        "message": "圓角"
+    },
+    "radiusSquare": {
+        "message": "直角"
+    },
+    "radiusSubtle": {
+        "message": "微圓"
+    },
+    "radiusSoft": {
+        "message": "柔和"
+    },
+    "radiusRounded": {
+        "message": "圓潤"
+    },
+    "radiusRounder": {
+        "message": "很圓"
+    },
+    "radiusPill": {
+        "message": "膠囊"
     }
 }

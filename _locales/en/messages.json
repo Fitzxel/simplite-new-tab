@@ -217,5 +217,26 @@
     },
     "searchBarIntroDismiss": {
         "message": "Got it"
+    },
+    "searchBarRadiusLabel": {
+        "message": "Corners"
+    },
+    "radiusSquare": {
+        "message": "Square"
+    },
+    "radiusSubtle": {
+        "message": "Subtle"
+    },
+    "radiusSoft": {
+        "message": "Soft"
+    },
+    "radiusRounded": {
+        "message": "Rounded"
+    },
+    "radiusRounder": {
+        "message": "Very rounded"
+    },
+    "radiusPill": {
+        "message": "Pill"
     }
 }

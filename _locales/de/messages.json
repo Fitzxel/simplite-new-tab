@@ -217,5 +217,26 @@
     },
     "searchBarIntroDismiss": {
         "message": "Verstanden"
+    },
+    "searchBarRadiusLabel": {
+        "message": "Ecken"
+    },
+    "radiusSquare": {
+        "message": "Eckig"
+    },
+    "radiusSubtle": {
+        "message": "Dezent"
+    },
+    "radiusSoft": {
+        "message": "Weich"
+    },
+    "radiusRounded": {
+        "message": "Abgerundet"
+    },
+    "radiusRounder": {
+        "message": "Stark abgerundet"
+    },
+    "radiusPill": {
+        "message": "Pille"
     }
 }

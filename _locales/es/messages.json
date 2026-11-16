@@ -217,5 +217,26 @@
     },
     "searchBarIntroDismiss": {
         "message": "Entendido"
+    },
+    "searchBarRadiusLabel": {
+        "message": "Redondeo"
+    },
+    "radiusSquare": {
+        "message": "Recto"
+    },
+    "radiusSubtle": {
+        "message": "Sutil"
+    },
+    "radiusSoft": {
+        "message": "Suave"
+    },
+    "radiusRounded": {
+        "message": "Redondeado"
+    },
+    "radiusRounder": {
+        "message": "Muy redondeado"
+    },
+    "radiusPill": {
+        "message": "Píldora"
     }
 }

@@ -217,5 +217,26 @@
     },
     "searchBarIntroDismiss": {
         "message": "Compris"
+    },
+    "searchBarRadiusLabel": {
+        "message": "Coins"
+    },
+    "radiusSquare": {
+        "message": "Droits"
+    },
+    "radiusSubtle": {
+        "message": "Légers"
+    },
+    "radiusSoft": {
+        "message": "Doux"
+    },
+    "radiusRounded": {
+        "message": "Arrondis"
+    },
+    "radiusRounder": {
+        "message": "Très arrondis"
+    },
+    "radiusPill": {
+        "message": "Pilule"
     }
 }

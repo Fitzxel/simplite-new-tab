@@ -217,5 +217,26 @@
     },
     "searchBarIntroDismiss": {
         "message": "حسنًا"
+    },
+    "searchBarRadiusLabel": {
+        "message": "الزوايا"
+    },
+    "radiusSquare": {
+        "message": "حادة"
+    },
+    "radiusSubtle": {
+        "message": "خفيفة"
+    },
+    "radiusSoft": {
+        "message": "ناعمة"
+    },
+    "radiusRounded": {
+        "message": "مستديرة"
+    },
+    "radiusRounder": {
+        "message": "مستديرة جدًا"
+    },
+    "radiusPill": {
+        "message": "كبسولة"
     }
 }
