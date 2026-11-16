@@ -197,10 +197,25 @@
     "searchBarLabel": {
         "message": "搜索栏"
     },
-    "searchBarModern": {
-        "message": "现代"
-    },
     "searchBarClassic": {
         "message": "经典"
+    },
+    "searchBarGlass": {
+        "message": "玻璃"
+    },
+    "searchBarSolid": {
+        "message": "实色"
+    },
+    "searchBarNone": {
+        "message": "无搜索栏"
+    },
+    "searchBarIntro": {
+        "message": "搜索栏换上了新设计。"
+    },
+    "searchBarIntroUseClassic": {
+        "message": "改回经典样式"
+    },
+    "searchBarIntroDismiss": {
+        "message": "知道了"
     }
 }

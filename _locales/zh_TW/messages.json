@@ -197,10 +197,25 @@
     "searchBarLabel": {
         "message": "搜尋列"
     },
-    "searchBarModern": {
-        "message": "現代"
-    },
     "searchBarClassic": {
         "message": "經典"
+    },
+    "searchBarGlass": {
+        "message": "玻璃"
+    },
+    "searchBarSolid": {
+        "message": "實色"
+    },
+    "searchBarNone": {
+        "message": "無搜尋列"
+    },
+    "searchBarIntro": {
+        "message": "搜尋列換上了新設計。"
+    },
+    "searchBarIntroUseClassic": {
+        "message": "改回經典樣式"
+    },
+    "searchBarIntroDismiss": {
+        "message": "知道了"
     }
 }

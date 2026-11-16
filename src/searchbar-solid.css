@@ -1,0 +1,92 @@
+/* Solid search bar: an opaque, raised card that follows the theme, with the
+   classic bar's bottom border. The most legible style over any background.
+   Active when <html data-searchbar="solid">. */
+
+:root[data-searchbar="solid"] {
+    --sb-surface: rgba(255, 255, 255, .97);
+    --sb-text: #15181d;
+    --sb-muted: #5b6472;
+    --sb-hover: #eceef2;
+    --sb-edge: #d3d8e0;
+}
+@media (prefers-color-scheme: dark) {
+    :root[data-searchbar="solid"]:not([data-theme="light"]) {
+        --sb-surface: rgba(24, 26, 31, .95);
+        --sb-text: #eceef2;
+        --sb-muted: #9aa2b1;
+        --sb-hover: #2a2e36;
+        --sb-edge: #3a404c;
+    }
+}
+:root[data-searchbar="solid"][data-theme="dark"] {
+    --sb-surface: rgba(24, 26, 31, .95);
+    --sb-text: #eceef2;
+    --sb-muted: #9aa2b1;
+    --sb-hover: #2a2e36;
+    --sb-edge: #3a404c;
+}
+
+:root[data-searchbar="solid"] .search-form {
+    width: 100%;
+    max-width: 740px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 8px;
+    border-bottom: 3px solid var(--sb-edge);
+    border-radius: 14px;
+    background: var(--sb-surface);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .28), 0 2px 6px rgba(0, 0, 0, .14);
+    transition: transform .2s cubic-bezier(.2, .8, .2, 1), box-shadow .2s ease, border-color .2s ease;
+}
+:root[data-searchbar="solid"] .search-form:focus-within {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .36), 0 2px 6px rgba(0, 0, 0, .16);
+}
+:root[data-searchbar="solid"] .search-form.input-focus {
+    border-bottom-color: var(--accent-color);
+}
+:root[data-searchbar="solid"] .search-input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    padding: 0 6px;
+    border: none;
+    background: transparent;
+    color: var(--sb-text);
+    font-family: var(--font-family);
+    font-size: 16px;
+}
+:root[data-searchbar="solid"] .search-input:focus-visible {
+    outline: none;
+}
+:root[data-searchbar="solid"] .search-input::placeholder {
+    color: var(--sb-muted);
+}
+:root[data-searchbar="solid"] .search-buttons {
+    width: 40px;
+    height: 40px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--sb-muted);
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+}
+:root[data-searchbar="solid"] .search-buttons:hover {
+    background: var(--sb-hover);
+    color: var(--sb-text);
+}
+:root[data-searchbar="solid"] .search-buttons svg {
+    width: 20px;
+}
+:root[data-searchbar="solid"] #button-search {
+    order: -1;
+    color: var(--accent-color);
+}

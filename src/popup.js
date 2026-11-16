@@ -39,6 +39,7 @@ const ui = {
     newBg: $('#new-bg-btn'),
     slow: $('#slow-notices'),
     reset: $('#reset-btn'),
+    searchBarIntro: $('#searchbar-intro'),
 };
 
 function setRadio(name, value) {
@@ -88,6 +89,7 @@ function render() {
     ui.dropHint.textContent = msg(hasImage ? 'customReplaceHint' : 'customDropHint');
 
     ui.slow.checked = saved.getPhotoDelay;
+    ui.searchBarIntro.hidden = !saved.searchBarIntroPending;
 }
 
 // ---------- Saving ----------
@@ -241,9 +243,12 @@ document.querySelectorAll('input[name="align"]').forEach(input => input.addEvent
 document.querySelectorAll('input[name="theme"]').forEach(input => input.addEventListener('change', () => {
     save({theme: input.value});
 }));
+// Picking a style, or answering the update notice, retires the notice.
 document.querySelectorAll('input[name="searchBarStyle"]').forEach(input => input.addEventListener('change', () => {
-    save({searchBarStyle: input.value});
+    save({searchBarStyle: input.value, searchBarIntroPending: false});
 }));
+$('#intro-classic').addEventListener('click', () => save({searchBarStyle: 'classic', searchBarIntroPending: false}));
+$('#intro-dismiss').addEventListener('click', () => save({searchBarIntroPending: false}, {quiet: true}));
 ui.slow.addEventListener('change', () => save({getPhotoDelay: ui.slow.checked}));
 
 let resetTimer;

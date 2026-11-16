@@ -17,7 +17,9 @@
     const ALIGNS = Object.freeze(['top', 'bottom', 'center', 'left', 'right']);
     const QUALITIES = Object.freeze(['low', 'med', 'high']);
     const THEMES = Object.freeze(['auto', 'light', 'dark']);
-    const SEARCHBAR_STYLES = Object.freeze(['modern', 'classic']);
+    const SEARCHBAR_STYLES = Object.freeze(['classic', 'glass', 'solid', 'none']);
+    // Pre-release name of the glass style.
+    const LEGACY_SEARCHBAR = Object.freeze({modern: 'glass'});
 
     // Settings that change how a page looks before its scripts run. They are
     // mirrored to localStorage so src/boot.js can apply them synchronously.
@@ -37,7 +39,10 @@
         // Empty string means "follow the theme's page color".
         backgroundColor: '',
         theme: 'auto',
-        searchBarStyle: 'modern',
+        searchBarStyle: 'glass',
+        // True for users who updated from a version with only the classic bar,
+        // until they pick a style or dismiss the notice in the popup.
+        searchBarIntroPending: false,
         getPhotoDelay: true,
         dynamicPhotoData: Object.freeze(emptyMedia()),
         dynamicVideoData: Object.freeze(emptyMedia()),
@@ -68,7 +73,8 @@
         out.backgroundAlign = pick(out.backgroundAlign, ALIGNS, DEFAULTS.backgroundAlign);
         out.backgroundQuality = pick(out.backgroundQuality, QUALITIES, DEFAULTS.backgroundQuality);
         out.theme = pick(out.theme, THEMES, DEFAULTS.theme);
-        out.searchBarStyle = pick(out.searchBarStyle, SEARCHBAR_STYLES, DEFAULTS.searchBarStyle);
+        out.searchBarStyle = pick(LEGACY_SEARCHBAR[out.searchBarStyle] ?? out.searchBarStyle, SEARCHBAR_STYLES, DEFAULTS.searchBarStyle);
+        out.searchBarIntroPending = out.searchBarIntroPending === true;
         if (typeof out.backgroundColor !== 'string') out.backgroundColor = '';
         if (typeof out.backgroundImageData !== 'string') out.backgroundImageData = '';
         out.getPhotoDelay = out.getPhotoDelay !== false;

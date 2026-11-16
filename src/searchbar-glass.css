@@ -1,0 +1,77 @@
+/* Glass search bar (default): a darker frosted panel that keeps the classic
+   bar's blurred background and bottom border. Active when
+   <html data-searchbar="glass">. The submit (search) button is moved to the
+   left with `order`, so every style shares the same markup. */
+
+:root[data-searchbar="glass"] .search-form {
+    width: 100%;
+    max-width: 720px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 0 6px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-bottom: 3px solid var(--opaque-bg-elements);
+    border-radius: 14px;
+    background: rgba(20, 24, 32, .5);
+    backdrop-filter: blur(20px) saturate(150%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 8px 30px rgba(0, 0, 0, .18);
+    transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+:root[data-searchbar="glass"] .search-form:hover {
+    background: rgba(20, 24, 32, .6);
+}
+:root[data-searchbar="glass"] .search-form:focus-within {
+    background: rgba(16, 20, 28, .72);
+    border-color: rgba(255, 255, 255, .2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 12px 40px rgba(0, 0, 0, .28);
+}
+:root[data-searchbar="glass"] .search-form.input-focus {
+    border-bottom-color: var(--accent-color);
+}
+:root[data-searchbar="glass"] .search-input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    padding: 0 6px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-family: var(--font-family);
+    font-size: 16px;
+}
+:root[data-searchbar="glass"] .search-input:focus-visible {
+    outline: none;
+}
+:root[data-searchbar="glass"] .search-input::placeholder {
+    color: rgba(255, 255, 255, .72);
+}
+:root[data-searchbar="glass"] .search-buttons {
+    width: 38px;
+    height: 38px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: rgba(255, 255, 255, .8);
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+}
+:root[data-searchbar="glass"] .search-buttons:hover {
+    background: rgba(255, 255, 255, .1);
+    color: #fff;
+}
+:root[data-searchbar="glass"] .search-buttons svg {
+    width: 20px;
+}
+:root[data-searchbar="glass"] #button-search {
+    order: -1;
+}
+:root[data-searchbar="glass"] .search-form:focus-within .search-buttons {
+    color: #fff;
+}

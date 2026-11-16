@@ -197,10 +197,25 @@
     "searchBarLabel": {
         "message": "شريط البحث"
     },
-    "searchBarModern": {
-        "message": "حديث"
-    },
     "searchBarClassic": {
         "message": "كلاسيكي"
+    },
+    "searchBarGlass": {
+        "message": "زجاجي"
+    },
+    "searchBarSolid": {
+        "message": "صلب"
+    },
+    "searchBarNone": {
+        "message": "بدون شريط"
+    },
+    "searchBarIntro": {
+        "message": "لشريط البحث تصميم جديد."
+    },
+    "searchBarIntroUseClassic": {
+        "message": "العودة إلى الكلاسيكي"
+    },
+    "searchBarIntroDismiss": {
+        "message": "حسنًا"
     }
 }

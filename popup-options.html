@@ -168,11 +168,36 @@
                     <label><input class="sr-only" type="radio" name="theme" value="dark"><span data-i18n="themeDark"></span></label>
                 </div>
             </div>
-            <div class="row">
+            <div class="stack">
                 <span class="row-label" id="searchbar-label" data-i18n="searchBarLabel"></span>
-                <div class="seg" role="radiogroup" aria-labelledby="searchbar-label">
-                    <label><input class="sr-only" type="radio" name="searchBarStyle" value="modern"><span data-i18n="searchBarModern"></span></label>
-                    <label><input class="sr-only" type="radio" name="searchBarStyle" value="classic"><span data-i18n="searchBarClassic"></span></label>
+                <div class="tiles tiles-4" role="radiogroup" aria-labelledby="searchbar-label">
+                    <label class="tile">
+                        <input class="sr-only" type="radio" name="searchBarStyle" value="classic">
+                        <span class="thumb sb-thumb"><span class="mini-bar mini-classic"></span></span>
+                        <span class="tile-label" data-i18n="searchBarClassic"></span>
+                    </label>
+                    <label class="tile">
+                        <input class="sr-only" type="radio" name="searchBarStyle" value="glass">
+                        <span class="thumb sb-thumb"><span class="mini-bar mini-glass"></span></span>
+                        <span class="tile-label" data-i18n="searchBarGlass"></span>
+                    </label>
+                    <label class="tile">
+                        <input class="sr-only" type="radio" name="searchBarStyle" value="solid">
+                        <span class="thumb sb-thumb"><span class="mini-bar mini-solid"></span></span>
+                        <span class="tile-label" data-i18n="searchBarSolid"></span>
+                    </label>
+                    <label class="tile">
+                        <input class="sr-only" type="radio" name="searchBarStyle" value="none">
+                        <span class="thumb sb-thumb"></span>
+                        <span class="tile-label" data-i18n="searchBarNone"></span>
+                    </label>
+                </div>
+                <div class="notice" id="searchbar-intro" hidden>
+                    <p data-i18n="searchBarIntro"></p>
+                    <div class="notice-actions">
+                        <button type="button" class="link-btn" id="intro-classic" data-i18n="searchBarIntroUseClassic"></button>
+                        <button type="button" class="link-btn muted" id="intro-dismiss" data-i18n="searchBarIntroDismiss"></button>
+                    </div>
                 </div>
             </div>
         </section>

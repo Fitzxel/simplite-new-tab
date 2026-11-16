@@ -6,9 +6,12 @@ const PIXABAY_PROXY_URL = 'https://simplite-backend.fitzxel.workers.dev/api/medi
 const pixabay = createPixabayClient({proxyUrl: PIXABAY_PROXY_URL});
 
 // Fill in missing defaults and migrate values written by older versions.
-chrome.runtime.onInstalled.addListener(async () => {
+chrome.runtime.onInstalled.addListener(async details => {
     const values = await chrome.storage.local.get([...Settings.KEYS, ...Settings.OBSOLETE_KEYS]);
     const patch = Settings.migrationPatch(values);
+    // Updating from a version that only had the classic bar: tell the user
+    // about the new default once, and offer the classic one back.
+    if (details?.reason === 'update' && values.searchBarStyle === undefined) patch.searchBarIntroPending = true;
     if (Object.keys(patch).length) await chrome.storage.local.set(patch);
     const obsolete = Settings.OBSOLETE_KEYS.filter(key => key in values);
     if (obsolete.length) await chrome.storage.local.remove(obsolete);

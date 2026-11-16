@@ -197,10 +197,25 @@
     "searchBarLabel": {
         "message": "खोज बार"
     },
-    "searchBarModern": {
-        "message": "आधुनिक"
-    },
     "searchBarClassic": {
         "message": "क्लासिक"
+    },
+    "searchBarGlass": {
+        "message": "ग्लास"
+    },
+    "searchBarSolid": {
+        "message": "ठोस"
+    },
+    "searchBarNone": {
+        "message": "बार नहीं"
+    },
+    "searchBarIntro": {
+        "message": "खोज बार का नया रूप आया है।"
+    },
+    "searchBarIntroUseClassic": {
+        "message": "क्लासिक पर लौटें"
+    },
+    "searchBarIntroDismiss": {
+        "message": "ठीक है"
     }
 }

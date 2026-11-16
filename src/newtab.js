@@ -179,7 +179,7 @@ addEventListener('online', renderBackground);
 addEventListener('offline', renderBackground);
 
 addEventListener('keydown', (e)=> {
-    if (!isFocus && e.key == 'k' && e.ctrlKey) {
+    if (!isFocus && e.key == 'k' && e.ctrlKey && bgState.searchBarStyle !== 'none') {
         e.preventDefault();
         searchInput.focus();
         isFocus = true;

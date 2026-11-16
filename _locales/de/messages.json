@@ -197,10 +197,25 @@
     "searchBarLabel": {
         "message": "Suchleiste"
     },
-    "searchBarModern": {
-        "message": "Modern"
-    },
     "searchBarClassic": {
         "message": "Klassisch"
+    },
+    "searchBarGlass": {
+        "message": "Glas"
+    },
+    "searchBarSolid": {
+        "message": "Solide"
+    },
+    "searchBarNone": {
+        "message": "Keine Leiste"
+    },
+    "searchBarIntro": {
+        "message": "Die Suchleiste hat ein neues Design."
+    },
+    "searchBarIntroUseClassic": {
+        "message": "Zur klassischen zurück"
+    },
+    "searchBarIntroDismiss": {
+        "message": "Verstanden"
     }
 }

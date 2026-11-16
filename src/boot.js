@@ -3,6 +3,7 @@
 // SimpliteSettings.applyAppearance(). chrome.storage is async, so without this
 // the page would briefly render with the defaults.
 (() => {
+    const STYLES = ['classic', 'glass', 'solid', 'none'];
     const root = document.documentElement;
     let theme = null;
     let searchBar = null;
@@ -13,5 +14,5 @@
         // Storage blocked: fall back to defaults until chrome.storage loads.
     }
     if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
-    root.dataset.searchbar = searchBar === 'classic' ? 'classic' : 'modern';
+    root.dataset.searchbar = STYLES.includes(searchBar) ? searchBar : 'glass';
 })();

@@ -197,10 +197,25 @@
     "searchBarLabel": {
         "message": "Barre de recherche"
     },
-    "searchBarModern": {
-        "message": "Moderne"
-    },
     "searchBarClassic": {
         "message": "Classique"
+    },
+    "searchBarGlass": {
+        "message": "Verre"
+    },
+    "searchBarSolid": {
+        "message": "Opaque"
+    },
+    "searchBarNone": {
+        "message": "Sans barre"
+    },
+    "searchBarIntro": {
+        "message": "La barre de recherche a un nouveau look."
+    },
+    "searchBarIntroUseClassic": {
+        "message": "Revenir à la classique"
+    },
+    "searchBarIntroDismiss": {
+        "message": "Compris"
     }
 }

@@ -287,6 +287,64 @@ kbd {
     outline-offset: 3px;
 }
 
+/* Search bar style tiles: a tiny new tab with each bar drawn in CSS */
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.tiles-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+.sb-thumb {
+    background: url('../resources/default_wallpaper.jpg') center / cover;
+    align-items: start;
+}
+.mini-bar {
+    width: 70%;
+    height: 8px;
+    margin-top: 28%;
+}
+.mini-classic {
+    border-radius: 1px;
+    background: #2f3542bb;
+    border-bottom: 2px solid #2f3542;
+}
+.mini-glass {
+    height: 10px;
+    border-radius: 3px;
+    background: #14182080;
+    border: 1px solid #ffffff26;
+    border-bottom: 2px solid #2f3542;
+}
+.mini-solid {
+    height: 10px;
+    border-radius: 3px;
+    background: var(--p-surface);
+    border-bottom: 2px solid var(--p-border);
+    box-shadow: 0 2px 5px #0005;
+}
+
+.notice {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--p-accent-soft);
+    font-size: 12px;
+}
+.notice[hidden] {
+    display: none;
+}
+.notice-actions {
+    display: flex;
+    gap: 14px;
+}
+.link-btn.muted {
+    color: var(--p-muted);
+}
+
 /* Segmented control */
 .seg {
     display: inline-flex;

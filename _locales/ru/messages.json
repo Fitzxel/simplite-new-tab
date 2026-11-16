@@ -197,10 +197,25 @@
     "searchBarLabel": {
         "message": "Строка поиска"
     },
-    "searchBarModern": {
-        "message": "Современная"
-    },
     "searchBarClassic": {
-        "message": "Классическая"
+        "message": "Классика"
+    },
+    "searchBarGlass": {
+        "message": "Стекло"
+    },
+    "searchBarSolid": {
+        "message": "Плотная"
+    },
+    "searchBarNone": {
+        "message": "Без строки"
+    },
+    "searchBarIntro": {
+        "message": "У строки поиска новый дизайн."
+    },
+    "searchBarIntroUseClassic": {
+        "message": "Вернуть классическую"
+    },
+    "searchBarIntroDismiss": {
+        "message": "Понятно"
     }
 }

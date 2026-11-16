@@ -197,10 +197,25 @@
     "searchBarLabel": {
         "message": "検索バー"
     },
-    "searchBarModern": {
-        "message": "モダン"
-    },
     "searchBarClassic": {
         "message": "クラシック"
+    },
+    "searchBarGlass": {
+        "message": "ガラス"
+    },
+    "searchBarSolid": {
+        "message": "ソリッド"
+    },
+    "searchBarNone": {
+        "message": "バーなし"
+    },
+    "searchBarIntro": {
+        "message": "検索バーのデザインが新しくなりました。"
+    },
+    "searchBarIntroUseClassic": {
+        "message": "クラシックに戻す"
+    },
+    "searchBarIntroDismiss": {
+        "message": "OK"
     }
 }

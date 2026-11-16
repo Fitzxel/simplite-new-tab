@@ -28,7 +28,10 @@ body {
     font-size: 20px;
 }
 
-/* The search bar's look lives in searchbar-classic.css / searchbar-modern.css. */
+/* Each search bar style lives in its own searchbar-<style>.css file. */
+:root[data-searchbar="none"] .search-container {
+    display: none;
+}
 
 #img-bg, #video-bg {
     opacity: 0;
