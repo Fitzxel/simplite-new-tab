@@ -111,12 +111,15 @@ test('appearance is mirrored to localStorage and restored by boot.js before pain
     assert.equal(page.document.documentElement.style.props['--searchbar-radius'], '28px');
 });
 
-test('corner radius only accepts the slider steps and defaults to 14px', () => {
+test('corner radius only accepts the slider steps and defaults to a pill', () => {
     const S = loadSettings();
-    assert.equal(S.withDefaults({}).searchBarRadius, 14);
+    assert.deepEqual([...S.SEARCHBAR_RADII], [0, 4, 10, 14, 20, 28]);
+    assert.equal(S.withDefaults({}).searchBarRadius, 28);
+    assert.equal(S.withDefaults({searchBarRadius: 4}).searchBarRadius, 4);
     assert.equal(S.withDefaults({searchBarRadius: 0}).searchBarRadius, 0);
     assert.equal(S.withDefaults({searchBarRadius: '20'}).searchBarRadius, 20);
-    assert.equal(S.withDefaults({searchBarRadius: 13}).searchBarRadius, 14);
+    assert.equal(S.withDefaults({searchBarRadius: 13}).searchBarRadius, 28);
+    assert.equal(S.withDefaults({searchBarRadius: 6}).searchBarRadius, 28);
 
     const stray = vm.createContext({localStorage: memoryStorage({'simplite.searchBarRadius': '999'}), document: {documentElement: {dataset: {}, style: styleStub()}}});
     vm.runInContext(bootSource, stray);

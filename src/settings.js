@@ -18,9 +18,9 @@
     const QUALITIES = Object.freeze(['low', 'med', 'high']);
     const THEMES = Object.freeze(['auto', 'light', 'dark']);
     const SEARCHBAR_STYLES = Object.freeze(['classic', 'glass', 'solid', 'none']);
-    // Corner radius steps (px) for the glass and solid bars; the last one is a
-    // full pill at their heights.
-    const SEARCHBAR_RADII = Object.freeze([0, 6, 10, 14, 20, 28]);
+    // Corner radius steps (px) for the search bars. 4 is the classic bar's
+    // original radius; 28 is a full pill at every bar height.
+    const SEARCHBAR_RADII = Object.freeze([0, 4, 10, 14, 20, 28]);
     // Pre-release name of the glass style.
     const LEGACY_SEARCHBAR = Object.freeze({modern: 'glass'});
 
@@ -46,7 +46,7 @@
         // True for users who updated from a version with only the classic bar,
         // until they pick a style or dismiss the notice in the popup.
         searchBarIntroPending: false,
-        searchBarRadius: 14,
+        searchBarRadius: 28,
         getPhotoDelay: true,
         dynamicPhotoData: Object.freeze(emptyMedia()),
         dynamicVideoData: Object.freeze(emptyMedia()),

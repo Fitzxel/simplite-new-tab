@@ -94,8 +94,8 @@ function render() {
     ui.slow.checked = saved.getPhotoDelay;
     ui.searchBarIntro.hidden = !saved.searchBarIntroPending;
 
-    // Corner radius only applies to the glass and solid bars.
-    ui.radiusRow.hidden = !['glass', 'solid'].includes(saved.searchBarStyle);
+    // Corner radius applies to every visible bar.
+    ui.radiusRow.hidden = saved.searchBarStyle === 'none';
     if (document.activeElement !== ui.radius) ui.radius.value = Settings.SEARCHBAR_RADII.indexOf(saved.searchBarRadius);
     showRadius(Number(ui.radius.value));
 }
@@ -278,7 +278,8 @@ ui.radius.addEventListener('change', () => {
     save({searchBarRadius: Settings.SEARCHBAR_RADII[Number(ui.radius.value)]});
 });
 
-$('#intro-classic').addEventListener('click', () => save({searchBarStyle: 'classic', searchBarIntroPending: false}));
+// "Switch back to classic" restores the 2.0 bar exactly, including its 4px corners.
+$('#intro-classic').addEventListener('click', () => save({searchBarStyle: 'classic', searchBarRadius: 4, searchBarIntroPending: false}));
 $('#intro-dismiss').addEventListener('click', () => save({searchBarIntroPending: false}, {quiet: true}));
 ui.slow.addEventListener('change', () => save({getPhotoDelay: ui.slow.checked}));
 

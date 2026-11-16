@@ -4,7 +4,7 @@
 // this the page would briefly render with the defaults.
 (() => {
     const STYLES = ['classic', 'glass', 'solid', 'none'];
-    const RADII = ['0', '6', '10', '14', '20', '28'];
+    const RADII = ['0', '4', '10', '14', '20', '28'];
     const root = document.documentElement;
     let theme = null;
     let searchBar = null;

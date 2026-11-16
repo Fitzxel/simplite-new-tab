@@ -35,7 +35,7 @@
     gap: 4px;
     padding: 0 8px;
     border-bottom: 3px solid var(--sb-edge);
-    border-radius: var(--searchbar-radius, 14px);
+    border-radius: var(--searchbar-radius, 28px);
     background: var(--sb-surface);
     box-shadow: 0 12px 40px rgba(0, 0, 0, .28), 0 2px 6px rgba(0, 0, 0, .14);
     transition: transform .2s cubic-bezier(.2, .8, .2, 1), box-shadow .2s ease, border-color .2s ease;
@@ -74,7 +74,7 @@
     padding: 0;
     border: none;
     /* Follows the bar's radius; becomes a circle when the bar is a pill. */
-    border-radius: max(0px, calc(var(--searchbar-radius, 14px) - 5px));
+    border-radius: max(0px, calc(var(--searchbar-radius, 28px) - 5px));
     background: transparent;
     color: var(--sb-muted);
     cursor: pointer;

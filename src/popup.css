@@ -306,20 +306,20 @@ kbd {
     margin-top: 28%;
 }
 .mini-classic {
-    border-radius: 1px;
+    border-radius: calc(var(--searchbar-radius, 28px) / 5.5);
     background: #2f3542bb;
     border-bottom: 2px solid #2f3542;
 }
 .mini-glass {
     height: 10px;
-    border-radius: calc(var(--searchbar-radius, 14px) / 5);
+    border-radius: calc(var(--searchbar-radius, 28px) / 5);
     background: #14182080;
     border: 1px solid #ffffff26;
     border-bottom: 2px solid #2f3542;
 }
 .mini-solid {
     height: 10px;
-    border-radius: calc(var(--searchbar-radius, 14px) / 5);
+    border-radius: calc(var(--searchbar-radius, 28px) / 5);
     background: var(--p-surface);
     border-bottom: 2px solid var(--p-border);
     box-shadow: 0 2px 5px #0005;

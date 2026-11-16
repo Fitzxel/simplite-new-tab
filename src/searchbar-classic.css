@@ -8,7 +8,10 @@
     display: flex;
     background: var(--transp-bg-elements);
     backdrop-filter: blur(10px);
-    border-radius: 4px;
+    border-radius: var(--searchbar-radius, 28px);
+    /* No inset at the original 4px radius; rounder corners push the content
+       in so it clears the curve (12px at the pill step). */
+    padding: 0 max(0px, calc((var(--searchbar-radius, 28px) - 4px) / 2));
     border-bottom: 3px solid var(--opaque-bg-elements);
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0, 0.13, 0, 0.49);
