@@ -24,7 +24,7 @@
         "message": "Se ha tardado más de lo esperado en obtener/procesar la imagen"
     },
     "photoDelayNotificationMessage": {
-        "message": "Considere desactivar \"Alta calidad\" en opciones para reducir el tiempo de respuesta."
+        "message": "Considera bajar la calidad del fondo en la configuración para que cargue más rápido."
     },
     "photoDelayNotificationPrimaryButton": {
         "message": "No volver a mostrar"
@@ -38,13 +38,160 @@
     "getBgErrorNotificationMessage": {
         "message": "No se ha podido obtener el fondo, vuelva a intentarlo."
     },
-    "options_html": {
-        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"Sin cambios\",\"variants\":{\"Without_changes\":\"Sin cambios\",\"Unsaved_changes\":\"Cambios sin guardar\",\"NotAImage\":\"Eso no es un archivo de imagen 😠\",\"FillForm\":\"Rellena los campos correctamente 🙃\",\"SavedConfig\":\"Establecido ✔\",\"ParametersReset\":\"Parámetros restablecidos ✔ recargando...\"}},{\"selector\":\"section#bg-type span\",\"txtContent\":\"Tipo de fondo:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"Ninguno, color solido\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"Imagen por defecto\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"Subir imagen\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"Fotos dinámicas\",\"txtTitle\":\"Fotos dinámicas a lo largo del día desde la plataforma Pexels\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"Videos dinámicos\",\"txtTitle\":\"Videos dinámicos a lo largo del día desde la plataforma Pexels.\\n❕❕Solo con conexión a internet❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"Calidad del fondo\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"Baja (< 720p)\",\"txtTitle\":\"Calidad < 720p\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"Media (720p-1080p)\",\"txtTitle\":\"Calidad 720p-1080p\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"Alta (> 1080p)\",\"txtTitle\":\"Calidad > 1080p\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"Alinear Fondo:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"Arriba ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"Abajo ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"Centro +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"Izquierda ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"Derecha ➡\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"Arrastre el archivo de imagen para cargarlo aquí\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"O\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"Explorar 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"Establecer ➡💾\",\"txtTitle\":\"Establecer parámetros\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"Opciones ocultas 🤫\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"Restablecer parámetros\",\"txtTitle\":\"Aviso: al pulsar se restablecen todos los parámetros\"},{\"selector\":\"#rate-link\",\"txtContent\":\"Calificar extensión ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"¡No es necesario recargar la nueva pestaña para ver los cambios!\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- Opciones ocultas -⚠\"}]"
-    },
     "searchUnavailable": {
         "message": "La búsqueda no está disponible. Comprueba que la búsqueda del navegador esté disponible."
     },
     "searchFailed": {
         "message": "La búsqueda ha fallado. Inténtalo de nuevo."
+    },
+    "optionsTitle": {
+        "message": "Configuración de Simplite"
+    },
+    "sectionBackground": {
+        "message": "Fondo"
+    },
+    "bgTypeLabel": {
+        "message": "Tipo de fondo"
+    },
+    "bgTypeColor": {
+        "message": "Color"
+    },
+    "bgTypeDefault": {
+        "message": "Original"
+    },
+    "bgTypeCustom": {
+        "message": "Propia"
+    },
+    "bgTypePhotos": {
+        "message": "Fotos"
+    },
+    "bgTypeVideos": {
+        "message": "Videos"
+    },
+    "bgTypePhotosHint": {
+        "message": "Fotos de Pixabay que cambian a lo largo del día"
+    },
+    "bgTypeVideosHint": {
+        "message": "Videos de Pixabay que cambian a lo largo del día. Requiere conexión a internet."
+    },
+    "bgColorLabel": {
+        "message": "Color de fondo"
+    },
+    "bgColorTheme": {
+        "message": "Usar color del tema"
+    },
+    "customDropHint": {
+        "message": "Arrastra una imagen aquí o"
+    },
+    "customReplaceHint": {
+        "message": "Arrastra otra imagen o"
+    },
+    "customBrowse": {
+        "message": "explora tus archivos"
+    },
+    "customNotImage": {
+        "message": "Ese archivo no es una imagen."
+    },
+    "customTooLarge": {
+        "message": "La imagen es demasiado grande (máx. $1 MB)."
+    },
+    "qualityLabel": {
+        "message": "Calidad"
+    },
+    "qualityLow": {
+        "message": "Baja"
+    },
+    "qualityMed": {
+        "message": "Media"
+    },
+    "qualityHigh": {
+        "message": "Alta"
+    },
+    "qualityLowHint": {
+        "message": "Menos de 720p · carga más rápido"
+    },
+    "qualityMedHint": {
+        "message": "720p–1080p"
+    },
+    "qualityHighHint": {
+        "message": "Más de 1080p · puede tardar más"
+    },
+    "newBackground": {
+        "message": "Nuevo fondo"
+    },
+    "newBackgroundLoading": {
+        "message": "Cargando…"
+    },
+    "newBackgroundDone": {
+        "message": "Nuevo fondo listo"
+    },
+    "newBackgroundError": {
+        "message": "No se pudo obtener un nuevo fondo. Inténtalo de nuevo."
+    },
+    "offline": {
+        "message": "No tienes conexión."
+    },
+    "positionLabel": {
+        "message": "Posición"
+    },
+    "posTop": {
+        "message": "Arriba"
+    },
+    "posBottom": {
+        "message": "Abajo"
+    },
+    "posLeft": {
+        "message": "Izquierda"
+    },
+    "posRight": {
+        "message": "Derecha"
+    },
+    "posCenter": {
+        "message": "Centro"
+    },
+    "sectionAppearance": {
+        "message": "Apariencia"
+    },
+    "themeLabel": {
+        "message": "Tema"
+    },
+    "themeAuto": {
+        "message": "Auto"
+    },
+    "themeLight": {
+        "message": "Claro"
+    },
+    "themeDark": {
+        "message": "Oscuro"
+    },
+    "sectionAdvanced": {
+        "message": "Avanzado"
+    },
+    "slowLoadNotices": {
+        "message": "Avisarme si los fondos tardan en cargar"
+    },
+    "resetAll": {
+        "message": "Restablecer todo"
+    },
+    "resetConfirm": {
+        "message": "Pulsa de nuevo para confirmar"
+    },
+    "resetDone": {
+        "message": "Configuración restablecida"
+    },
+    "statusSaved": {
+        "message": "Guardado"
+    },
+    "statusSaveFailed": {
+        "message": "No se pudo guardar"
+    },
+    "footerDocs": {
+        "message": "Documentación"
+    },
+    "footerRate": {
+        "message": "Calificar"
+    },
+    "footerDonate": {
+        "message": "Invítame un café"
     }
 }

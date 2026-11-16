@@ -24,7 +24,7 @@
         "message": "It took longer than expected to get/process the image"
     },
     "photoDelayNotificationMessage": {
-        "message": "Consider disabling 'High Quality' in settings to reduce response time."
+        "message": "可在設定中降低背景畫質以加快載入。"
     },
     "photoDelayNotificationPrimaryButton": {
         "message": "Don't show again"
@@ -38,13 +38,160 @@
     "getBgErrorNotificationMessage": {
         "message": "Failed to get the background, please try again."
     },
-    "options_html": {
-        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"未更改\",\"variants\":{\"Without_changes\":\"未更改\",\"Unsaved_changes\":\"未保存的更改\",\"NotAImage\":\"這不是圖片檔案 😠\",\"FillForm\":\"請正確填寫表格 🙃\",\"SavedConfig\":\"已設定 ✔\",\"ParametersReset\":\"參數重置 ✔ 重新載入...\"}},{\"selector\":\"section#bg-type span\",\"txtContent\":\"背景類型:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"無，單一顏色\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"預設圖片\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"上傳圖片\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"動態照片\",\"txtTitle\":\"來自Pexels平台的動態照片，隨時間變化\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"動態影片\",\"txtTitle\":\"來自Pexels平台的動態影片。\\n❕❕僅在有網路連接時顯示❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"背景品質\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"低 (< 720p)\",\"txtTitle\":\"品質 < 720p\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"中等 (720p-1080p)\",\"txtTitle\":\"品質 720p-1080p\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"高 (> 1080p)\",\"txtTitle\":\"品質 > 1080p\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"對齊背景:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"頂部 ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"底部 ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"中央 +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"左側 ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"右側 ➡\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"拖曳圖片檔案至此處上傳\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"或\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"瀏覽 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"設定 ➡💾\",\"txtTitle\":\"設定參數\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"隱藏選項 🤫\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"重設參數\",\"txtTitle\":\"注意: 點擊後將重置所有參數\"},{\"selector\":\"#rate-link\",\"txtContent\":\"評分擴充功能 ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"查看變更無需重新載入新的分頁！\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- 隱藏選項 -⚠\"}]"
-    },
     "searchUnavailable": {
         "message": "搜尋無法使用。請確認瀏覽器搜尋功能是否可用。"
     },
     "searchFailed": {
         "message": "搜尋失敗，請再試一次。"
+    },
+    "optionsTitle": {
+        "message": "Simplite 設定"
+    },
+    "sectionBackground": {
+        "message": "背景"
+    },
+    "bgTypeLabel": {
+        "message": "背景類型"
+    },
+    "bgTypeColor": {
+        "message": "顏色"
+    },
+    "bgTypeDefault": {
+        "message": "預設"
+    },
+    "bgTypeCustom": {
+        "message": "我的圖片"
+    },
+    "bgTypePhotos": {
+        "message": "相片"
+    },
+    "bgTypeVideos": {
+        "message": "影片"
+    },
+    "bgTypePhotosHint": {
+        "message": "來自 Pixabay、隨時段變化的相片"
+    },
+    "bgTypeVideosHint": {
+        "message": "來自 Pixabay、隨時段變化的影片。需要網路連線。"
+    },
+    "bgColorLabel": {
+        "message": "背景顏色"
+    },
+    "bgColorTheme": {
+        "message": "使用主題顏色"
+    },
+    "customDropHint": {
+        "message": "將圖片拖曳到這裡，或"
+    },
+    "customReplaceHint": {
+        "message": "拖曳另一張圖片，或"
+    },
+    "customBrowse": {
+        "message": "瀏覽檔案"
+    },
+    "customNotImage": {
+        "message": "此檔案不是圖片。"
+    },
+    "customTooLarge": {
+        "message": "圖片太大（上限 $1 MB）。"
+    },
+    "qualityLabel": {
+        "message": "畫質"
+    },
+    "qualityLow": {
+        "message": "低"
+    },
+    "qualityMed": {
+        "message": "中"
+    },
+    "qualityHigh": {
+        "message": "高"
+    },
+    "qualityLowHint": {
+        "message": "低於 720p · 載入最快"
+    },
+    "qualityMedHint": {
+        "message": "720p–1080p"
+    },
+    "qualityHighHint": {
+        "message": "高於 1080p · 載入可能較慢"
+    },
+    "newBackground": {
+        "message": "換一張背景"
+    },
+    "newBackgroundLoading": {
+        "message": "載入中…"
+    },
+    "newBackgroundDone": {
+        "message": "新背景已就緒"
+    },
+    "newBackgroundError": {
+        "message": "無法取得新背景，請再試一次。"
+    },
+    "offline": {
+        "message": "你目前離線。"
+    },
+    "positionLabel": {
+        "message": "位置"
+    },
+    "posTop": {
+        "message": "上"
+    },
+    "posBottom": {
+        "message": "下"
+    },
+    "posLeft": {
+        "message": "左"
+    },
+    "posRight": {
+        "message": "右"
+    },
+    "posCenter": {
+        "message": "置中"
+    },
+    "sectionAppearance": {
+        "message": "外觀"
+    },
+    "themeLabel": {
+        "message": "主題"
+    },
+    "themeAuto": {
+        "message": "自動"
+    },
+    "themeLight": {
+        "message": "淺色"
+    },
+    "themeDark": {
+        "message": "深色"
+    },
+    "sectionAdvanced": {
+        "message": "進階"
+    },
+    "slowLoadNotices": {
+        "message": "背景載入緩慢時提醒我"
+    },
+    "resetAll": {
+        "message": "重設所有設定"
+    },
+    "resetConfirm": {
+        "message": "再按一次以確認"
+    },
+    "resetDone": {
+        "message": "設定已重設"
+    },
+    "statusSaved": {
+        "message": "已儲存"
+    },
+    "statusSaveFailed": {
+        "message": "無法儲存"
+    },
+    "footerDocs": {
+        "message": "說明文件"
+    },
+    "footerRate": {
+        "message": "評分"
+    },
+    "footerDonate": {
+        "message": "請我喝杯咖啡"
     }
 }

@@ -24,7 +24,7 @@
         "message": "छवि प्राप्त करने / प्रोसेस करने में अपेक्षित से अधिक समय लग गया है"
     },
     "photoDelayNotificationMessage": {
-        "message": "प्रतिक्रिया समय कम करने के लिए विन्यास में \"उच्च गुणवत्ता\" को अक्षम करने का विचार करें।"
+        "message": "तेज़ लोडिंग के लिए सेटिंग्स में पृष्ठभूमि की गुणवत्ता कम करने पर विचार करें।"
     },
     "photoDelayNotificationPrimaryButton": {
         "message": "फिर से न दिखाएं"
@@ -38,13 +38,160 @@
     "getBgErrorNotificationMessage": {
         "message": "पृष्ठभूमि प्राप्त नहीं कर सका, कृपया पुनः प्रयास करें।"
     },
-    "options_html": {
-        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"कोई परिवर्तन नहीं\",\"variants\":{\"Without_changes\":\"कोई परिवर्तन नहीं\",\"Unsaved_changes\":\"सहेजे गए परिवर्तन नहीं\",\"NotAImage\":\"यह एक छवि नहीं है 😠\",\"FillForm\":\"कृपया फ़ॉर्म को सही ढंग से भरें 🙃\",\"SavedConfig\":\"सेटिंग सहेजी गई ✔\",\"ParametersReset\":\"पैरामीटर रीसेट ✔ लोड हो रहा है...\"}},{\"selector\":\"section#bg-type span\",\"txtContent\":\"बैकग्राउंड प्रकार:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"कोई नहीं, सॉलिड रंग\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"डिफ़ॉल्ट छवि\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"छवि अपलोड करें\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"गतिशील फोटो\",\"txtTitle\":\"Pexels प्लेटफ़ॉर्म से दैनिक गतिशील फोटो\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"गतिशील वीडियो\",\"txtTitle\":\"Pexels प्लेटफ़ॉर्म से दैनिक गतिशील वीडियो.\\n❕❕केवल इंटरनेट कनेक्शन के साथ❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"बैकग्राउंड गुणवत्ता\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"कम (< 720p)\",\"txtTitle\":\"गुणवत्ता < 720p\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"मध्यम (720p-1080p)\",\"txtTitle\":\"गुणवत्ता 720p-1080p\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"उच्च (> 1080p)\",\"txtTitle\":\"गुणवत्ता > 1080p\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"बैकग्राउंड संरेखण:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"ऊपर ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"नीचे ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"केंद्र +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"बाएँ ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"दाएँ ➡\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"यहाँ छवि फ़ाइल ड्रैग और ड्रॉप करें\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"या\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"ब्राउज़ करें 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"सेट करें ➡💾\",\"txtTitle\":\"पैरामीटर सेट करें\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"छिपे हुए विकल्प 🤫\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"पैरामीटर रीसेट करें\",\"txtTitle\":\"चेतावनी: सभी पैरामीटर रीसेट हो जाएंगे\"},{\"selector\":\"#rate-link\",\"txtContent\":\"एक्सटेंशन की मूल्यांकन करें ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"परिवर्तन देखने के लिए नई टैब को रिलोड करने की आवश्यकता नहीं है!\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- छिपे हुए विकल्प -⚠\"}]"
-    },
     "searchUnavailable": {
         "message": "खोज उपलब्ध नहीं है। जाँचें कि ब्राउज़र खोज उपलब्ध है।"
     },
     "searchFailed": {
         "message": "खोज विफल हुई। कृपया फिर से प्रयास करें।"
+    },
+    "optionsTitle": {
+        "message": "Simplite सेटिंग्स"
+    },
+    "sectionBackground": {
+        "message": "पृष्ठभूमि"
+    },
+    "bgTypeLabel": {
+        "message": "पृष्ठभूमि का प्रकार"
+    },
+    "bgTypeColor": {
+        "message": "रंग"
+    },
+    "bgTypeDefault": {
+        "message": "डिफ़ॉल्ट"
+    },
+    "bgTypeCustom": {
+        "message": "अपनी"
+    },
+    "bgTypePhotos": {
+        "message": "फ़ोटो"
+    },
+    "bgTypeVideos": {
+        "message": "वीडियो"
+    },
+    "bgTypePhotosHint": {
+        "message": "Pixabay की फ़ोटो जो दिन भर बदलती रहती हैं"
+    },
+    "bgTypeVideosHint": {
+        "message": "Pixabay के वीडियो जो दिन भर बदलते रहते हैं। इंटरनेट कनेक्शन आवश्यक है।"
+    },
+    "bgColorLabel": {
+        "message": "पृष्ठभूमि का रंग"
+    },
+    "bgColorTheme": {
+        "message": "थीम का रंग उपयोग करें"
+    },
+    "customDropHint": {
+        "message": "छवि को यहाँ खींचें या"
+    },
+    "customReplaceHint": {
+        "message": "दूसरी छवि यहाँ खींचें या"
+    },
+    "customBrowse": {
+        "message": "फ़ाइलें ब्राउज़ करें"
+    },
+    "customNotImage": {
+        "message": "यह फ़ाइल छवि नहीं है।"
+    },
+    "customTooLarge": {
+        "message": "छवि बहुत बड़ी है (अधिकतम $1 MB)।"
+    },
+    "qualityLabel": {
+        "message": "गुणवत्ता"
+    },
+    "qualityLow": {
+        "message": "निम्न"
+    },
+    "qualityMed": {
+        "message": "मध्यम"
+    },
+    "qualityHigh": {
+        "message": "उच्च"
+    },
+    "qualityLowHint": {
+        "message": "720p से कम · सबसे तेज़ लोड"
+    },
+    "qualityMedHint": {
+        "message": "720p–1080p"
+    },
+    "qualityHighHint": {
+        "message": "1080p से अधिक · धीमा लोड हो सकता है"
+    },
+    "newBackground": {
+        "message": "नई पृष्ठभूमि"
+    },
+    "newBackgroundLoading": {
+        "message": "लोड हो रहा है…"
+    },
+    "newBackgroundDone": {
+        "message": "नई पृष्ठभूमि तैयार है"
+    },
+    "newBackgroundError": {
+        "message": "नई पृष्ठभूमि नहीं मिल सकी। फिर से प्रयास करें।"
+    },
+    "offline": {
+        "message": "आप ऑफ़लाइन हैं।"
+    },
+    "positionLabel": {
+        "message": "स्थिति"
+    },
+    "posTop": {
+        "message": "ऊपर"
+    },
+    "posBottom": {
+        "message": "नीचे"
+    },
+    "posLeft": {
+        "message": "बाएँ"
+    },
+    "posRight": {
+        "message": "दाएँ"
+    },
+    "posCenter": {
+        "message": "केंद्र"
+    },
+    "sectionAppearance": {
+        "message": "रूप-रंग"
+    },
+    "themeLabel": {
+        "message": "थीम"
+    },
+    "themeAuto": {
+        "message": "स्वतः"
+    },
+    "themeLight": {
+        "message": "हल्की"
+    },
+    "themeDark": {
+        "message": "गहरी"
+    },
+    "sectionAdvanced": {
+        "message": "उन्नत"
+    },
+    "slowLoadNotices": {
+        "message": "पृष्ठभूमि धीरे लोड होने पर मुझे सूचित करें"
+    },
+    "resetAll": {
+        "message": "सभी सेटिंग्स रीसेट करें"
+    },
+    "resetConfirm": {
+        "message": "पुष्टि के लिए फिर से क्लिक करें"
+    },
+    "resetDone": {
+        "message": "सेटिंग्स रीसेट हो गईं"
+    },
+    "statusSaved": {
+        "message": "सहेजा गया"
+    },
+    "statusSaveFailed": {
+        "message": "सहेजा नहीं जा सका"
+    },
+    "footerDocs": {
+        "message": "दस्तावेज़"
+    },
+    "footerRate": {
+        "message": "रेटिंग दें"
+    },
+    "footerDonate": {
+        "message": "मुझे एक कॉफ़ी पिलाएँ"
     }
 }

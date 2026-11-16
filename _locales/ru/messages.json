@@ -24,7 +24,7 @@
         "message": "Получение/обработка изображения заняло больше времени, чем ожидалось"
     },
     "photoDelayNotificationMessage": {
-        "message": "Рассмотрите возможность отключения опции \"Высокое качество\" в настройках, чтобы уменьшить время отклика."
+        "message": "Попробуйте снизить качество фона в настройках, чтобы он загружался быстрее."
     },
     "photoDelayNotificationPrimaryButton": {
         "message": "Больше не показывать"
@@ -38,13 +38,160 @@
     "getBgErrorNotificationMessage": {
         "message": "Не удалось получить фон. Пожалуйста, попробуйте снова."
     },
-    "options_html": {
-        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"Без изменений\",\"variants\":{\"Without_changes\":\"Без изменений\",\"Unsaved_changes\":\"Не сохраненные изменения\",\"NotAImage\":\"Это не изображение 😠\",\"FillForm\":\"Заполните поля правильно 🙃\",\"SavedConfig\":\"Сохранено ✔\",\"ParametersReset\":\"Параметры сброшены ✔ перезагрузка...\"}},{\"selector\":\"section#bg-type span\",\"txtContent\":\"Тип фона:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"Нет, однотонный цвет\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"Изображение по умолчанию\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"Загрузить изображение\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"Динамические фото\",\"txtTitle\":\"Динамические фото на протяжении дня с платформы Pexels\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"Динамические видео\",\"txtTitle\":\"Динамические видео на протяжении дня с платформы Pexels.\\n❕❕Только с подключением к интернету❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"Качество фона\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"Низкое (< 720p)\",\"txtTitle\":\"Качество < 720p\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"Среднее (720p-1080p)\",\"txtTitle\":\"Качество 720p-1080p\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"Высокое (> 1080p)\",\"txtTitle\":\"Качество > 1080p\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"Выравнивание фона:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"Сверху ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"Снизу ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"По центру +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"Слева ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"Справа ➡\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"Перетащите изображение сюда для загрузки\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"Или\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"Обзор 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"Установить ➡💾\",\"txtTitle\":\"Установить параметры\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"Скрытые настройки 🤫\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"Сбросить параметры\",\"txtTitle\":\"Предупреждение: все параметры будут сброшены\"},{\"selector\":\"#rate-link\",\"txtContent\":\"Оценить расширение ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"Изменения видны без перезагрузки новой вкладки!\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- Скрытые настройки -⚠\"}]"
-    },
     "searchUnavailable": {
         "message": "Поиск недоступен. Проверьте, доступен ли поиск в браузере."
     },
     "searchFailed": {
         "message": "Не удалось выполнить поиск. Повторите попытку."
+    },
+    "optionsTitle": {
+        "message": "Настройки Simplite"
+    },
+    "sectionBackground": {
+        "message": "Фон"
+    },
+    "bgTypeLabel": {
+        "message": "Тип фона"
+    },
+    "bgTypeColor": {
+        "message": "Цвет"
+    },
+    "bgTypeDefault": {
+        "message": "Стандартный"
+    },
+    "bgTypeCustom": {
+        "message": "Своё"
+    },
+    "bgTypePhotos": {
+        "message": "Фото"
+    },
+    "bgTypeVideos": {
+        "message": "Видео"
+    },
+    "bgTypePhotosHint": {
+        "message": "Фото с Pixabay, меняющиеся в течение дня"
+    },
+    "bgTypeVideosHint": {
+        "message": "Видео с Pixabay, меняющиеся в течение дня. Требуется подключение к интернету."
+    },
+    "bgColorLabel": {
+        "message": "Цвет фона"
+    },
+    "bgColorTheme": {
+        "message": "Цвет темы"
+    },
+    "customDropHint": {
+        "message": "Перетащите изображение сюда или"
+    },
+    "customReplaceHint": {
+        "message": "Перетащите другое изображение или"
+    },
+    "customBrowse": {
+        "message": "выберите файл"
+    },
+    "customNotImage": {
+        "message": "Этот файл не является изображением."
+    },
+    "customTooLarge": {
+        "message": "Изображение слишком большое (макс. $1 МБ)."
+    },
+    "qualityLabel": {
+        "message": "Качество"
+    },
+    "qualityLow": {
+        "message": "Низкое"
+    },
+    "qualityMed": {
+        "message": "Среднее"
+    },
+    "qualityHigh": {
+        "message": "Высокое"
+    },
+    "qualityLowHint": {
+        "message": "Ниже 720p · грузится быстрее всего"
+    },
+    "qualityMedHint": {
+        "message": "720p–1080p"
+    },
+    "qualityHighHint": {
+        "message": "Выше 1080p · может грузиться дольше"
+    },
+    "newBackground": {
+        "message": "Новый фон"
+    },
+    "newBackgroundLoading": {
+        "message": "Загрузка…"
+    },
+    "newBackgroundDone": {
+        "message": "Новый фон готов"
+    },
+    "newBackgroundError": {
+        "message": "Не удалось получить новый фон. Попробуйте ещё раз."
+    },
+    "offline": {
+        "message": "Нет подключения к интернету."
+    },
+    "positionLabel": {
+        "message": "Положение"
+    },
+    "posTop": {
+        "message": "Сверху"
+    },
+    "posBottom": {
+        "message": "Снизу"
+    },
+    "posLeft": {
+        "message": "Слева"
+    },
+    "posRight": {
+        "message": "Справа"
+    },
+    "posCenter": {
+        "message": "По центру"
+    },
+    "sectionAppearance": {
+        "message": "Оформление"
+    },
+    "themeLabel": {
+        "message": "Тема"
+    },
+    "themeAuto": {
+        "message": "Авто"
+    },
+    "themeLight": {
+        "message": "Светлая"
+    },
+    "themeDark": {
+        "message": "Тёмная"
+    },
+    "sectionAdvanced": {
+        "message": "Дополнительно"
+    },
+    "slowLoadNotices": {
+        "message": "Предупреждать о медленной загрузке фона"
+    },
+    "resetAll": {
+        "message": "Сбросить всё"
+    },
+    "resetConfirm": {
+        "message": "Нажмите ещё раз для подтверждения"
+    },
+    "resetDone": {
+        "message": "Настройки сброшены"
+    },
+    "statusSaved": {
+        "message": "Сохранено"
+    },
+    "statusSaveFailed": {
+        "message": "Не удалось сохранить"
+    },
+    "footerDocs": {
+        "message": "Справка"
+    },
+    "footerRate": {
+        "message": "Оценить"
+    },
+    "footerDonate": {
+        "message": "Угостить кофе"
     }
 }

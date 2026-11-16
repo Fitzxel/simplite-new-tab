@@ -24,7 +24,7 @@
         "message": "画像の取得/処理には予想以上の時間がかかりました"
     },
     "photoDelayNotificationMessage": {
-        "message": "応答時間を短縮するために、設定で「高品質」を無効にすることを検討してください。"
+        "message": "読み込みを速くするには、設定で背景の画質を下げてみてください。"
     },
     "photoDelayNotificationPrimaryButton": {
         "message": "今後表示しない"
@@ -38,13 +38,160 @@
     "getBgErrorNotificationMessage": {
         "message": "背景を取得できませんでした。もう一度お試しください。"
     },
-    "options_html": {
-        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"変更なし\",\"variants\":{\"Without_changes\":\"変更なし\",\"Unsaved_changes\":\"保存されていない変更\",\"NotAImage\":\"これは画像ファイルではありません 😠\",\"FillForm\":\"フィールドを正しく記入してください 🙃\",\"SavedConfig\":\"設定済み ✔\",\"ParametersReset\":\"パラメータがリセットされました ✔ リロード中...\"}},{\"selector\":\"section#bg-type span\",\"txtContent\":\"背景の種類:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"なし、単色\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"デフォルト画像\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"画像のアップロード\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"ダイナミックな写真\",\"txtTitle\":\"Pexelsプラットフォームからの一日中のダイナミックな写真\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"ダイナミックな動画\",\"txtTitle\":\"Pexelsプラットフォームからの一日中のダイナミックな動画。\\n❕❕インターネット接続が必要❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"背景の品質\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"低い (< 720p)\",\"txtTitle\":\"品質 < 720p\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"中程度 (720p-1080p)\",\"txtTitle\":\"品質 720p-1080p\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"高い (> 1080p)\",\"txtTitle\":\"品質 > 1080p\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"背景の配置:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"上 ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"下 ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"中央 +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"左 ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"右 ➡\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"画像ファイルをここにドラッグしてアップロード\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"または\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"ブラウズ 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"設定する ➡💾\",\"txtTitle\":\"パラメータを設定\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"隠れたオプション 🤫\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"パラメータをリセット\",\"txtTitle\":\"注意: すべてのパラメータがリセットされます\"},{\"selector\":\"#rate-link\",\"txtContent\":\"拡張機能を評価する ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"変更を確認するには新しいタブをリロードする必要はありません！\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- 隠れたオプション -⚠\"}]"
-    },
     "searchUnavailable": {
         "message": "検索を利用できません。ブラウザーの検索機能を確認してください。"
     },
     "searchFailed": {
         "message": "検索に失敗しました。もう一度お試しください。"
+    },
+    "optionsTitle": {
+        "message": "Simplite の設定"
+    },
+    "sectionBackground": {
+        "message": "背景"
+    },
+    "bgTypeLabel": {
+        "message": "背景の種類"
+    },
+    "bgTypeColor": {
+        "message": "カラー"
+    },
+    "bgTypeDefault": {
+        "message": "デフォルト"
+    },
+    "bgTypeCustom": {
+        "message": "自分の画像"
+    },
+    "bgTypePhotos": {
+        "message": "写真"
+    },
+    "bgTypeVideos": {
+        "message": "動画"
+    },
+    "bgTypePhotosHint": {
+        "message": "時間帯に合わせて変わる Pixabay の写真"
+    },
+    "bgTypeVideosHint": {
+        "message": "時間帯に合わせて変わる Pixabay の動画。インターネット接続が必要です。"
+    },
+    "bgColorLabel": {
+        "message": "背景色"
+    },
+    "bgColorTheme": {
+        "message": "テーマの色を使う"
+    },
+    "customDropHint": {
+        "message": "画像をここにドラッグするか"
+    },
+    "customReplaceHint": {
+        "message": "別の画像をドラッグするか"
+    },
+    "customBrowse": {
+        "message": "ファイルを選択"
+    },
+    "customNotImage": {
+        "message": "このファイルは画像ではありません。"
+    },
+    "customTooLarge": {
+        "message": "画像が大きすぎます（最大 $1 MB）。"
+    },
+    "qualityLabel": {
+        "message": "画質"
+    },
+    "qualityLow": {
+        "message": "低"
+    },
+    "qualityMed": {
+        "message": "中"
+    },
+    "qualityHigh": {
+        "message": "高"
+    },
+    "qualityLowHint": {
+        "message": "720p 未満 · 最も速く読み込み"
+    },
+    "qualityMedHint": {
+        "message": "720p～1080p"
+    },
+    "qualityHighHint": {
+        "message": "1080p 超 · 読み込みが遅くなる場合あり"
+    },
+    "newBackground": {
+        "message": "新しい背景"
+    },
+    "newBackgroundLoading": {
+        "message": "読み込み中…"
+    },
+    "newBackgroundDone": {
+        "message": "新しい背景を用意しました"
+    },
+    "newBackgroundError": {
+        "message": "新しい背景を取得できませんでした。もう一度お試しください。"
+    },
+    "offline": {
+        "message": "オフラインです。"
+    },
+    "positionLabel": {
+        "message": "位置"
+    },
+    "posTop": {
+        "message": "上"
+    },
+    "posBottom": {
+        "message": "下"
+    },
+    "posLeft": {
+        "message": "左"
+    },
+    "posRight": {
+        "message": "右"
+    },
+    "posCenter": {
+        "message": "中央"
+    },
+    "sectionAppearance": {
+        "message": "外観"
+    },
+    "themeLabel": {
+        "message": "テーマ"
+    },
+    "themeAuto": {
+        "message": "自動"
+    },
+    "themeLight": {
+        "message": "ライト"
+    },
+    "themeDark": {
+        "message": "ダーク"
+    },
+    "sectionAdvanced": {
+        "message": "詳細設定"
+    },
+    "slowLoadNotices": {
+        "message": "背景の読み込みが遅いときに通知する"
+    },
+    "resetAll": {
+        "message": "すべての設定をリセット"
+    },
+    "resetConfirm": {
+        "message": "もう一度クリックして確定"
+    },
+    "resetDone": {
+        "message": "設定をリセットしました"
+    },
+    "statusSaved": {
+        "message": "保存しました"
+    },
+    "statusSaveFailed": {
+        "message": "保存できませんでした"
+    },
+    "footerDocs": {
+        "message": "ドキュメント"
+    },
+    "footerRate": {
+        "message": "評価する"
+    },
+    "footerDonate": {
+        "message": "コーヒーをおごる"
     }
 }

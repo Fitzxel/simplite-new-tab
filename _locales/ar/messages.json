@@ -24,7 +24,7 @@
         "message": "استغرق الأمر وقتًا أطول من المتوقع للحصول على/معالجة الصورة"
     },
     "photoDelayNotificationMessage": {
-        "message": "افكر في تعطيل \"جودة عالية\" في الإعدادات لتقليل وقت الاستجابة."
+        "message": "فكّر في خفض جودة الخلفية من الإعدادات لتحميل أسرع."
     },
     "photoDelayNotificationPrimaryButton": {
         "message": "عدم إظهار هذا مرة أخرى"
@@ -38,13 +38,160 @@
     "getBgErrorNotificationMessage": {
         "message": "تعذر الحصول على الخلفية، يرجى المحاولة مرة أخرى."
     },
-    "options_html": {
-        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"بدون تغييرات\",\"variants\":{\"Without_changes\":\"بدون تغييرات\",\"Unsaved_changes\":\"تغييرات غير محفوظة\",\"NotAImage\":\"هذا ليس ملف صورة 😠\",\"FillForm\":\"املأ الحقول بشكل صحيح 🙃\",\"SavedConfig\":\"تم التعيين ✔\",\"ParametersReset\":\"إعادة تعيين المعلمات ✔ جاري إعادة التحميل...\"}},{\"selector\":\"section#bg-type span\",\"txtContent\":\"نوع الخلفية:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"لا شيء، لون صلب\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"صورة افتراضية\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"رفع صورة\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"صور ديناميكية\",\"txtTitle\":\"صور ديناميكية على مدار اليوم من منصة Pexels\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"فيديوهات ديناميكية\",\"txtTitle\":\"فيديوهات ديناميكية على مدار اليوم من منصة Pexels.\\n❕❕فقط مع اتصال بالإنترنت❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"جودة الخلفية\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"منخفضة (< 720 بكسل)\",\"txtTitle\":\"جودة أقل من 720 بكسل\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"متوسطة (720 بكسل - 1080 بكسل)\",\"txtTitle\":\"جودة 720 بكسل - 1080 بكسل\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"عالية (> 1080 بكسل)\",\"txtTitle\":\"جودة أكثر من 1080 بكسل\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"محاذاة الخلفية:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"أعلى ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"أسفل ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"وسط +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"يسار ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"يمين ➡\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"اسحب ملف الصورة لتحميله هنا\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"أو\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"استعراض 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"تعيين ➡💾\",\"txtTitle\":\"تعيين المعلمات\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"خيارات مخفية 🤫\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"إعادة تعيين المعلمات\",\"txtTitle\":\"تحذير: عند الضغط يتم إعادة تعيين جميع المعلمات\"},{\"selector\":\"#rate-link\",\"txtContent\":\"تقييم الامتداد ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"ليس من الضروري إعادة تحميل علامة تبويب جديدة لرؤية التغييرات!\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- الخيارات المخفية -⚠\"}]"
-    },
     "searchUnavailable": {
         "message": "تعذر بدء البحث. تحقق من توفر البحث في متصفحك."
     },
     "searchFailed": {
         "message": "تعذر تنفيذ البحث. حاول مرة أخرى."
+    },
+    "optionsTitle": {
+        "message": "إعدادات Simplite"
+    },
+    "sectionBackground": {
+        "message": "الخلفية"
+    },
+    "bgTypeLabel": {
+        "message": "نوع الخلفية"
+    },
+    "bgTypeColor": {
+        "message": "لون"
+    },
+    "bgTypeDefault": {
+        "message": "افتراضية"
+    },
+    "bgTypeCustom": {
+        "message": "صورتك"
+    },
+    "bgTypePhotos": {
+        "message": "صور"
+    },
+    "bgTypeVideos": {
+        "message": "فيديوهات"
+    },
+    "bgTypePhotosHint": {
+        "message": "صور من Pixabay تتغير على مدار اليوم"
+    },
+    "bgTypeVideosHint": {
+        "message": "فيديوهات من Pixabay تتغير على مدار اليوم. تتطلب اتصالاً بالإنترنت."
+    },
+    "bgColorLabel": {
+        "message": "لون الخلفية"
+    },
+    "bgColorTheme": {
+        "message": "استخدام لون السمة"
+    },
+    "customDropHint": {
+        "message": "اسحب صورة إلى هنا أو"
+    },
+    "customReplaceHint": {
+        "message": "اسحب صورة أخرى أو"
+    },
+    "customBrowse": {
+        "message": "تصفح الملفات"
+    },
+    "customNotImage": {
+        "message": "هذا الملف ليس صورة."
+    },
+    "customTooLarge": {
+        "message": "الصورة كبيرة جدًا (الحد الأقصى $1 ميغابايت)."
+    },
+    "qualityLabel": {
+        "message": "الجودة"
+    },
+    "qualityLow": {
+        "message": "منخفضة"
+    },
+    "qualityMed": {
+        "message": "متوسطة"
+    },
+    "qualityHigh": {
+        "message": "عالية"
+    },
+    "qualityLowHint": {
+        "message": "أقل من 720p · الأسرع تحميلاً"
+    },
+    "qualityMedHint": {
+        "message": "720p–1080p"
+    },
+    "qualityHighHint": {
+        "message": "أعلى من 1080p · قد يكون التحميل أبطأ"
+    },
+    "newBackground": {
+        "message": "خلفية جديدة"
+    },
+    "newBackgroundLoading": {
+        "message": "جارٍ التحميل…"
+    },
+    "newBackgroundDone": {
+        "message": "الخلفية الجديدة جاهزة"
+    },
+    "newBackgroundError": {
+        "message": "تعذر الحصول على خلفية جديدة. حاول مرة أخرى."
+    },
+    "offline": {
+        "message": "أنت غير متصل بالإنترنت."
+    },
+    "positionLabel": {
+        "message": "الموضع"
+    },
+    "posTop": {
+        "message": "أعلى"
+    },
+    "posBottom": {
+        "message": "أسفل"
+    },
+    "posLeft": {
+        "message": "يسار"
+    },
+    "posRight": {
+        "message": "يمين"
+    },
+    "posCenter": {
+        "message": "وسط"
+    },
+    "sectionAppearance": {
+        "message": "المظهر"
+    },
+    "themeLabel": {
+        "message": "السمة"
+    },
+    "themeAuto": {
+        "message": "تلقائي"
+    },
+    "themeLight": {
+        "message": "فاتح"
+    },
+    "themeDark": {
+        "message": "داكن"
+    },
+    "sectionAdvanced": {
+        "message": "متقدم"
+    },
+    "slowLoadNotices": {
+        "message": "نبّهني عندما يكون تحميل الخلفيات بطيئًا"
+    },
+    "resetAll": {
+        "message": "إعادة ضبط كل الإعدادات"
+    },
+    "resetConfirm": {
+        "message": "انقر مرة أخرى للتأكيد"
+    },
+    "resetDone": {
+        "message": "تمت إعادة ضبط الإعدادات"
+    },
+    "statusSaved": {
+        "message": "تم الحفظ"
+    },
+    "statusSaveFailed": {
+        "message": "تعذر الحفظ"
+    },
+    "footerDocs": {
+        "message": "التوثيق"
+    },
+    "footerRate": {
+        "message": "قيّم الإضافة"
+    },
+    "footerDonate": {
+        "message": "اشترِ لي قهوة"
     }
 }

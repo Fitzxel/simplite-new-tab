@@ -24,7 +24,7 @@
         "message": "Es hat länger gedauert als erwartet, um das Bild zu erhalten/zu verarbeiten"
     },
     "photoDelayNotificationMessage": {
-        "message": "Überlegen Sie, die Option 'Hohe Qualität' in den Einstellungen zu deaktivieren, um die Antwortzeit zu verkürzen."
+        "message": "Verringere die Hintergrundqualität in den Einstellungen, damit er schneller lädt."
     },
     "photoDelayNotificationPrimaryButton": {
         "message": "Nicht mehr anzeigen"
@@ -38,13 +38,160 @@
     "getBgErrorNotificationMessage": {
         "message": "Der Hintergrund konnte nicht abgerufen werden. Bitte versuchen Sie es erneut."
     },
-    "options_html": {
-        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"Keine Änderungen\",\"variants\":{\"Without_changes\":\"Keine Änderungen\",\"Unsaved_changes\":\"Nicht gespeicherte Änderungen\",\"NotAImage\":\"Das ist keine Bilddatei 😠\",\"FillForm\":\"Bitte füllen Sie die Felder korrekt aus 🙃\",\"SavedConfig\":\"Gespeichert ✔\",\"ParametersReset\":\"Parameter zurückgesetzt ✔ Neuladen...\"}},{\"selector\":\"section#bg-type span\",\"txtContent\":\"Hintergrundtyp:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"Keiner, Vollfarbe\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"Standardbild\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"Bild hochladen\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"Dynamische Fotos\",\"txtTitle\":\"Dynamische Fotos im Laufe des Tages von der Pexels-Plattform\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"Dynamische Videos\",\"txtTitle\":\"Dynamische Videos im Laufe des Tages von der Pexels-Plattform.\\n❕❕Nur mit Internetverbindung❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"Qualität des Hintergrunds\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"Niedrig (< 720p)\",\"txtTitle\":\"Qualität < 720p\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"Mittel (720p-1080p)\",\"txtTitle\":\"Qualität 720p-1080p\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"Hoch (> 1080p)\",\"txtTitle\":\"Qualität > 1080p\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"Hintergrund ausrichten:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"Oben ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"Unten ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"Mitte +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"Links ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"Rechts ➡\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"Ziehen Sie die Bilddatei hierher, um sie hochzuladen\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"Oder\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"Durchsuchen 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"Festlegen ➡💾\",\"txtTitle\":\"Parameter festlegen\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"Versteckte Optionen 🤫\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"Parameter zurücksetzen\",\"txtTitle\":\"Warnung: Durch Drücken werden alle Parameter zurückgesetzt\"},{\"selector\":\"#rate-link\",\"txtContent\":\"Erweiterung bewerten ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"Es ist nicht erforderlich, den neuen Tab neu zu laden, um die Änderungen zu sehen!\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- Versteckte Optionen -⚠\"}]"
-    },
     "searchUnavailable": {
         "message": "Die Suche ist nicht verfügbar. Prüfe, ob die Suche in deinem Browser verfügbar ist."
     },
     "searchFailed": {
         "message": "Die Suche ist fehlgeschlagen. Bitte versuche es erneut."
+    },
+    "optionsTitle": {
+        "message": "Simplite-Einstellungen"
+    },
+    "sectionBackground": {
+        "message": "Hintergrund"
+    },
+    "bgTypeLabel": {
+        "message": "Hintergrundtyp"
+    },
+    "bgTypeColor": {
+        "message": "Farbe"
+    },
+    "bgTypeDefault": {
+        "message": "Standard"
+    },
+    "bgTypeCustom": {
+        "message": "Eigenes"
+    },
+    "bgTypePhotos": {
+        "message": "Fotos"
+    },
+    "bgTypeVideos": {
+        "message": "Videos"
+    },
+    "bgTypePhotosHint": {
+        "message": "Fotos von Pixabay, die sich im Laufe des Tages ändern"
+    },
+    "bgTypeVideosHint": {
+        "message": "Videos von Pixabay, die sich im Laufe des Tages ändern. Internetverbindung erforderlich."
+    },
+    "bgColorLabel": {
+        "message": "Hintergrundfarbe"
+    },
+    "bgColorTheme": {
+        "message": "Designfarbe verwenden"
+    },
+    "customDropHint": {
+        "message": "Bild hierher ziehen oder"
+    },
+    "customReplaceHint": {
+        "message": "Anderes Bild hierher ziehen oder"
+    },
+    "customBrowse": {
+        "message": "Dateien durchsuchen"
+    },
+    "customNotImage": {
+        "message": "Diese Datei ist kein Bild."
+    },
+    "customTooLarge": {
+        "message": "Das Bild ist zu groß (max. $1 MB)."
+    },
+    "qualityLabel": {
+        "message": "Qualität"
+    },
+    "qualityLow": {
+        "message": "Niedrig"
+    },
+    "qualityMed": {
+        "message": "Mittel"
+    },
+    "qualityHigh": {
+        "message": "Hoch"
+    },
+    "qualityLowHint": {
+        "message": "Unter 720p · lädt am schnellsten"
+    },
+    "qualityMedHint": {
+        "message": "720p–1080p"
+    },
+    "qualityHighHint": {
+        "message": "Über 1080p · lädt evtl. langsamer"
+    },
+    "newBackground": {
+        "message": "Neuer Hintergrund"
+    },
+    "newBackgroundLoading": {
+        "message": "Wird geladen…"
+    },
+    "newBackgroundDone": {
+        "message": "Neuer Hintergrund bereit"
+    },
+    "newBackgroundError": {
+        "message": "Kein neuer Hintergrund verfügbar. Bitte erneut versuchen."
+    },
+    "offline": {
+        "message": "Du bist offline."
+    },
+    "positionLabel": {
+        "message": "Position"
+    },
+    "posTop": {
+        "message": "Oben"
+    },
+    "posBottom": {
+        "message": "Unten"
+    },
+    "posLeft": {
+        "message": "Links"
+    },
+    "posRight": {
+        "message": "Rechts"
+    },
+    "posCenter": {
+        "message": "Mitte"
+    },
+    "sectionAppearance": {
+        "message": "Darstellung"
+    },
+    "themeLabel": {
+        "message": "Design"
+    },
+    "themeAuto": {
+        "message": "Auto"
+    },
+    "themeLight": {
+        "message": "Hell"
+    },
+    "themeDark": {
+        "message": "Dunkel"
+    },
+    "sectionAdvanced": {
+        "message": "Erweitert"
+    },
+    "slowLoadNotices": {
+        "message": "Warnen, wenn Hintergründe langsam laden"
+    },
+    "resetAll": {
+        "message": "Alles zurücksetzen"
+    },
+    "resetConfirm": {
+        "message": "Zum Bestätigen erneut klicken"
+    },
+    "resetDone": {
+        "message": "Einstellungen zurückgesetzt"
+    },
+    "statusSaved": {
+        "message": "Gespeichert"
+    },
+    "statusSaveFailed": {
+        "message": "Speichern fehlgeschlagen"
+    },
+    "footerDocs": {
+        "message": "Doku"
+    },
+    "footerRate": {
+        "message": "Bewerten"
+    },
+    "footerDonate": {
+        "message": "Spendier mir einen Kaffee"
     }
 }

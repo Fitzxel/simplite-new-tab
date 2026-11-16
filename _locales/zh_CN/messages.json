@@ -24,7 +24,7 @@
         "message": "获取/处理图像的时间超过预期"
     },
     "photoDelayNotificationMessage": {
-        "message": "考虑在设置中禁用“高质量”选项以缩短响应时间。"
+        "message": "可在设置中降低背景画质以加快加载。"
     },
     "photoDelayNotificationPrimaryButton": {
         "message": "不再显示"
@@ -38,13 +38,160 @@
     "getBgErrorNotificationMessage": {
         "message": "无法获取背景，请重试。"
     },
-    "options_html": {
-        "message": "[{\"selector\":\"#msg\",\"txtContent\":\"没有变化\",\"variants\":{\"Without_changes\":\"没有变化\",\"Unsaved_changes\":\"未保存的变化\",\"NotAImage\":\"这不是一个图片文件 😠\",\"FillForm\":\"请正确填写表单 🙃\",\"SavedConfig\":\"已保存配置 ✔\",\"ParametersReset\":\"参数已重置 ✔ 正在重新加载...\"}},{\"selector\":\"section#bg-type span\",\"txtContent\":\"背景类型:\"},{\"selector\":\"section#bg-type select option[value='1']\",\"txtContent\":\"无，纯色\"},{\"selector\":\"section#bg-type select option[value='2']\",\"txtContent\":\"默认图片\"},{\"selector\":\"section#bg-type select option[value='3']\",\"txtContent\":\"上传图片\"},{\"selector\":\"section#bg-type select option[value='4']\",\"txtContent\":\"动态照片\",\"txtTitle\":\"来自 Pexels 平台的每日动态照片\"},{\"selector\":\"section#bg-type select option[value='5']\",\"txtContent\":\"动态视频\",\"txtTitle\":\"来自 Pexels 平台的每日动态视频。\\n❕❕仅限网络连接❕❕\"},{\"selector\":\"section#bg-quality span\",\"txtContent\":\"背景质量\"},{\"selector\":\"section#bg-quality select option[value='low']\",\"txtContent\":\"低 (< 720p)\",\"txtTitle\":\"质量 < 720p\"},{\"selector\":\"section#bg-quality select option[value='med']\",\"txtContent\":\"中等 (720p-1080p)\",\"txtTitle\":\"质量 720p-1080p\"},{\"selector\":\"section#bg-quality select option[value='high']\",\"txtContent\":\"高 (> 1080p)\",\"txtTitle\":\"质量 > 1080p\"},{\"selector\":\"section#bg-align span\",\"txtContent\":\"背景对齐:\"},{\"selector\":\"section#bg-align select option[value='top']\",\"txtContent\":\"顶部 ⬆\"},{\"selector\":\"section#bg-align select option[value='bottom']\",\"txtContent\":\"底部 ⬇\"},{\"selector\":\"section#bg-align select option[value='center']\",\"txtContent\":\"居中 +\"},{\"selector\":\"section#bg-align select option[value='left']\",\"txtContent\":\"左侧 ⬅\"},{\"selector\":\"section#bg-align select option[value='right']\",\"txtContent\":\"右侧 ➡\"},{\"selector\":\"#form section.file span\",\"txtContent\":\"拖放图片文件到此处上传\"},{\"selector\":\"#form section.file b\",\"txtContent\":\"或者\"},{\"selector\":\"#form section.file #browse-img-btn\",\"txtContent\":\"浏览 📁\"},{\"selector\":\"#submit-btn\",\"txtContent\":\"设置 ➡💾\",\"txtTitle\":\"设置参数\"},{\"selector\":\"#alt-hidden-options\",\"txtTitle\":\"隐藏选项 🤫\"},{\"selector\":\"#reset-btn\",\"txtContent\":\"重置参数\",\"txtTitle\":\"警告：点击后将重置所有参数\"},{\"selector\":\"#rate-link\",\"txtContent\":\"评价扩展 ⭐\"},{\"selector\":\"footer .under-text\",\"txtContent\":\"无需重新加载新标签页即可查看更改！\"},{\"selector\":\"section#hidden-options h2\",\"txtContent\":\"⚠- 隐藏选项 -⚠\"}]"
-    },
     "searchUnavailable": {
         "message": "搜索不可用。请检查浏览器搜索功能是否可用。"
     },
     "searchFailed": {
         "message": "搜索失败，请重试。"
+    },
+    "optionsTitle": {
+        "message": "Simplite 设置"
+    },
+    "sectionBackground": {
+        "message": "背景"
+    },
+    "bgTypeLabel": {
+        "message": "背景类型"
+    },
+    "bgTypeColor": {
+        "message": "颜色"
+    },
+    "bgTypeDefault": {
+        "message": "默认"
+    },
+    "bgTypeCustom": {
+        "message": "我的图片"
+    },
+    "bgTypePhotos": {
+        "message": "照片"
+    },
+    "bgTypeVideos": {
+        "message": "视频"
+    },
+    "bgTypePhotosHint": {
+        "message": "来自 Pixabay、随时段变化的照片"
+    },
+    "bgTypeVideosHint": {
+        "message": "来自 Pixabay、随时段变化的视频。需要网络连接。"
+    },
+    "bgColorLabel": {
+        "message": "背景颜色"
+    },
+    "bgColorTheme": {
+        "message": "使用主题颜色"
+    },
+    "customDropHint": {
+        "message": "将图片拖到此处，或"
+    },
+    "customReplaceHint": {
+        "message": "拖入另一张图片，或"
+    },
+    "customBrowse": {
+        "message": "浏览文件"
+    },
+    "customNotImage": {
+        "message": "该文件不是图片。"
+    },
+    "customTooLarge": {
+        "message": "图片过大（最大 $1 MB）。"
+    },
+    "qualityLabel": {
+        "message": "画质"
+    },
+    "qualityLow": {
+        "message": "低"
+    },
+    "qualityMed": {
+        "message": "中"
+    },
+    "qualityHigh": {
+        "message": "高"
+    },
+    "qualityLowHint": {
+        "message": "低于 720p · 加载最快"
+    },
+    "qualityMedHint": {
+        "message": "720p–1080p"
+    },
+    "qualityHighHint": {
+        "message": "高于 1080p · 加载可能较慢"
+    },
+    "newBackground": {
+        "message": "换一张背景"
+    },
+    "newBackgroundLoading": {
+        "message": "加载中…"
+    },
+    "newBackgroundDone": {
+        "message": "新背景已就绪"
+    },
+    "newBackgroundError": {
+        "message": "无法获取新背景，请重试。"
+    },
+    "offline": {
+        "message": "你已离线。"
+    },
+    "positionLabel": {
+        "message": "位置"
+    },
+    "posTop": {
+        "message": "上"
+    },
+    "posBottom": {
+        "message": "下"
+    },
+    "posLeft": {
+        "message": "左"
+    },
+    "posRight": {
+        "message": "右"
+    },
+    "posCenter": {
+        "message": "居中"
+    },
+    "sectionAppearance": {
+        "message": "外观"
+    },
+    "themeLabel": {
+        "message": "主题"
+    },
+    "themeAuto": {
+        "message": "自动"
+    },
+    "themeLight": {
+        "message": "浅色"
+    },
+    "themeDark": {
+        "message": "深色"
+    },
+    "sectionAdvanced": {
+        "message": "高级"
+    },
+    "slowLoadNotices": {
+        "message": "背景加载缓慢时提醒我"
+    },
+    "resetAll": {
+        "message": "重置所有设置"
+    },
+    "resetConfirm": {
+        "message": "再次点击以确认"
+    },
+    "resetDone": {
+        "message": "设置已重置"
+    },
+    "statusSaved": {
+        "message": "已保存"
+    },
+    "statusSaveFailed": {
+        "message": "保存失败"
+    },
+    "footerDocs": {
+        "message": "文档"
+    },
+    "footerRate": {
+        "message": "评分"
+    },
+    "footerDonate": {
+        "message": "请我喝杯咖啡"
     }
 }

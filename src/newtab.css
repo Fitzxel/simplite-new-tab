@@ -64,6 +64,9 @@ body {
     font-size: 20px;
 }
 
+.search-input:focus-visible {
+    outline: none; /* the form's accent border already marks focus */
+}
 .search-input::placeholder {
     color: #fff9;
 }

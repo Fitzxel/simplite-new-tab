@@ -1,223 +1,293 @@
-// popup scripts
-const langData = JSON.parse(chrome.i18n.getMessage('options_html'));
+// Popup / options page. Every change is saved immediately; the new tab page
+// listens to storage changes, so nothing needs to be reloaded.
+const Settings = globalThis.SimpliteSettings;
+const BG = Settings.BG;
+const MAX_IMAGE_MB = 20;
 
-const Without_changes = langData[0].variants.Without_changes;
-const Unsaved_changes = langData[0].variants.Unsaved_changes;
-const NotAImage = langData[0].variants.NotAImage;
-const FillForm = langData[0].variants.FillForm;
-const SavedConfig = langData[0].variants.SavedConfig;
-const ParametersReset = langData[0].variants.ParametersReset;
+const $ = selector => document.querySelector(selector);
+const msg = (key, subs) => chrome.i18n.getMessage(key, subs) || key;
 
-langData.forEach(obj => {
-    const objElement = document.querySelector(obj.selector);
-    if (objElement) {
-        // textContent
-        if (obj.txtContent) objElement.textContent = obj.txtContent;
-        // placeholder
-        if (obj.txtPlaceholder) objElement.placeholder = obj.txtPlaceholder;
-        // innerHTML
-        if (obj.txtInnerHTML) objElement.innerHTML = obj.txtInnerHTML;
-        // title
-        if (obj.txtTitle) objElement.title = obj.txtTitle;
-    }
-});
+// ---------- i18n ----------
+document.documentElement.lang = chrome.i18n.getUILanguage();
+document.documentElement.dir = chrome.i18n.getMessage('@@bidi_dir') || 'ltr';
+for (const el of document.querySelectorAll('[data-i18n]')) el.textContent = msg(el.dataset.i18n);
+for (const el of document.querySelectorAll('[data-i18n-title]')) el.title = msg(el.dataset.i18nTitle);
+for (const el of document.querySelectorAll('[data-i18n-aria]')) el.setAttribute('aria-label', msg(el.dataset.i18nAria));
+$('#version').textContent = `v${chrome.runtime.getManifest().version}`;
 
-document.documentElement.addEventListener('submit', (event)=> {
-    event.preventDefault();
-});
+// ---------- State ----------
+let saved = Settings.withDefaults();
+// The tile the user picked. It can differ from the saved type while
+// "Your image" is selected but no image has been chosen yet.
+let uiType = saved.backgroundType;
 
-const selector = id=> {
-    return document.querySelector(`#select-${id}`);
+const ui = {
+    toast: $('#toast'),
+    thumbColor: $('#thumb-color'),
+    thumbCustom: $('#thumb-custom'),
+    thumbPhotos: $('#thumb-photos'),
+    panels: document.querySelectorAll('.panel[data-for]'),
+    positionRow: $('#position-row'),
+    color: $('#bg-color'),
+    colorTheme: $('#bg-color-theme'),
+    drop: $('#drop-file'),
+    dropHint: $('#drop-hint'),
+    dropError: $('#drop-error'),
+    dropProgress: $('#drop-progress'),
+    preview: $('#custom-preview'),
+    fileInput: $('#input-file'),
+    newBg: $('#new-bg-btn'),
+    slow: $('#slow-notices'),
+    reset: $('#reset-btn'),
+};
+
+function setRadio(name, value) {
+    const input = document.querySelector(`input[name="${name}"][value="${value}"]`);
+    if (input) input.checked = true;
 }
 
-// show message function
-function showMSG(msg, type) {
-    document.querySelector('#msg').textContent = msg;
-    // error msg
-    if (type == 0) {
-        document.querySelector('#msg').style.background = '#ee0000';
-        document.querySelector('#msg').style.color = 'var(--sl-color-text)';
-    }
-    // correct or confirm msg
-    else if (type == 1) {
-        document.querySelector('#msg').style.background = '#33ee00';
-        document.querySelector('#msg').style.color = '';
-    }
-    // pending or alert msg
-    else if (type == 2) {
-        document.querySelector('#msg').style.background = '#eebb00';
-        document.querySelector('#msg').style.color = '';
-    }
-    // 
-    else {
-        document.querySelector('#msg').style.background = '';
-        document.querySelector('#msg').style.color = '';
+function setImage(img, src) {
+    if (src) {
+        if (img.getAttribute('src') !== src) img.src = src;
+        img.hidden = false;
+    } else {
+        img.removeAttribute('src');
+        img.hidden = true;
     }
 }
 
-//
-function verifyChanges() {
-    chrome.storage.local.get(['backgroundType', 'backgroundAlign', 'backgroundImageData', 'backgroundQuality'], (result)=> {
-        if (result.backgroundType == selector('bg-type').value && result.backgroundImageData == imgData && result.backgroundAlign == selector('bg-align').value && result.backgroundQuality == selector('bg-quality').value) {
-            showMSG(Without_changes);
-        }
-        else showMSG(Unsaved_changes, 2);
-        // if backgroundType and the bg-type selector not have same value, the 3 value on specific
-        // need verifiy if imgData have something value
-        if (selector('bg-type').value == 3 && imgData.length <= 0) {
-            showMSG(Without_changes);
-        }
-    });
+function applyTheme(theme) {
+    if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    else delete document.documentElement.dataset.theme;
 }
 
-const form = document.querySelector('#form');
-const submitBtn = document.querySelector('#submit-btn');
+function themePageColor() {
+    const value = getComputedStyle(document.documentElement).getPropertyValue('--bg-page').trim();
+    return /^#[0-9a-f]{6}$/i.test(value) ? value : '#242424';
+}
 
-// background align
-chrome.storage.local.get(['backgroundAlign'], (result)=> {
-    selector('bg-align').value = result.backgroundAlign;
-});
+function render() {
+    setRadio('bgType', uiType);
+    setRadio('quality', saved.backgroundQuality);
+    setRadio('align', saved.backgroundAlign);
+    setRadio('theme', saved.theme);
+    applyTheme(saved.theme);
 
-selector('bg-align').addEventListener('input', ()=> {
-    verifyChanges();
-});
+    for (const panel of ui.panels) panel.hidden = !panel.dataset.for.split(' ').includes(uiType);
+    ui.positionRow.hidden = uiType === BG.COLOR;
 
-// background type
-chrome.storage.local.get(['backgroundType'], (result)=> {
-    selector('bg-type').value = result.backgroundType;
-    if (selector('bg-type').value == 3) {
-        form.classList.add('file');
-        form.classList.remove('text');
+    // Thumbnails
+    ui.thumbColor.style.background = saved.backgroundColor || '';
+    setImage(ui.thumbCustom, saved.backgroundImageData);
+    setImage(ui.thumbPhotos, saved.dynamicPhotoData.dataURL);
+
+    // Solid color
+    if (document.activeElement !== ui.color) ui.color.value = saved.backgroundColor || themePageColor();
+    ui.colorTheme.hidden = !saved.backgroundColor;
+
+    // Custom image
+    const hasImage = Boolean(saved.backgroundImageData);
+    setImage(ui.preview, saved.backgroundImageData);
+    ui.drop.classList.toggle('has-image', hasImage);
+    ui.dropHint.textContent = msg(hasImage ? 'customReplaceHint' : 'customDropHint');
+
+    ui.slow.checked = saved.getPhotoDelay;
+}
+
+// ---------- Saving ----------
+let toastTimer;
+function toast(text, tone = 'ok') {
+    clearTimeout(toastTimer);
+    ui.toast.textContent = text;
+    ui.toast.dataset.tone = tone;
+    ui.toast.classList.add('show');
+    toastTimer = setTimeout(() => ui.toast.classList.remove('show'), tone === 'error' ? 3500 : 1600);
+}
+
+async function save(patch, {quiet = false} = {}) {
+    try {
+        await chrome.storage.local.set(patch);
+        Object.assign(saved, patch);
+        render();
+        if (!quiet) toast(msg('statusSaved'));
+    } catch (error) {
+        console.error('Failed to save settings:', error);
+        toast(msg('statusSaveFailed'), 'error');
     }
-});
+}
 
-selector('bg-type').addEventListener('input', ()=> {
-    if (selector('bg-type').value == 3) {
-        form.classList.add('file');
+// ---------- Background type ----------
+document.querySelectorAll('input[name="bgType"]').forEach(input => input.addEventListener('change', () => {
+    uiType = input.value;
+    hideDropError();
+    if (uiType === BG.CUSTOM && !saved.backgroundImageData) {
+        // Nothing to show yet: wait until an image is chosen before saving.
+        render();
+        ui.drop.querySelector('#browse-img-btn').focus({preventScroll: true});
+        return;
     }
-    else {
-        form.classList.remove('file');
-    }
-    verifyChanges();
+    save({backgroundType: uiType});
+    if (Settings.isDynamic(uiType)) requestDynamic(false);
+}));
+
+// ---------- Solid color ----------
+let colorTimer;
+ui.color.addEventListener('input', () => {
+    clearTimeout(colorTimer);
+    const value = ui.color.value;
+    colorTimer = setTimeout(() => save({backgroundColor: value}, {quiet: true}), 80);
 });
-
-// background quality
-chrome.storage.local.get(['backgroundQuality'], (result)=> {
-    selector('bg-quality').value = result.backgroundQuality;
+ui.color.addEventListener('change', () => {
+    clearTimeout(colorTimer);
+    save({backgroundColor: ui.color.value});
 });
+ui.colorTheme.addEventListener('click', () => save({backgroundColor: ''}));
 
-selector('bg-quality').addEventListener('input', ()=> {
-    verifyChanges();
-});
+// ---------- Custom image ----------
+function showDropError(text) {
+    ui.dropError.textContent = text;
+    ui.dropError.hidden = false;
+}
+function hideDropError() {
+    ui.dropError.hidden = true;
+    ui.dropError.textContent = '';
+}
 
-// file background
-const imgInput = document.querySelector('#input-file');
+function readImage(file) {
+    hideDropError();
+    if (!file) return;
+    if (!file.type.startsWith('image/')) return showDropError(msg('customNotImage'));
+    if (file.size > MAX_IMAGE_MB * 1024 * 1024) return showDropError(msg('customTooLarge', [String(MAX_IMAGE_MB)]));
 
-let imgData;
-chrome.storage.local.get(['backgroundImageData'], (result)=> {
-    imgData = result.backgroundImageData;
-});
-
-// browse image file
-document.querySelector('#browse-img-btn').addEventListener('click', ()=> {
-    imgInput.click();
-});
-
-imgInput.addEventListener('input', (e)=> {
-    readIMGFile(imgInput.files[0]);
-});
-
-// read file
-function readIMGFile(file) {
-    // declare reader
-    let reader = new FileReader();
-    reader.addEventListener('load', (e)=> {
-        imgData = e.target.result;
-        dropFile.style.background = '';
-        setTimeout(() => {
-            dropFile.querySelector('.progress-bar').style.display = `none`;
-        }, 200);
-        //
-        verifyChanges();
+    const bar = ui.dropProgress.firstElementChild;
+    const reader = new FileReader();
+    bar.style.width = '0%';
+    ui.dropProgress.hidden = false;
+    reader.addEventListener('progress', e => {
+        if (e.lengthComputable) bar.style.width = `${Math.round(e.loaded / e.total * 100)}%`;
     });
-    reader.addEventListener('progress', (e)=> {
-        dropFile.querySelector('.progress-bar').style.display = ``;
-        dropFile.querySelector('.progress-bar').style.width = `${Math.round(e.loaded / file.size * 100)}%`;
+    reader.addEventListener('load', async () => {
+        bar.style.width = '100%';
+        uiType = BG.CUSTOM;
+        await save({backgroundImageData: reader.result, backgroundType: BG.CUSTOM});
+        setTimeout(() => { ui.dropProgress.hidden = true; }, 250);
     });
-    // read file
+    reader.addEventListener('error', () => {
+        ui.dropProgress.hidden = true;
+        showDropError(msg('customNotImage'));
+    });
     reader.readAsDataURL(file);
 }
 
-// drag & drop image file
-const dropFile = document.querySelector('#drop-file');
-dropFile.addEventListener('dragover', (e)=> {
+$('#browse-img-btn').addEventListener('click', e => {
+    e.stopPropagation();
+    ui.fileInput.click();
+});
+ui.drop.addEventListener('click', () => ui.fileInput.click());
+ui.fileInput.addEventListener('change', () => {
+    readImage(ui.fileInput.files[0]);
+    ui.fileInput.value = '';
+});
+
+let dragDepth = 0;
+ui.drop.addEventListener('dragenter', e => {
     e.preventDefault();
-    dropFile.style.background = 'var(--sl-opaque-background-elements)';
+    dragDepth++;
+    ui.drop.classList.add('dragging');
 });
-dropFile.addEventListener('dragleave', (e)=> {
+ui.drop.addEventListener('dragover', e => e.preventDefault());
+ui.drop.addEventListener('dragleave', () => {
+    if (--dragDepth <= 0) {
+        dragDepth = 0;
+        ui.drop.classList.remove('dragging');
+    }
+});
+ui.drop.addEventListener('drop', e => {
     e.preventDefault();
-    dropFile.style.background = '';
-});
-dropFile.addEventListener('drop', (e)=> {
-   e.preventDefault();
-   if (e.dataTransfer.files[0] && e.dataTransfer.files[0].type.includes('image')) {
-    readIMGFile(e.dataTransfer.files[0]);
-   }
-   else {
-    dropFile.querySelector('.progress-bar').style.transition = '0s';
-    dropFile.querySelector('.progress-bar').style.background = '#f00';
-    dropFile.querySelector('.progress-bar').style.width = `100%`;
-    showMSG(NotAImage, 0);
-   }
+    dragDepth = 0;
+    ui.drop.classList.remove('dragging');
+    readImage(e.dataTransfer.files[0]);
 });
 
-// apply changes (all parameters)
-submitBtn.addEventListener('click', ()=> {
-    // set background type
-    if (selector('bg-type').value != 3) {
-        chrome.storage.local.set({'backgroundType':selector('bg-type').value});
-        if (selector('bg-type').value == 4) chrome.runtime.sendMessage({dynamicBg:{force: false, type: 'photos'}});
-        if (selector('bg-type').value == 5) chrome.runtime.sendMessage({dynamicBg:{force: false, type: 'videos'}});
+// ---------- Dynamic backgrounds ----------
+async function requestDynamic(force) {
+    const type = uiType === BG.VIDEOS ? 'videos' : 'photos';
+    try {
+        const response = await chrome.runtime.sendMessage({dynamicBg: {force, type}});
+        return Boolean(response?.ok);
+    } catch (error) {
+        console.error('Failed to request a dynamic background:', error);
+        return false;
     }
-    // set background image data
-    if (selector('bg-type').value == 3 && imgData.length > 0) {
-        chrome.storage.local.set({'backgroundType':selector('bg-type').value});
-        chrome.storage.local.set({'backgroundImageData':imgData});
+}
+
+document.querySelectorAll('input[name="quality"]').forEach(input => input.addEventListener('change', () => {
+    save({backgroundQuality: input.value});
+}));
+
+ui.newBg.addEventListener('click', async () => {
+    if (!navigator.onLine) return toast(msg('offline'), 'error');
+    const label = ui.newBg.querySelector('span');
+    ui.newBg.disabled = true;
+    ui.newBg.setAttribute('aria-busy', 'true');
+    label.textContent = msg('newBackgroundLoading');
+    const ok = await requestDynamic(true);
+    ui.newBg.disabled = false;
+    ui.newBg.removeAttribute('aria-busy');
+    label.textContent = msg('newBackground');
+    toast(msg(ok ? 'newBackgroundDone' : 'newBackgroundError'), ok ? 'ok' : 'error');
+});
+
+// ---------- Position, theme, advanced ----------
+document.querySelectorAll('input[name="align"]').forEach(input => input.addEventListener('change', () => {
+    save({backgroundAlign: input.value});
+}));
+document.querySelectorAll('input[name="theme"]').forEach(input => input.addEventListener('change', () => {
+    save({theme: input.value});
+}));
+ui.slow.addEventListener('change', () => save({getPhotoDelay: ui.slow.checked}));
+
+let resetTimer;
+function disarmReset() {
+    clearTimeout(resetTimer);
+    delete ui.reset.dataset.confirm;
+    ui.reset.textContent = msg('resetAll');
+}
+ui.reset.addEventListener('click', async () => {
+    if (!ui.reset.dataset.confirm) {
+        ui.reset.dataset.confirm = '';
+        ui.reset.textContent = msg('resetConfirm');
+        resetTimer = setTimeout(disarmReset, 3000);
+        return;
     }
-    // set background type
-    chrome.storage.local.set({'backgroundAlign':selector('bg-align').value});
-    // set background quality
-    chrome.storage.local.set({'backgroundQuality':selector('bg-quality').value});
-    //
-    showMSG(SavedConfig, 1);
+    disarmReset();
+    const defaults = Settings.defaults();
+    await chrome.storage.local.set(defaults);
+    saved = defaults;
+    uiType = saved.backgroundType;
+    hideDropError();
+    render();
+    toast(msg('resetDone'));
+});
+ui.reset.addEventListener('blur', disarmReset);
+
+// ---------- Sync ----------
+// Keep in step with changes made elsewhere (background fetches, another
+// settings page, the notification buttons).
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== 'local') return;
+    const keys = Object.keys(changes).filter(key => Settings.KEYS.includes(key));
+    if (!keys.length) return;
+    const next = {...saved};
+    for (const key of keys) next[key] = changes[key].newValue;
+    const previousType = saved.backgroundType;
+    saved = Settings.withDefaults(next);
+    if (saved.backgroundType !== previousType) uiType = saved.backgroundType;
+    render();
 });
 
-// alt hidden options
-document.querySelector('#alt-hidden-options').addEventListener('click', ()=> {
-    document.querySelector('#hidden-options').classList.toggle('show');
-});
-
-// reset parameters
-document.querySelector('#reset-btn').addEventListener('click', ()=> {
-    chrome.storage.local.set({'backgroundType':2});
-    chrome.storage.local.set({'backgroundImageData':''});
-    chrome.storage.local.set({'backgroundAlign':'center'});
-    chrome.storage.local.set({'backgroundQuality':'med'});
-    chrome.storage.local.set({'dynamicPhotoData':{
-        dataURL: '',
-        photographer_name: '',
-        photographer_url: '',
-        qTime: ''
-    }});
-    chrome.storage.local.set({'dynamicVideoData':{
-        dataURL: '',
-        photographer_name: '',
-        photographer_url: '',
-        qTime: ''
-    }});
-    //
-    showMSG(ParametersReset, 1);
-    setTimeout(() => {
-        location.reload();
-    }, 1000);
+chrome.storage.local.get(Settings.KEYS, values => {
+    saved = Settings.withDefaults(values);
+    uiType = saved.backgroundType;
+    render();
 });
