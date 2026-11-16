@@ -193,5 +193,14 @@
     },
     "footerDonate": {
         "message": "Invítame un café"
+    },
+    "searchBarLabel": {
+        "message": "Barra de búsqueda"
+    },
+    "searchBarModern": {
+        "message": "Moderna"
+    },
+    "searchBarClassic": {
+        "message": "Clásica"
     }
 }

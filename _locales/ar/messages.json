@@ -193,5 +193,14 @@
     },
     "footerDonate": {
         "message": "اشترِ لي قهوة"
+    },
+    "searchBarLabel": {
+        "message": "شريط البحث"
+    },
+    "searchBarModern": {
+        "message": "حديث"
+    },
+    "searchBarClassic": {
+        "message": "كلاسيكي"
     }
 }

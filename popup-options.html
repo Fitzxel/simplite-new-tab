@@ -6,6 +6,7 @@
     <title data-i18n="optionsTitle">Simplite</title>
     <link rel="stylesheet" href="src/simplite-general.css">
     <link rel="stylesheet" href="src/popup.css">
+    <script src="src/boot.js"></script>
 </head>
 <body>
     <header class="top">
@@ -165,6 +166,13 @@
                     <label><input class="sr-only" type="radio" name="theme" value="auto"><span data-i18n="themeAuto"></span></label>
                     <label><input class="sr-only" type="radio" name="theme" value="light"><span data-i18n="themeLight"></span></label>
                     <label><input class="sr-only" type="radio" name="theme" value="dark"><span data-i18n="themeDark"></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <span class="row-label" id="searchbar-label" data-i18n="searchBarLabel"></span>
+                <div class="seg" role="radiogroup" aria-labelledby="searchbar-label">
+                    <label><input class="sr-only" type="radio" name="searchBarStyle" value="modern"><span data-i18n="searchBarModern"></span></label>
+                    <label><input class="sr-only" type="radio" name="searchBarStyle" value="classic"><span data-i18n="searchBarClassic"></span></label>
                 </div>
             </div>
         </section>

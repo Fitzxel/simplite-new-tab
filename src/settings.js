@@ -17,6 +17,12 @@
     const ALIGNS = Object.freeze(['top', 'bottom', 'center', 'left', 'right']);
     const QUALITIES = Object.freeze(['low', 'med', 'high']);
     const THEMES = Object.freeze(['auto', 'light', 'dark']);
+    const SEARCHBAR_STYLES = Object.freeze(['modern', 'classic']);
+
+    // Settings that change how a page looks before its scripts run. They are
+    // mirrored to localStorage so src/boot.js can apply them synchronously.
+    const MIRRORED_KEYS = Object.freeze(['theme', 'searchBarStyle']);
+    const MIRROR_PREFIX = 'simplite.';
 
     // Keys from older versions that are no longer read.
     const OBSOLETE_KEYS = Object.freeze(['highQuality']);
@@ -31,6 +37,7 @@
         // Empty string means "follow the theme's page color".
         backgroundColor: '',
         theme: 'auto',
+        searchBarStyle: 'modern',
         getPhotoDelay: true,
         dynamicPhotoData: Object.freeze(emptyMedia()),
         dynamicVideoData: Object.freeze(emptyMedia()),
@@ -61,6 +68,7 @@
         out.backgroundAlign = pick(out.backgroundAlign, ALIGNS, DEFAULTS.backgroundAlign);
         out.backgroundQuality = pick(out.backgroundQuality, QUALITIES, DEFAULTS.backgroundQuality);
         out.theme = pick(out.theme, THEMES, DEFAULTS.theme);
+        out.searchBarStyle = pick(out.searchBarStyle, SEARCHBAR_STYLES, DEFAULTS.searchBarStyle);
         if (typeof out.backgroundColor !== 'string') out.backgroundColor = '';
         if (typeof out.backgroundImageData !== 'string') out.backgroundImageData = '';
         out.getPhotoDelay = out.getPhotoDelay !== false;
@@ -80,11 +88,28 @@
         return patch;
     }
 
+    // Sets <html data-theme> / <html data-searchbar> and refreshes the mirror.
+    function applyAppearance(state, root = globalThis.document?.documentElement) {
+        if (root) {
+            if (state.theme === 'light' || state.theme === 'dark') root.dataset.theme = state.theme;
+            else delete root.dataset.theme;
+            root.dataset.searchbar = state.searchBarStyle;
+        }
+        try {
+            for (const key of MIRRORED_KEYS) globalThis.localStorage.setItem(MIRROR_PREFIX + key, state[key]);
+        } catch {
+            // localStorage unavailable: the page still renders, just without the early hint.
+        }
+    }
+
     globalThis.SimpliteSettings = Object.freeze({
         BG,
         ALIGNS,
         QUALITIES,
         THEMES,
+        SEARCHBAR_STYLES,
+        MIRRORED_KEYS,
+        MIRROR_PREFIX,
         KEYS,
         OBSOLETE_KEYS,
         DEFAULTS,
@@ -93,6 +118,7 @@
         normalizeBackgroundType,
         withDefaults,
         migrationPatch,
+        applyAppearance,
         isDynamic: type => type === BG.PHOTOS || type === BG.VIDEOS,
     });
 })();

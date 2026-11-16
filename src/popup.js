@@ -56,11 +56,6 @@ function setImage(img, src) {
     }
 }
 
-function applyTheme(theme) {
-    if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
-    else delete document.documentElement.dataset.theme;
-}
-
 function themePageColor() {
     const value = getComputedStyle(document.documentElement).getPropertyValue('--bg-page').trim();
     return /^#[0-9a-f]{6}$/i.test(value) ? value : '#242424';
@@ -71,7 +66,8 @@ function render() {
     setRadio('quality', saved.backgroundQuality);
     setRadio('align', saved.backgroundAlign);
     setRadio('theme', saved.theme);
-    applyTheme(saved.theme);
+    setRadio('searchBarStyle', saved.searchBarStyle);
+    Settings.applyAppearance(saved);
 
     for (const panel of ui.panels) panel.hidden = !panel.dataset.for.split(' ').includes(uiType);
     ui.positionRow.hidden = uiType === BG.COLOR;
@@ -244,6 +240,9 @@ document.querySelectorAll('input[name="align"]').forEach(input => input.addEvent
 }));
 document.querySelectorAll('input[name="theme"]').forEach(input => input.addEventListener('change', () => {
     save({theme: input.value});
+}));
+document.querySelectorAll('input[name="searchBarStyle"]').forEach(input => input.addEventListener('change', () => {
+    save({searchBarStyle: input.value});
 }));
 ui.slow.addEventListener('change', () => save({getPhotoDelay: ui.slow.checked}));
 

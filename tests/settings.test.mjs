@@ -73,6 +73,7 @@ test('new tab applies every key when several settings change at once', () => {
         backgroundImageData: {newValue: 'data:image/png;base64,AAA'},
         backgroundAlign: {newValue: 'top'},
         theme: {newValue: 'dark'},
+        searchBarStyle: {newValue: 'classic'},
     }, 'local');
     timers.forEach(fn => fn());
 
@@ -80,4 +81,48 @@ test('new tab applies every key when several settings change at once', () => {
     assert.equal(img.style.objectPosition, 'top');
     assert.equal(element('#video-bg').style.objectPosition, 'top');
     assert.equal(context.document.documentElement.dataset.theme, 'dark');
+    assert.equal(context.document.documentElement.dataset.searchbar, 'classic');
+});
+
+const bootSource = await readFile(new URL('../src/boot.js', import.meta.url), 'utf8');
+
+function memoryStorage(initial = {}) {
+    const data = {...initial};
+    return {getItem: key => (key in data ? data[key] : null), setItem: (key, value) => { data[key] = String(value); }, data};
+}
+
+test('appearance is mirrored to localStorage and restored by boot.js before paint', () => {
+    const storage = memoryStorage();
+    const context = vm.createContext({localStorage: storage, document: {documentElement: {dataset: {}}}});
+    vm.runInContext(settingsSource, context);
+    context.SimpliteSettings.applyAppearance(context.SimpliteSettings.withDefaults({theme: 'light', searchBarStyle: 'classic'}));
+    assert.equal(storage.data['simplite.searchBarStyle'], 'classic');
+
+    const page = vm.createContext({localStorage: storage, document: {documentElement: {dataset: {}}}});
+    vm.runInContext(bootSource, page);
+    assert.equal(page.document.documentElement.dataset.searchbar, 'classic');
+    assert.equal(page.document.documentElement.dataset.theme, 'light');
+});
+
+test('boot.js defaults to the modern bar when nothing is stored or storage is blocked', () => {
+    const empty = vm.createContext({localStorage: memoryStorage(), document: {documentElement: {dataset: {}}}});
+    vm.runInContext(bootSource, empty);
+    assert.equal(empty.document.documentElement.dataset.searchbar, 'modern');
+    assert.equal(empty.document.documentElement.dataset.theme, undefined);
+
+    const blocked = vm.createContext({get localStorage() { throw new Error('blocked'); }, document: {documentElement: {dataset: {}}}});
+    vm.runInContext(bootSource, blocked);
+    assert.equal(blocked.document.documentElement.dataset.searchbar, 'modern');
+});
+
+test('both search bar stylesheets are loaded and scoped to their style', async () => {
+    const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+    assert.match(html, /<script src="src\/boot\.js"><\/script>[\s\S]*<\/head>/);
+    for (const [file, scope] of [['classic', ':root[data-searchbar="classic"]'], ['modern', ':root:not([data-searchbar="classic"])']]) {
+        assert.match(html, new RegExp(`href="src/searchbar-${file}\\.css"`));
+        const css = await readFile(new URL(`../src/searchbar-${file}.css`, import.meta.url), 'utf8');
+        const selectors = css.replace(/\/\*[\s\S]*?\*\//g, '').match(/^[^\s{}][^{]*(?=\{)/gm);
+        assert.ok(selectors.length > 0);
+        for (const group of selectors) for (const sel of group.split(',')) assert.ok(sel.trim().startsWith(scope), `${file}: ${sel}`);
+    }
 });

@@ -193,5 +193,14 @@
     },
     "footerDonate": {
         "message": "请我喝杯咖啡"
+    },
+    "searchBarLabel": {
+        "message": "搜索栏"
+    },
+    "searchBarModern": {
+        "message": "现代"
+    },
+    "searchBarClassic": {
+        "message": "经典"
     }
 }

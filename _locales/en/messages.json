@@ -193,5 +193,14 @@
     },
     "footerDonate": {
         "message": "Buy me a coffee"
+    },
+    "searchBarLabel": {
+        "message": "Search bar"
+    },
+    "searchBarModern": {
+        "message": "Modern"
+    },
+    "searchBarClassic": {
+        "message": "Classic"
     }
 }

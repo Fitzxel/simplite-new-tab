@@ -193,5 +193,14 @@
     },
     "footerDonate": {
         "message": "Угостить кофе"
+    },
+    "searchBarLabel": {
+        "message": "Строка поиска"
+    },
+    "searchBarModern": {
+        "message": "Современная"
+    },
+    "searchBarClassic": {
+        "message": "Классическая"
     }
 }

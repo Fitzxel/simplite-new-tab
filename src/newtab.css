@@ -15,47 +15,11 @@ body {
     margin-top: 15%;
     padding: 0 5%;
 }
-.search-form {
-    width: 100%;
-    height: var(--searchbox-height);
-    max-width: 764px;
-    display: flex;
-    background: var(--transp-bg-elements);
-    backdrop-filter: blur(10px);
-    border-radius: 4px;
-    border-bottom: 3px solid var(--opaque-bg-elements);
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0, 0.13, 0, 0.49);
-}
 .search-error {
     margin: 8px auto 0;
     max-width: 764px;
     color: var(--color-text);
     overflow-wrap: anywhere;
-}
-.search-input {
-    flex: 100%;
-    height: 100%;
-    border: none;
-    padding: 10px 10px 7px 10px;
-    background: transparent;
-    font-family: var(--font-family);
-    color: var(--color-text);
-}
-.search-buttons {
-    min-width: 40px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    padding: 0;
-    background: transparent;
-    color: #fff9;
-    cursor: pointer;
-}
-.search-buttons svg {
-    width: 24px;
 }
 #search-clear {
     display: none;
@@ -64,27 +28,7 @@ body {
     font-size: 20px;
 }
 
-.search-input:focus-visible {
-    outline: none; /* the form's accent border already marks focus */
-}
-.search-input::placeholder {
-    color: #fff9;
-}
-.search-form:hover {
-    background: var(--opaque-bg-elements);
-}
-.search-form:focus-within {
-    background: var(--opaque-bg-elements);
-}
-.search-form:focus-within .search-buttons {
-    color: #fff;
-}
-.search-form.input-focus {
-    border-bottom: 3px solid var(--accent-color);
-}
-.search-buttons:hover {
-    opacity: .7;
-}
+/* The search bar's look lives in searchbar-classic.css / searchbar-modern.css. */
 
 #img-bg, #video-bg {
     opacity: 0;

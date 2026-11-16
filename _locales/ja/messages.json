@@ -193,5 +193,14 @@
     },
     "footerDonate": {
         "message": "コーヒーをおごる"
+    },
+    "searchBarLabel": {
+        "message": "検索バー"
+    },
+    "searchBarModern": {
+        "message": "モダン"
+    },
+    "searchBarClassic": {
+        "message": "クラシック"
     }
 }

@@ -193,5 +193,14 @@
     },
     "footerDonate": {
         "message": "मुझे एक कॉफ़ी पिलाएँ"
+    },
+    "searchBarLabel": {
+        "message": "खोज बार"
+    },
+    "searchBarModern": {
+        "message": "आधुनिक"
+    },
+    "searchBarClassic": {
+        "message": "क्लासिक"
     }
 }

@@ -98,11 +98,6 @@ bgVideo.addEventListener('loadeddata', e=> {
     e.target.style.opacity = '1';
 });
 
-function applyTheme(theme) {
-    if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
-    else delete document.documentElement.dataset.theme;
-}
-
 // What should be on screen for the given settings.
 function resolveMedia(state) {
     const type = state.backgroundType;
@@ -163,7 +158,7 @@ function renderBackground() {
 
 chrome.storage.local.get(Settings.KEYS, values=> {
     bgState = Settings.withDefaults(values);
-    applyTheme(bgState.theme);
+    Settings.applyAppearance(bgState);
     renderBackground();
     if (Settings.isDynamic(bgState.backgroundType)) chrome.runtime.sendMessage({dynamicBg:{force: false}});
 });
@@ -176,7 +171,7 @@ chrome.storage.onChanged.addListener((changes, area)=> {
     const next = {...bgState};
     for (const key of keys) next[key] = changes[key].newValue;
     bgState = Settings.withDefaults(next);
-    if (keys.includes('theme')) applyTheme(bgState.theme);
+    if (keys.some(key => Settings.MIRRORED_KEYS.includes(key))) Settings.applyAppearance(bgState);
     renderBackground();
 });
 
