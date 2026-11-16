@@ -260,8 +260,12 @@ document.querySelectorAll('input[name="theme"]').forEach(input => input.addEvent
     save({theme: input.value});
 }));
 // Picking a style, or answering the update notice, retires the notice.
+// Classic always starts from its original 2.0 corners; the other styles keep
+// whatever radius the slider has.
 document.querySelectorAll('input[name="searchBarStyle"]').forEach(input => input.addEventListener('change', () => {
-    save({searchBarStyle: input.value, searchBarIntroPending: false});
+    const patch = {searchBarStyle: input.value, searchBarIntroPending: false};
+    if (input.value === 'classic') patch.searchBarRadius = Settings.CLASSIC_RADIUS;
+    save(patch);
 }));
 // Saves while dragging (debounced) so an open new tab follows the slider.
 let radiusTimer;
@@ -279,7 +283,7 @@ ui.radius.addEventListener('change', () => {
 });
 
 // "Switch back to classic" restores the 2.0 bar exactly, including its 4px corners.
-$('#intro-classic').addEventListener('click', () => save({searchBarStyle: 'classic', searchBarRadius: 4, searchBarIntroPending: false}));
+$('#intro-classic').addEventListener('click', () => save({searchBarStyle: 'classic', searchBarRadius: Settings.CLASSIC_RADIUS, searchBarIntroPending: false}));
 $('#intro-dismiss').addEventListener('click', () => save({searchBarIntroPending: false}, {quiet: true}));
 ui.slow.addEventListener('change', () => save({getPhotoDelay: ui.slow.checked}));
 

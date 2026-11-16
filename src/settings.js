@@ -21,6 +21,8 @@
     // Corner radius steps (px) for the search bars. 4 is the classic bar's
     // original radius; 28 is a full pill at every bar height.
     const SEARCHBAR_RADII = Object.freeze([0, 4, 10, 14, 20, 28]);
+    // Applied whenever the classic style is picked.
+    const CLASSIC_RADIUS = 4;
     // Pre-release name of the glass style.
     const LEGACY_SEARCHBAR = Object.freeze({modern: 'glass'});
 
@@ -121,6 +123,7 @@
         THEMES,
         SEARCHBAR_STYLES,
         SEARCHBAR_RADII,
+        CLASSIC_RADIUS,
         MIRRORED_KEYS,
         MIRROR_PREFIX,
         KEYS,

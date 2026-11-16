@@ -120,6 +120,9 @@ test('corner radius only accepts the slider steps and defaults to a pill', () =>
     assert.equal(S.withDefaults({searchBarRadius: '20'}).searchBarRadius, 20);
     assert.equal(S.withDefaults({searchBarRadius: 13}).searchBarRadius, 28);
     assert.equal(S.withDefaults({searchBarRadius: 6}).searchBarRadius, 28);
+    // The classic preset must be a reachable slider step.
+    assert.ok(S.SEARCHBAR_RADII.includes(S.CLASSIC_RADIUS));
+    assert.equal(S.CLASSIC_RADIUS, 4);
 
     const stray = vm.createContext({localStorage: memoryStorage({'simplite.searchBarRadius': '999'}), document: {documentElement: {dataset: {}, style: styleStub()}}});
     vm.runInContext(bootSource, stray);
