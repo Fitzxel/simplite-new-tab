@@ -30,11 +30,19 @@
             </button>
         </form>
         <p class="search-error" id="search-error" role="alert" hidden></p>
+        <aside class="support" id="support" hidden>
+            <span class="support-cup" aria-hidden="true">☕</span>
+            <p class="support-text"><span id="support-text"></span> <a id="support-link" href="https://ko-fi.com/fitzxel" target="_blank" rel="noopener noreferrer"></a></p>
+            <button type="button" class="support-close" id="support-close">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 7 7 17M7 7l10 10"/></svg>
+            </button>
+        </aside>
     </div>
     <img id="img-bg">
     <video id="video-bg"></video>
     <a id="photographer" style="display: none;"></a>
     <script src="src/settings.js"></script>
     <script src="src/newtab.js"></script>
+    <script src="src/support-prompt.js"></script>
 </body>
 </html>

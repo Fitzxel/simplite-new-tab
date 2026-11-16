@@ -238,5 +238,14 @@
     },
     "radiusPill": {
         "message": "胶囊"
+    },
+    "supportPromptText": {
+        "message": "喜欢 Simplite 吗？"
+    },
+    "supportPromptClose": {
+        "message": "隐藏"
+    },
+    "supportPromptSetting": {
+        "message": "偶尔显示支持 Simplite 的方式"
     }
 }

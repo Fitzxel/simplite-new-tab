@@ -38,6 +38,7 @@ const ui = {
     fileInput: $('#input-file'),
     newBg: $('#new-bg-btn'),
     slow: $('#slow-notices'),
+    supportPrompt: $('#support-prompt'),
     reset: $('#reset-btn'),
     searchBarIntro: $('#searchbar-intro'),
     radiusRow: $('#radius-row'),
@@ -92,6 +93,7 @@ function render() {
     ui.dropHint.textContent = msg(hasImage ? 'customReplaceHint' : 'customDropHint');
 
     ui.slow.checked = saved.getPhotoDelay;
+    ui.supportPrompt.checked = saved.showSupportPrompt;
     ui.searchBarIntro.hidden = !saved.searchBarIntroPending;
 
     // Corner radius applies to every visible bar.
@@ -286,6 +288,7 @@ ui.radius.addEventListener('change', () => {
 $('#intro-classic').addEventListener('click', () => save({searchBarStyle: 'classic', searchBarRadius: Settings.CLASSIC_RADIUS, searchBarIntroPending: false}));
 $('#intro-dismiss').addEventListener('click', () => save({searchBarIntroPending: false}, {quiet: true}));
 ui.slow.addEventListener('change', () => save({getPhotoDelay: ui.slow.checked}));
+ui.supportPrompt.addEventListener('change', () => save({showSupportPrompt: ui.supportPrompt.checked}));
 
 let resetTimer;
 function disarmReset() {

@@ -238,5 +238,14 @@
     },
     "radiusPill": {
         "message": "Капсула"
+    },
+    "supportPromptText": {
+        "message": "Нравится Simplite?"
+    },
+    "supportPromptClose": {
+        "message": "Скрыть"
+    },
+    "supportPromptSetting": {
+        "message": "Иногда показывать, как поддержать Simplite"
     }
 }

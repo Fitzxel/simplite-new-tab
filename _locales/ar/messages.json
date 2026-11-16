@@ -238,5 +238,14 @@
     },
     "radiusPill": {
         "message": "كبسولة"
+    },
+    "supportPromptText": {
+        "message": "هل يعجبك Simplite؟"
+    },
+    "supportPromptClose": {
+        "message": "إخفاء"
+    },
+    "supportPromptSetting": {
+        "message": "عرض طريقة دعم Simplite من حين لآخر"
     }
 }

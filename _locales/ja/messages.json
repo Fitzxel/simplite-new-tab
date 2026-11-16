@@ -238,5 +238,14 @@
     },
     "radiusPill": {
         "message": "ピル型"
+    },
+    "supportPromptText": {
+        "message": "Simplite を気に入っていただけましたか？"
+    },
+    "supportPromptClose": {
+        "message": "非表示"
+    },
+    "supportPromptSetting": {
+        "message": "Simplite を応援する方法をときどき表示する"
     }
 }

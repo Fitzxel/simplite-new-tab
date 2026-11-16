@@ -28,9 +28,102 @@ body {
     font-size: 20px;
 }
 
-/* Each search bar style lives in its own searchbar-<style>.css file. */
-:root[data-searchbar="none"] .search-container {
+/* Each search bar style lives in its own searchbar-<style>.css file.
+   "No bar" hides only the bar, so the support card can still show. */
+:root[data-searchbar="none"] .search-form,
+:root[data-searchbar="none"] .search-error {
     display: none;
+}
+
+/* Occasional support card, centered under the search bar */
+.support {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    padding: 6px 6px 6px 14px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 999px;
+    background: rgba(20, 24, 32, .55);
+    backdrop-filter: blur(16px) saturate(150%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
+    color: #fff;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(8px) scale(.98);
+    transition: opacity .45s ease, transform .45s cubic-bezier(.2, .8, .2, 1);
+}
+.support[hidden] {
+    display: none;
+}
+.support.show {
+    opacity: 1;
+    transform: none;
+}
+.support-cup {
+    font-size: 18px;
+    line-height: 1;
+    transform-origin: 50% 90%;
+}
+.support.show .support-cup {
+    animation: support-sip 1.2s .5s ease-in-out 2;
+}
+@keyframes support-sip {
+    0%, 100% { transform: rotate(0); }
+    30% { transform: rotate(-12deg); }
+    60% { transform: rotate(8deg); }
+}
+.support-text {
+    margin: 0;
+    color: rgba(255, 255, 255, .88);
+}
+.support-text a:link,
+.support-text a:visited {
+    display: inline-block;
+    margin-inline-start: 4px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: #ffcf70;
+    color: #2a1a05;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .15s ease, transform .15s ease;
+}
+.support-text a:hover {
+    background: #ffdc94;
+    transform: translateY(-1px);
+}
+.support-close {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    flex: none;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: rgba(255, 255, 255, .7);
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
+}
+.support-close:hover {
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+}
+.support-close svg {
+    width: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+@media (prefers-reduced-motion: reduce) {
+    .support,
+    .support-cup {
+        transition: none;
+        animation: none !important;
+    }
 }
 
 #img-bg, #video-bg {

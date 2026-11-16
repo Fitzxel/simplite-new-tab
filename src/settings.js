@@ -50,6 +50,8 @@
         searchBarIntroPending: false,
         searchBarRadius: 28,
         getPhotoDelay: true,
+        // Occasional "buy me a coffee" card on the new tab (src/support-prompt.js).
+        showSupportPrompt: true,
         dynamicPhotoData: Object.freeze(emptyMedia()),
         dynamicVideoData: Object.freeze(emptyMedia()),
     });
@@ -82,6 +84,7 @@
         out.searchBarStyle = pick(LEGACY_SEARCHBAR[out.searchBarStyle] ?? out.searchBarStyle, SEARCHBAR_STYLES, DEFAULTS.searchBarStyle);
         out.searchBarIntroPending = out.searchBarIntroPending === true;
         out.searchBarRadius = pick(Number(out.searchBarRadius), SEARCHBAR_RADII, DEFAULTS.searchBarRadius);
+        out.showSupportPrompt = out.showSupportPrompt !== false;
         if (typeof out.backgroundColor !== 'string') out.backgroundColor = '';
         if (typeof out.backgroundImageData !== 'string') out.backgroundImageData = '';
         out.getPhotoDelay = out.getPhotoDelay !== false;

@@ -238,5 +238,14 @@
     },
     "radiusPill": {
         "message": "कैप्सूल"
+    },
+    "supportPromptText": {
+        "message": "Simplite पसंद आ रहा है?"
+    },
+    "supportPromptClose": {
+        "message": "छिपाएँ"
+    },
+    "supportPromptSetting": {
+        "message": "कभी-कभी Simplite को समर्थन देने का तरीका दिखाएँ"
     }
 }

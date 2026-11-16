@@ -238,5 +238,14 @@
     },
     "radiusPill": {
         "message": "Pílula"
+    },
+    "supportPromptText": {
+        "message": "Gostando do Simplite?"
+    },
+    "supportPromptClose": {
+        "message": "Ocultar"
+    },
+    "supportPromptSetting": {
+        "message": "Mostrar de vez em quando como apoiar o Simplite"
     }
 }
