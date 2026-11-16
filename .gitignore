@@ -1,0 +1,2 @@
+# Store packages built by scripts/build-zip.sh
+dist/

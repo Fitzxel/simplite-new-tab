@@ -34,5 +34,13 @@ With Simplite you have a new tab made for those who do without icons, apps, news
 - `Alt` + `N` replaces `Ctrl` + `F` for a new background, so the browser's find bar works again.
 - An occasional, dismissible card to support Simplite; it can be turned off in Settings > Advanced.
 
+# Building the store package:
+
+```sh
+python3 scripts/build_zip.py
+```
+
+Runs the tests and writes `dist/simplite-new-tab-<version>.zip`. Only the files listed in `INCLUDE` at the top of the script are packaged, so add new runtime files there.
+
 # Get extension:
 - [Get for Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/gcnndkgggdjgfkkmokfpifaehabocfgo)
