@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=block" rel="stylesheet">
+<style>
+:root { --ink: #fff; --muted: rgba(255,255,255,.72); --accent: #0984E3; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: var(--w); height: var(--h); overflow: hidden; }
+body { font-family: Figtree, system-ui, sans-serif; color: var(--ink); background: #0b0e13; position: relative; }
+.backdrop { position: absolute; inset: -60px; background-size: cover; background-position: center; filter: blur(40px) saturate(1.2) brightness(.45); }
+.backdrop::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 0%, rgba(9,12,18,.15), rgba(9,12,18,.75)); }
+.stage { position: absolute; inset: 0; }
+
+.head { position: absolute; left: 0; right: 0; text-align: center; }
+.head h1 { font-size: 44px; font-weight: 800; letter-spacing: -.02em; line-height: 1.08; }
+.head p { margin-top: 10px; font-size: 19px; color: var(--muted); font-weight: 500; }
+.head h1 em { font-style: normal; color: #7cc4ff; }
+
+/* Browser window */
+.win { position: absolute; border-radius: 14px; overflow: hidden; background: #1f2229; box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.1); }
+.tabs { height: 38px; display: flex; align-items: flex-end; gap: 8px; padding: 0 12px; background: #16181d; }
+.dots { display: flex; gap: 7px; align-self: center; margin-right: 8px; }
+.dots i { width: 11px; height: 11px; border-radius: 50%; background: #3a3e47; display: block; }
+.tab { height: 30px; width: 220px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 9px 9px 0 0; background: #2a2e36; font-size: 12.5px; color: #e6e8ec; }
+.tab img { width: 14px; height: 14px; }
+.tab .x { margin-left: auto; opacity: .5; font-size: 13px; }
+.plus { align-self: center; color: #9aa0aa; font-size: 18px; padding-bottom: 2px; }
+.bar { height: 42px; display: flex; align-items: center; gap: 12px; padding: 0 12px; background: #2a2e36; border-bottom: 1px solid rgba(0,0,0,.35); }
+.nav { display: flex; gap: 14px; color: #9aa0aa; }
+.nav svg, .ext svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.omni { flex: 1; height: 30px; border-radius: 15px; background: #1b1d22; display: flex; align-items: center; padding: 0 14px; font-size: 13px; color: #8b919c; }
+.ext { display: flex; gap: 10px; align-items: center; color: #9aa0aa; }
+.ext .me { width: 26px; height: 26px; border-radius: 7px; display: grid; place-items: center; }
+.ext .me.on { background: rgba(124,196,255,.2); box-shadow: 0 0 0 1px rgba(124,196,255,.45); }
+.ext .me img { width: 17px; }
+.view { position: relative; overflow: hidden; background: #111; }
+.view iframe, .card iframe { border: 0; position: absolute; left: 0; top: 0; transform-origin: 0 0; pointer-events: none; }
+
+/* Cards (grids) */
+.card { position: absolute; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.12); background: #111; }
+.chip { position: absolute; left: 14px; bottom: 14px; padding: 7px 13px; border-radius: 999px; font-size: 14px; font-weight: 700; background: rgba(12,15,20,.62); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.16); display: flex; gap: 8px; align-items: center; }
+.chip small { font-weight: 500; color: var(--muted); font-size: 13px; }
+
+/* Strips */
+.strip { position: absolute; top: 0; bottom: 0; overflow: hidden; }
+.strip + .strip { box-shadow: -1px 0 0 rgba(255,255,255,.35); }
+.strip .chip { left: 50%; transform: translateX(-50%); bottom: 22px; white-space: nowrap; }
+
+/* Side copy */
+.side { position: absolute; }
+.side h1 { font-size: 46px; font-weight: 800; letter-spacing: -.02em; line-height: 1.06; }
+.side h1 em { font-style: normal; color: #7cc4ff; }
+.side p { margin-top: 14px; font-size: 18px; color: var(--muted); line-height: 1.45; font-weight: 500; }
+.side ul { list-style: none; margin-top: 26px; display: grid; gap: 14px; }
+.side li { display: flex; gap: 12px; align-items: flex-start; font-size: 17px; font-weight: 600; line-height: 1.35; }
+.side li span { color: var(--muted); font-weight: 500; display: block; font-size: 15px; }
+.side li b { flex: none; width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; background: rgba(124,196,255,.16); color: #7cc4ff; font-size: 14px; }
+.kbd { display: inline-block; padding: 1px 7px; border-radius: 6px; border: 1px solid rgba(255,255,255,.3); border-bottom-width: 2px; font-size: 13px; font-weight: 700; color: #fff; }
+
+.popup { position: absolute; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.14); }
+.popup iframe { border: 0; transform-origin: 0 0; display: block; }
+
+/* Promo tiles */
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand img { filter: drop-shadow(0 4px 14px rgba(0,0,0,.35)); }
+.brand b { font-weight: 800; letter-spacing: -.02em; }
+.fakebar { display: flex; align-items: center; gap: 10px; border-radius: 999px; background: rgba(20,24,32,.5); backdrop-filter: blur(20px) saturate(150%); border: 1px solid rgba(255,255,255,.14); border-bottom: 3px solid #0984E3; color: rgba(255,255,255,.8); }
+.fakebar svg { fill: none; stroke: currentColor; stroke-width: 32; }
+.shade { position: absolute; inset: 0; }
+</style>
+</head>
+<body>
+<div class="backdrop" id="bd"></div>
+<div class="stage" id="stage"></div>
+<script>
+const P = new URLSearchParams(location.search);
+const S = P.get('s');
+const stage = document.getElementById('stage');
+const ICON = 'resources/icon.svg';
+
+const SVG = {
+  back: '<svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>',
+  fwd: '<svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>',
+  reload: '<svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>',
+  puzzle: '<svg viewBox="0 0 24 24"><path d="M10 3h4v3a2 2 0 1 0 4 0V3h3v6h-3a2 2 0 1 0 0 4h3v8h-6v-3a2 2 0 1 0-4 0v3H3v-8h3a2 2 0 1 0 0-4H3V3h7z"/></svg>',
+  dots: '<svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>',
+  search: '<svg viewBox="0 0 512 512"><path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"/><path stroke-linecap="round" d="M338.29 338.29L448 448"/></svg>',
+};
+
+// Real new tab page (index.html with the chrome.* shim), rendered at w x h and scaled.
+function tab(params, w, h, scale) {
+  const q = new URLSearchParams({theme: 'dark', ...params});
+  return `<iframe src="index.html?${q}" width="${w}" height="${h}" style="transform:scale(${scale})"></iframe>`;
+}
+
+function browser({x, y, w, h, content, extOn = false}) {
+  return `<div class="win" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px">
+    <div class="tabs"><div class="dots"><i></i><i></i><i></i></div>
+      <div class="tab"><img src="${ICON}">New Tab<span class="x">✕</span></div><div class="plus">+</div></div>
+    <div class="bar"><div class="nav">${SVG.back}${SVG.fwd}${SVG.reload}</div>
+      <div class="omni">Search or type a URL</div>
+      <div class="ext"><span class="me ${extOn ? 'on' : ''}"><img src="${ICON}"></span>${SVG.puzzle}${SVG.dots}</div></div>
+    <div class="view" style="height:${h - 80}px">${content}</div></div>`;
+}
+
+const slides = {
+  // 1. Hero
+  '1'() {
+    const bg = 'photos/vineyards.jpg';
+    setBackdrop(bg);
+    const W = 1100, vw = 1440, sc = W / vw, vh = Math.round(900);
+    return `<div class="head" style="top:44px"><h1>A new tab that <em>just lets you search</em></h1>
+        <p>No icons, no news, no clutter. A search bar and a beautiful background.</p></div>
+      ${browser({x: 90, y: 168, w: W, h: 80 + Math.round(vh * sc), content: tab({bg, credit: 'Tama66', q: 'weekend hiking trails near me', focus: 1}, vw, vh, sc)})}`;
+  },
+  // 2. Time of day
+  '2'() {
+    setBackdrop('photos/sunset-mountains.jpg');
+    const vw = 1440, vh = 900;
+    const W = 850, sc = W / vw, H = Math.round(vh * sc);
+    const x = 70, y = 168;
+    const tw = 270, th = Math.round(tw * vh / vw), gap = (80 + H - th * 3) / 2, tsc = tw / vw;
+    const thumbs = [
+      ['photos/sunrise-field.jpg', 'Morning', '7:30'],
+      ['photos/meadow.jpg', 'Day', '13:00'],
+      ['photos/night-moon.jpg', 'Night', '23:30'],
+    ].map(([bg, name, time], i) => `<div class="card" style="left:${x + W + 20}px;top:${y + i * (th + gap)}px;width:${tw}px;height:${th}px">
+        ${tab({bg}, vw, vh, tsc)}<div class="chip" style="left:10px;bottom:10px;font-size:13px;padding:5px 11px">${name} <small>${time}</small></div></div>`).join('');
+    return `<div class="head" style="top:44px"><h1>A fresh photo for <em>every time of day</em></h1>
+        <p>Dynamic photos and videos from Pixabay that follow your day. Press <span class="kbd">Alt</span> + <span class="kbd">N</span> for a new one.</p></div>
+      ${browser({x, y, w: W, h: 80 + H, content: tab({bg: 'photos/sunset-mountains.jpg', credit: 'Pixabay'}, vw, vh, sc) + '<div class="chip">Evening <small>19:45</small></div>'})}
+      ${thumbs}`;
+  },
+  // 3. Search bar styles
+  '3'() {
+    const bg = 'photos/meadow.jpg';
+    setBackdrop(bg);
+    const cw = 520, ch = 305, gap = 20, vw = 1000, vh = Math.round(1000 * 305 / 520), sc = cw / vw;
+    const x0 = (1280 - (cw * 2 + gap)) / 2, y0 = 150;
+    const cards = [
+      [{style: 'glass', radius: 28}, 'Glass', 'default'],
+      [{style: 'solid', radius: 14}, 'Solid', 'rounded corners'],
+      [{style: 'classic', radius: 4}, 'Classic', 'the 2.0 bar'],
+      [{style: 'none'}, 'No bar', 'just the photo'],
+    ];
+    const html = cards.map(([p, name, sub], i) => {
+      const x = x0 + (i % 2) * (cw + gap), y = y0 + Math.floor(i / 2) * (ch + gap);
+      return `<div class="card" style="left:${x}px;top:${y}px;width:${cw}px;height:${ch}px">
+        ${tab({bg, ...p}, vw, vh, sc)}<div class="chip">${name} <small>${sub}</small></div></div>`;
+    }).join('');
+    return `<div class="head" style="top:40px"><h1>Pick the search bar <em>that suits you</em></h1>
+        <p>Four styles, with corners from square to pill.</p></div>${html}`;
+  },
+  // 4. Settings popup
+  '4'() {
+    const bg = 'photos/misty-lake.jpg';
+    setBackdrop(bg);
+    const W = 820, vw = 1280, vh = 800, sc = W / vw, H = Math.round(vh * sc);
+    const x = 410, y = 70;
+    const ps = .86, pw = 340, ph = 700;
+    const popup = `<div class="popup" style="left:${x + W - pw * ps - 46}px;top:${y + 80 - 4}px;width:${pw * ps}px;height:${ph * ps}px">
+      <iframe src="popup-options.html?bg=${bg}&theme=dark" width="${pw}" height="${ph}" style="transform:scale(${ps})"></iframe></div>`;
+    return `<div class="side" style="left:70px;top:150px;width:310px">
+        <h1>All settings, <em>one click away</em></h1>
+        <p>Changes save instantly and apply to every open new tab.</p>
+        <ul>
+          <li><b><svg viewBox="0 0 24 24" width="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></b><div>Light, dark or auto<span>Follows your system theme</span></div></li>
+          <li><b><svg viewBox="0 0 24 24" width="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg></b><div>Color, wallpaper, your image<span>Or dynamic photos and videos</span></div></li>
+          <li><b>文</b><div>Available in 11 languages<span>Accessible and keyboard friendly</span></div></li>
+        </ul></div>
+      ${browser({x, y, w: W, h: 80 + H + 200, extOn: true, content: tab({bg, credit: 'Pixabay'}, vw, vh + 300, sc)})}
+      ${popup}`;
+  },
+  // 5. Backgrounds your way
+  '5'() {
+    setBackdrop('photos/sunrise-field.jpg');
+    const cw = 520, ch = 305, gap = 20, vw = 1280, vh = 750, sc = cw / vw;
+    const x0 = (1280 - (cw * 2 + gap)) / 2, y0 = 150;
+    const cards = [
+      [{type: 'color', color: '#d9d4ca', theme: 'light', style: 'solid', radius: 14}, 'Solid color', 'light theme'],
+      [{type: 'default'}, 'Default wallpaper', ''],
+      [{type: 'custom', bg: 'photos/waterfall.jpg'}, 'Your own image', ''],
+      [{bg: 'photos/city-night.jpg', credit: 'Pixabay'}, 'Dynamic photos & videos', ''],
+    ];
+    const html = cards.map(([p, name, sub], i) => {
+      const x = x0 + (i % 2) * (cw + gap), y = y0 + Math.floor(i / 2) * (ch + gap);
+      return `<div class="card" style="left:${x}px;top:${y}px;width:${cw}px;height:${ch}px">
+        ${tab(p, vw, vh, sc)}<div class="chip">${name}${sub ? ` <small>${sub}</small>` : ''}</div></div>`;
+    }).join('');
+    return `<div class="head" style="top:40px"><h1>Your background, <em>your way</em></h1>
+        <p>A color, the classic wallpaper, your own photo or a new one every day.</p></div>${html}`;
+  },
+  // Small promo tile 440x280
+  'tile'() {
+    const bg = 'photos/sunset-tree.jpg';
+    return `<div style="position:absolute;inset:0;background:url(${bg}) center 60%/cover"></div>
+      <div class="shade" style="background:linear-gradient(180deg,rgba(8,10,16,.55),rgba(8,10,16,.1) 55%,rgba(8,10,16,.45))"></div>
+      <div style="position:absolute;left:28px;right:28px;top:30px">
+        <div class="brand"><img src="${ICON}" width="46"><b style="font-size:30px">Simplite New Tab</b></div>
+        <p style="margin-top:8px;font-size:17px;font-weight:600;color:rgba(255,255,255,.9)">Just search. Nothing else.</p>
+      </div>
+      <div class="fakebar" style="position:absolute;left:28px;right:28px;bottom:34px;height:46px;padding:0 16px;font-size:16px">
+        ${SVG.search.replace('<svg', '<svg width="18" height="18"')}Search</div>`;
+  },
+  // Marquee 1400x560
+  'marquee'() {
+    const bg = 'photos/vineyards.jpg';
+    setBackdrop(bg);
+    const W = 760, vw = 1440, vh = 900, sc = W / vw, H = Math.round(vh * sc);
+    return `<div class="side" style="left:80px;top:150px;width:470px">
+        <div class="brand"><img src="${ICON}" width="54"><b style="font-size:26px">Simplite New Tab</b></div>
+        <h1 style="margin-top:22px">A new tab that <em>just lets you search</em></h1>
+        <p>Beautiful photos that follow your day. No clutter.</p></div>
+      ${browser({x: 580, y: 60, w: W, h: 80 + H + 40, content: tab({bg, credit: 'Tama66'}, vw, vh + 80, sc)})}`;
+  },
+};
+
+function setBackdrop(src) { document.getElementById('bd').style.backgroundImage = `url(${src})`; }
+document.documentElement.style.setProperty('--w', (P.get('w') || 1280) + 'px');
+document.documentElement.style.setProperty('--h', (P.get('h') || 800) + 'px');
+stage.innerHTML = slides[S]();
+</script>
+</body>
+</html>

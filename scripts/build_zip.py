@@ -42,7 +42,7 @@ INCLUDE = [
 EXCLUDE = ['.*', '*.test.*', '*.map', '*.md']
 
 # Must never appear anywhere in the zip; a last line of defence.
-FORBIDDEN_DIRS = {'tests', 'odd', 'node_modules', 'dist', 'scripts'}
+FORBIDDEN_DIRS = {'tests', 'odd', 'node_modules', 'dist', 'scripts', 'store'}
 
 HTML_PAGES = ['index.html', 'popup-options.html']
 HTML_REF = re.compile(r'(?:src|href)="([^"#?]+)"')

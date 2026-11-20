@@ -1,0 +1,12 @@
+{
+  "_note": "Pixabay photos used by mock.html (https://pixabay.com/service/license-summary/). They are not in git: build_store_assets.py downloads them by id into photos/ (git-ignored). daypart is the Simplite proxy search they come from.",
+  "vineyards.jpg":        {"id": 4336787,  "daypart": "day",        "user": "Tama66",        "page": "https://pixabay.com/photos/vineyards-vines-wine-moselle-flow-4336787/"},
+  "meadow.jpg":           {"id": 10541588, "daypart": "day",        "user": "fietzfotos",    "page": "https://pixabay.com/photos/landscape-tree-meadow-forest-field-10541588/"},
+  "waterfall.jpg":        {"id": 4973028,  "daypart": "day",        "user": "Yezro",         "page": "https://pixabay.com/photos/waterfall-river-iceland-landscape-4973028/"},
+  "sunset-mountains.jpg": {"id": 1117008,  "daypart": "evening",    "user": "sputnikzion",   "page": "https://pixabay.com/photos/sunset-mountains-clouds-silhouette-1117008/"},
+  "sunset-tree.jpg":      {"id": 736885,   "daypart": "evening",    "user": "Bessi",         "page": "https://pixabay.com/photos/new-year-background-tree-sunset-736885/"},
+  "sunrise-field.jpg":    {"id": 6574455,  "daypart": "morning",    "user": "LagrangeHervé", "page": "https://pixabay.com/photos/field-morning-sunrise-dawn-nature-6574455/"},
+  "misty-lake.jpg":       {"id": 8686902,  "daypart": "morning",    "user": "jplenio",       "page": "https://pixabay.com/photos/trees-lake-sunrise-mist-reflection-8686902/"},
+  "night-moon.jpg":       {"id": 5114501,  "daypart": "night",      "user": "Bru-nO",        "page": "https://pixabay.com/photos/heaven-stars-moon-venus-universe-5114501/"},
+  "city-night.jpg":       {"id": 1839726,  "daypart": "late-night", "user": "Pexels",        "page": "https://pixabay.com/photos/buildings-illuminated-water-1839726/"}
+}

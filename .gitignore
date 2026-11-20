@@ -1,2 +1,5 @@
 # Store packages built by scripts/build-zip.sh
 dist/
+
+# Pixabay photos for the store images, downloaded by scripts/build_store_assets.py
+scripts/store-assets/photos/

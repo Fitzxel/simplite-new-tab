@@ -42,5 +42,14 @@ python3 scripts/build_zip.py
 
 Runs the tests and writes `dist/simplite-new-tab-<version>.zip`. Only the files listed in `INCLUDE` at the top of the script are packaged, so add new runtime files there.
 
+# Store images:
+
+```sh
+python3 scripts/build_store_assets.py            # everything
+python3 scripts/build_store_assets.py --only 2,tile
+```
+
+Renders the Chrome Web Store images into `store/`: five 1280x800 screenshots, the 440x280 small promo tile (the thumbnail shown in store search and lists), the 1400x560 marquee and the 128x128 store icon. The screenshots are the real new tab and settings pages, loaded with a fake `chrome.*` API (`scripts/store-assets/shim.js`) and composed by `scripts/store-assets/mock.html`; edit that file to change the slides. The Pixabay photos are not in git: they are listed and credited in `scripts/store-assets/photos.json` and downloaded by id into `scripts/store-assets/photos/` (git-ignored) on the first run. With `PIXABAY_API_KEY` set they are looked up on the Pixabay API; otherwise in the Simplite proxy's current results for each photo's daypart. `--refresh-photos` downloads them again. Needs Chrome or Chromium and ImageMagick. Neither `store/` nor `scripts/` goes into the zip.
+
 # Get extension:
 - [Get for Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/gcnndkgggdjgfkkmokfpifaehabocfgo)
