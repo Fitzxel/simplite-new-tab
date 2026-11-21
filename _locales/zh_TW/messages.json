@@ -1,42 +1,42 @@
 {
     "extName": {
-        "message": "Simplite New Tab"
+        "message": "Simplite 新分頁"
     },
     "extDesc": {
-        "message": "A simple and lightweight new tab."
+        "message": "一個簡單輕巧的新分頁。"
     },
     "newTabTitle": {
-        "message": "New Tab"
+        "message": "新分頁"
     },
     "search": {
-        "message": "Search"
+        "message": "搜尋"
     },
     "searchForm": {
-        "message": "Search"
+        "message": "搜尋"
     },
     "deleteButton": {
-        "message": "Delete"
+        "message": "刪除"
     },
     "photographer": {
-        "message": "Photographer"
+        "message": "攝影師"
     },
     "photoDelayNotificationTitle": {
-        "message": "It took longer than expected to get/process the image"
+        "message": "取得/處理圖片的時間超出預期"
     },
     "photoDelayNotificationMessage": {
         "message": "可在設定中降低背景畫質以加快載入。"
     },
     "photoDelayNotificationPrimaryButton": {
-        "message": "Don't show again"
+        "message": "不再顯示"
     },
     "photoDelayNotificationSecondButton": {
-        "message": "Go to settings"
+        "message": "前往設定"
     },
     "getBgErrorNotificationTitle": {
-        "message": "Something went wrong while getting the background"
+        "message": "取得背景時發生錯誤"
     },
     "getBgErrorNotificationMessage": {
-        "message": "Failed to get the background, please try again."
+        "message": "無法取得背景，請再試一次。"
     },
     "searchUnavailable": {
         "message": "搜尋無法使用。請確認瀏覽器搜尋功能是否可用。"
